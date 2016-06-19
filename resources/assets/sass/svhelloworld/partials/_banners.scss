@@ -1,0 +1,116 @@
+// Banners
+header {
+	div#banners {
+		background: $gray-lightest-color;
+		width: 100%;
+		height: 320px;
+		overflow: hidden;
+
+		.banner {
+			width: 100%;
+			height: 100%;
+
+			.banner-inner {
+				width: 100%;
+				height: 100%;
+				position: relative;
+
+				.banner-photo {
+					background: no-repeat center center;
+					background-size: cover;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					left: 0;
+					top: 0;
+				}
+
+				.banner-heading {
+					width: 100%;
+					position: absolute;
+					left: 0;
+					bottom: 60px;
+
+					.banner-heading-inner {
+						color: #FFF;
+
+						.banner-type-label {
+							background: $primary-color;
+							font-size: 0.7em;
+							font-weight: 700;
+							line-height: 1;
+							color: #FFF;
+							text-transform: uppercase;
+							padding: 10px 15px;
+							display: inline-block;
+
+							&.banner-type-label-nieuws {
+								background: #f1980b;
+							}
+
+							&.banner-type-label-excursie {
+								background: #4f9c4f;
+							}
+						}
+
+						h2 {
+							margin-top: 15px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	div#banner-slider-pager {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 30px;
+		z-index: 1000;
+	}
+
+	// Breakpoints
+	/*==========  Mobile First Method  ==========*/
+
+	/* Custom, iPhone Retina */
+	@media only screen and (min-width : 320px) {
+
+	}
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (min-width : $screen-xs) {
+
+		div#banners {
+			height: 420px;
+		}
+
+	}
+
+	/* Small Devices, Tablets */
+	@media only screen and (min-width : $screen-sm) {
+
+		div#banners {
+			height: 480px;
+		}
+
+	}
+
+	/* Medium Devices, Desktops */
+	@media only screen and (min-width : $screen-md) {
+
+		div#banners {
+			height: 560px;
+		}
+
+	}
+
+	/* Large Devices, Wide Screens */
+	@media only screen and (min-width : $screen-lg) {
+
+		div#banners {
+			height: 600px;
+		}
+
+	}
+}

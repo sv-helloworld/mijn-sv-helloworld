@@ -1,0 +1,72 @@
+// Footer
+footer#footer {
+	background: #FFF;
+	font-size: 0.9em;
+	color: #777;
+	border-top: 1px solid $gray-lighter-color;
+
+	.container {
+		.container-inner {
+			padding: 30px 0;
+		}
+	}
+
+	ul.navigation {
+		> li {
+			> a {
+				color: #777;
+
+				&:hover, &:active, &:focus {
+					color: #666;
+				}
+			}
+		}
+	}
+
+	// Breakpoints
+	/*==========  Mobile First Method  ==========*/
+
+	/* Custom, iPhone Retina */
+	@media only screen and (min-width : 320px) {
+
+	}
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (min-width : $screen-xs) {
+
+	}
+
+	/* Small Devices, Tablets */
+	@media only screen and (min-width : $screen-sm) {
+
+	}
+
+	/* Medium Devices, Desktops */
+	@media only screen and (min-width : $screen-md) {
+
+		ul.navigation {
+			margin: 0;
+			text-align: right;
+
+			> li {
+				margin-left: 15px;
+				display: inline-block;
+
+				&:first-child {
+					margin-left: 0;
+				}
+
+				> a {
+
+				}
+			}
+		}
+
+	}
+
+	/* Large Devices, Wide Screens */
+	@media only screen and (min-width : $screen-lg) {
+
+	}
+
+}
