@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="title" content="@yield('title')">
+        <meta name="author" content="Studievereniging &quot;Hello World&quot;">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Studievereniging "Hello World" - @yield('title')</title>
+
+        <link rel="icon" type="image/png" href="{{ asset('/images/icon.png') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600,300|Source+Serif+Pro" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.min.css') }}">
+        @yield('stylesheets')
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+        <!-- Top bar -->
+        <div id="topbar">
+            <div class="container-fluid">
+                <div class="container-inner">
+                    <div class="row">
+                        <div class="col-sm-3 hidden-xs">
+                            <span>{{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <ul class="navigation">
+                                <li>
+                                    <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
+                                </li><!--
+                                --><li>
+                                    <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header>
+            <!-- Navigation -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main" aria-expanded="false">
+                            <span class="sr-only">Menu</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            <span>Studievereniging "Hello World"</span>
+                        </a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-main">
+                        <ul class="nav navbar-nav">
+                            @include(config('laravel-menu.views.bootstrap-items'), array('items' => $menu->roots()))
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                                @if(Auth::check())
+                                    <li class="dropdown">
+                                        <a href="{{ route('account.index') }}" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Gravatar::src(Auth::user()->email, 80) }}" class="avatar"> {{ Auth::user()->name }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ route('account.index') }}">Overzicht</a></li>
+                                            <li><a href="{{ route('account.edit') }}">Account wijzigen</a></li>
+                                            <li><a href="{{ route('account.email.edit') }}">E-mailadres wijzigen</a></li>
+                                            <li><a href="{{ route('account.password.edit') }}">Wachtwoord wijzigen</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Uitloggen</a></li>
+                                @else
+                                    <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Inloggen</a></li>
+                                @endif
+                            </ul>
+                    </div>
+                </div>
+            </nav>
+
+            @if (isset($banners))
+            <!-- Banners -->
+            <div id="banners">
+                @foreach ($banners as $banner)
+                <div class="banner">
+                    <div class="banner-inner">
+                        <div class="banner-photo" data-115-start="transform: translate(0px, 0px);" data--715-top="transform: translate(0%, 120%);" style="background-image: url('{{ banner.image }}');"></div>
+
+                        <div class="banner-heading">
+                            <div class="container">
+                                <div class="banner-heading-inner">
+                                    <span class="banner-type-label banner-type-label-{{ banner.type }}">{{ banner.type | capitalize }}</span>
+                                    <h2>{{ banner.title }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                <div id="banner-slider-pager" class="item-slider-pager">
+                    <div class="item-slider-pager-inner"></div>
+                </div>
+            </div>
+            @endif
+        </header>
+
+
+        <!-- Content -->
+        <section id="content">
+            <div class="container-fluid">
+                <div class="container-inner">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                            @yield('content')
+                        </div>
+
+                        <!-- Sidebar -->
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div class="container">
+                <div class="container-inner">
+                    <span>&copy; {{ Carbon\Carbon::now()->year }} Studievereniging "Hello World"</span>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- Scripts -->
+        <script src="{{ asset('/js/vendor.min.js') }}"></script>
+        <script src="{{ asset('/js/app.min.js') }}"></script>
+        @yield('scripts')
+
+    </body>
+</html>
