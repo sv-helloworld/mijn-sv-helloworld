@@ -1,13 +1,13 @@
 "use strict";
 
 var gulp = require('gulp'),
-        gutil = require('gulp-util'),
-        sass = require('gulp-sass'),
-        autoprefixer = require('gulp-autoprefixer'),
-        livereload = require('gulp-livereload'),
-        uglify = require('gulp-uglify'),
-        concat = require('gulp-concat'),
-        concatCss = require('gulp-concat-css');
+    gutil = require('gulp-util'),
+    sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer'),
+    livereload = require('gulp-livereload'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    concatCss = require('gulp-concat-css');
 
 var stylesheets = [
     'resources/assets/css/**/*.css'
