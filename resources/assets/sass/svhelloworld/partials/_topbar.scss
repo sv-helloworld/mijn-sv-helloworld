@@ -1,0 +1,77 @@
+// Top bar
+div#topbar {
+	background: $blue-color;
+	font-size: 0.8em;
+	font-weight: 700;
+	color: #FFF;
+	text-transform: uppercase;
+
+	.container-fluid {
+		.container-inner {
+			padding: 10px 0;
+		}
+	}
+
+	.date {
+		display: none;
+	}
+
+	ul.navigation {
+		text-align: right;
+		margin: 0;
+
+		> li {
+			line-height: 1;
+			margin-left: 10px;
+			padding-left: 10px;
+			border-left: 1px solid $blue-light-color;
+			display: inline-block;
+
+			&:first-child {
+				margin-left: 0;
+				padding-left: 0;
+				border-left: none;
+			}
+
+			> a {
+				color: #FFF;
+
+				&:hover, &:active, &:focus {
+					color: rgba(255, 255, 255, .7);
+				}
+			}
+		}
+	}
+
+	// Breakpoints
+	/*==========  Mobile First Method  ==========*/
+
+	/* Custom, iPhone Retina */
+	@media only screen and (min-width : 320px) {
+
+		.date {
+			display: block;
+		}
+
+	}
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (min-width : $screen-xs) {
+
+	}
+
+	/* Small Devices, Tablets */
+	@media only screen and (min-width : $screen-sm) {
+
+	}
+
+	/* Medium Devices, Desktops */
+	@media only screen and (min-width : $screen-md) {
+
+	}
+
+	/* Large Devices, Wide Screens */
+	@media only screen and (min-width : $screen-lg) {
+
+	}
+}
