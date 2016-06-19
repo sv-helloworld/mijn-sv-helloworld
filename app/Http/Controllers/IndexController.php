@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class IndexController extends Controller
 {
     /**
-     * Returns the index view
+     * Returns the index view.
      *
      * @return mixed The index view
      */
