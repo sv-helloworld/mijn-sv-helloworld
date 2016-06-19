@@ -12,44 +12,44 @@
 */
 
 Route::get('/', [
-	'uses' => 'IndexController@index',
-	'as' => 'index'
+    'uses' => 'IndexController@index',
+    'as' => 'index',
 ]);
 
 // Authentication routes
-Route::get('inloggen',  [
+Route::get('inloggen', [
     'uses' => 'Auth\AuthController@getLogin',
-    'as' => 'login'
+    'as' => 'login',
 ]);
 
 Route::post('inloggen', [
-    'uses' => 'Auth\AuthController@postLogin'
+    'uses' => 'Auth\AuthController@postLogin',
 ]);
 
 Route::get('uitloggen', [
     'uses' => 'Auth\AuthController@getLogout',
-    'as' => 'logout'
+    'as' => 'logout',
 ]);
 
 // Password reset routes
-Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], function() {
-	// Password reset link request routes
-	Route::get('email', [
-		'uses' => 'Auth\PasswordController@getEmail',
-		'as' => 'email'
-	]);
+Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], function () {
+    // Password reset link request routes
+    Route::get('email', [
+        'uses' => 'Auth\PasswordController@getEmail',
+        'as' => 'email',
+    ]);
 
-	Route::post('email', [
-		'uses' => 'Auth\PasswordController@postEmail'
-	]);
+    Route::post('email', [
+        'uses' => 'Auth\PasswordController@postEmail',
+    ]);
 
-	// Password reset routes
-	Route::get('reset/{token}', [
-		'uses' => 'Auth\PasswordController@getReset',
-		'as' => 'reset'
-	]);
+    // Password reset routes
+    Route::get('reset/{token}', [
+        'uses' => 'Auth\PasswordController@getReset',
+        'as' => 'reset',
+    ]);
 
-	Route::post('reset', [
-		'uses' => 'Auth\PasswordController@postReset'
-	]);
+    Route::post('reset', [
+        'uses' => 'Auth\PasswordController@postReset',
+    ]);
 });
