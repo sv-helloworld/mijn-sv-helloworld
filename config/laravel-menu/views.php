@@ -2,6 +2,6 @@
 
 return [
 
-	'bootstrap-items' => 'laravel-menu::bootstrap-navbar-items',
+    'bootstrap-items' => 'laravel-menu::bootstrap-navbar-items',
 
 ];
