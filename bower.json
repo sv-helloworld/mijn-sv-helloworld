@@ -1,0 +1,31 @@
+{
+  "name": "mijn-sv-helloworld",
+  "homepage": "https://mijn.svhelloworld.nl",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Raymon de Looff <raydelooff@gmail.com>",
+    "Thijs Clowting <thijs@clowting.me>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "sv",
+    "studievereniging",
+    "hello",
+    "world"
+  ],
+  "homepage": "https://github.com/sv-helloworld/mijn-sv-helloworld",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.6",
+    "jquery": "1.9.1 - 2"
+  }
+}
