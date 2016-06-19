@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Menu;
-use Auth;
 
 class Menus
 {
@@ -18,7 +17,7 @@ class Menus
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        Menu::make('menu', function($menu) {
+        Menu::make('menu', function ($menu) {
             $menu->add('Home', ['route' => 'index']);
         });
 
