@@ -11,7 +11,7 @@ use Laracasts\Flash\Flash;
 class AccountController extends Controller
 {
     /**
-     * Account index view
+     * Account index view.
      *
      * @param Request $request
      * @return Response
@@ -24,7 +24,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Account edit view
+     * Account edit view.
      *
      * @param Request $request
      * @return Response
@@ -37,7 +37,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Update account action
+     * Update account action.
      *
      * @param Request $request
      * @return Response
@@ -61,7 +61,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Account deactivated view
+     * Account deactivated view.
      *
      * @param Request $request
      * @return Response

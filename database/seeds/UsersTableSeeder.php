@@ -39,7 +39,7 @@ class UsersTableSeeder extends Seeder
                 'city' => 'Voorbeeldstad',
             ],
         ]);
-        
+
         DB::table('users')->insert([
             [
                 'first_name' => 'Voorbeeld',

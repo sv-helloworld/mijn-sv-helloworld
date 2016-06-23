@@ -52,14 +52,14 @@ class EmailController extends Controller
     protected $verificationErrorView = 'account.email.verificate.error';
 
     /**
-     * Email verificate index view
+     * Email verificate index view.
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
-        if(!$request->session()->has('flash_notification.message')) {
+        if (! $request->session()->has('flash_notification.message')) {
             return redirect('account');
         }
 
@@ -67,7 +67,7 @@ class EmailController extends Controller
     }
 
     /**
-     * Email edit view
+     * Email edit view.
      *
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -78,7 +78,7 @@ class EmailController extends Controller
     }
 
     /**
-     * Updates the users' email address
+     * Updates the users' email address.
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
@@ -86,7 +86,7 @@ class EmailController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|confirmed|unique:users|email'
+            'email' => 'required|confirmed|unique:users|email',
         ]);
 
         $user = Auth::user();
@@ -117,12 +117,15 @@ class EmailController extends Controller
             UserVerification::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
             Flash::error('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.');
+
             return redirect($this->redirectIfVerificationFails());
         } catch (UserIsVerifiedException $e) {
             Flash::warning('Het e-mailadres is al geverifieerd.');
+
             return redirect($this->redirectIfVerified());
         } catch (TokenMismatchException $e) {
             Flash:error('Het e-mailadres kon niet worden geverifieerd.');
+
             return redirect($this->redirectIfVerificationFails());
         }
 

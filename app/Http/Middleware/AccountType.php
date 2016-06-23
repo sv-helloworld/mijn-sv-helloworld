@@ -18,8 +18,8 @@ class AccountType
     {
         $user = $request->user();
 
-        foreach($account_types as $account_type) {
-            if($user->hasAccountType($account_type)) {
+        foreach ($account_types as $account_type) {
+            if ($user->hasAccountType($account_type)) {
                 return $next($request);
             }
         }

@@ -14,7 +14,7 @@ class RedirectIfNotVerified
      * @var array
      */
     protected $except = [
-        '/'
+        '/',
     ];
 
     /**
@@ -26,12 +26,13 @@ class RedirectIfNotVerified
      */
     public function handle($request, Closure $next)
     {
-        if($this->shouldPassThrough($request)) {
+        if ($this->shouldPassThrough($request)) {
             return $next($request);
         }
 
-        if (!Auth::user()->verified) {
+        if (! Auth::user()->verified) {
             Flash::warning('U moet uw e-mailadres verifieren voor u deze pagina kunt bezoeken.');
+
             return redirect('/');
         }
 

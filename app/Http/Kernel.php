@@ -38,7 +38,7 @@ class Kernel extends HttpKernel
 
         'auth' => [
             'auth:web',
-            'activated'
+            'activated',
         ],
     ];
 
