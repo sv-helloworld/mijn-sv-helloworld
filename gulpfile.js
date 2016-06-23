@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    concatCss = require('gulp-concat-css');
+    concatCss = require('gulp-concat-css'),
+    cssnano = require('gulp-cssnano');
 
 var stylesheets = [
     'resources/assets/css/**/*.css'
@@ -38,10 +39,18 @@ gulp.task('sass', function() {
         .pipe(livereload());
 });
 
-gulp.task('css', function() {
+gulp.task('css', ['sass'], function() {
     return gulp.src(stylesheets)
         .pipe(concatCss('app.min.css'))
         .pipe(gulp.dest('public/css'));
+});
+
+gulp.task('minify_css', ['sass'], function() {
+    return gulp.src(stylesheets)
+        .pipe(concatCss('app.min.css'))
+        .pipe(cssnano())
+        .pipe(gulp.dest('.'))
+        .pipe(livereload());
 });
 
 gulp.task('scripts_app', function() {
@@ -75,7 +84,7 @@ gulp.task('watch', function() {
     gulp.watch('resources/views/**/*.blade.php', ['blade']);
 
     // Watch SASS and SCSS files
-    gulp.watch('resources/assets/sass/**/*.{sass,scss}', ['sass', 'css']);
+    gulp.watch('resources/assets/sass/**/*.{sass,scss}', ['css']);
 
     // Watch JS files
     gulp.watch('resources/assets/js/*.js', ['scripts_app']);
