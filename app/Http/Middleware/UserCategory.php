@@ -18,8 +18,8 @@ class UserCategory
     {
         $user = $request->user();
 
-        foreach($user_categories as $user_category) {
-            if($user->hasUserCategory($user_category)) {
+        foreach ($user_categories as $user_category) {
+            if ($user->hasUserCategory($user_category)) {
                 return $next($request);
             }
         }

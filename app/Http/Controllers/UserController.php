@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-
 use App\User;
 use App\UserCategory;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
-use Session;
 use Validator;
 use Auth;
 use UserVerification;
@@ -34,13 +31,13 @@ class UserController extends Controller
 
     /**
      * The password set view.
-     * 
+     *
      * @var string
      */
     protected $resetView = 'account.password.set';
 
     /**
-     * Set the email subject
+     * Set the email subject.
      *
      * @var string
      */
@@ -68,7 +65,7 @@ class UserController extends Controller
         $user_categories = UserCategory::all();
 
         $user_categories_values = [];
-        foreach($user_categories as $user_category) {
+        foreach ($user_categories as $user_category) {
             $user_categories_values[$user_category->alias] = $user_category->title;
         }
 
@@ -135,7 +132,7 @@ class UserController extends Controller
         $user_categories = UserCategory::all();
 
         $user_categories_values = [];
-        foreach($user_categories as $user_category) {
+        foreach ($user_categories as $user_category) {
             $user_categories_values[$user_category->alias] = $user_category->title;
         }
 
@@ -170,34 +167,34 @@ class UserController extends Controller
         ]);
 
         // Extra checks if the user edits his own account
-        if($id == $user->id) {
-            $validator->after(function($validator) use ($request, $user) {
+        if ($id == $user->id) {
+            $validator->after(function ($validator) use ($request, $user) {
                 // Check if the user wants to deactivate his own account
-                if(!$request->get('activated')) {
+                if (! $request->get('activated')) {
                     $validator->errors()->add('activated', 'het is niet toegestaan jezelf te deactiveren.');
                     $request->merge(['activated' => $user->activated]);
                 }
-                
+
                 // Check if the user wants to change his own role
-                if($request->get('user_role') != $user->user_role) {
+                if ($request->get('user_role') != $user->user_role) {
                     $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen rol te wijzigen.');
                     $request->merge(['account_type' => $user->user_role]);
                 }
             });
         }
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return redirect(route('user.edit', $user->id))
                 ->withErrors($validator)
                 ->withInput();
         }
-        
+
         $user = User::findOrFail($id);
         $user_old_email = $user->email;
         $user->update($request->all());
 
         // Send email verification link when the email address has been changed
-        if($user_old_email != $request->get('email')) {
+        if ($user_old_email != $request->get('email')) {
             UserVerification::generate($user);
             UserVerification::send($user, 'Verifieer uw e-mailadres');
         }
@@ -220,8 +217,9 @@ class UserController extends Controller
         $user = $request->user();
 
         // Check if the user wants to delete his own account
-        if($id == $user->id) {
+        if ($id == $user->id) {
             Flash::error('Het is niet toegestaan jezelf te verwijderen.');
+
             return redirect(route('user.index'));
         }
 
@@ -244,17 +242,17 @@ class UserController extends Controller
         $user = Auth::user();
 
         $validator = Validator::make($request->all(), [
-            'activated' => 'boolean'
+            'activated' => 'boolean',
         ]);
 
         // Validate current password
-        $validator->after(function($validator) use ($id, $user) {
-            if($id == $user->id) {
+        $validator->after(function ($validator) use ($id, $user) {
+            if ($id == $user->id) {
                 $validator->errors()->add('activated', 'het is niet toegestaan jezelf te activeren of deactiveren.');
             }
         });
 
-        if($validator->fails()) {
+        if ($validator->fails()) {
             return redirect('user')
                 ->withErrors($validator)
                 ->withInput();
@@ -264,14 +262,12 @@ class UserController extends Controller
         $user->update($request->only('activated'));
 
         $activated = $request->get('activated');
-        if($activated) {
+        if ($activated) {
             Flash::success('Gebruiker geactiveerd.');
-        }
-        else {
+        } else {
             Flash::success('Gebruiker gedeactiveerd.');
         }
 
         return redirect(route('user.index'));
     }
-
 }

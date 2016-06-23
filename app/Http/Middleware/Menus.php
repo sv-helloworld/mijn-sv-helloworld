@@ -22,8 +22,8 @@ class Menus
             $menu->add('Home', ['route' => 'index']);
 
             // Check if the user is authenticated
-            if(Auth::check()) {
-                if(Auth::user()->hasAccountType('admin')) {
+            if (Auth::check()) {
+                if (Auth::user()->hasAccountType('admin')) {
                     $menu->add('Gebruikers', ['route' => 'user.index']);
                     $menu->gebruikers->add('Voeg een gebruiker toe', ['route' => 'user.create']);
                 }

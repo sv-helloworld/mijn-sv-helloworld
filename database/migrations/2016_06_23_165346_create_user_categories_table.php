@@ -12,7 +12,7 @@ class CreateUserCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_categories', function(Blueprint $table) {
+        Schema::create('user_categories', function (Blueprint $table) {
             $table->string('title');
             $table->string('alias');
 

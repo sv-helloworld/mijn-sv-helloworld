@@ -42,7 +42,7 @@ class User extends Authenticatable
      */
     public function hasAccountType($account_type)
     {
-        return !is_null($this->account_type) && $this->account_type == $account_type;
+        return ! is_null($this->account_type) && $this->account_type == $account_type;
     }
 
     /**
@@ -63,6 +63,6 @@ class User extends Authenticatable
      */
     public function hasUserCategory($user_category)
     {
-        return !is_null($this->user_category) && $this->user_category->alias == $user_category;
+        return ! is_null($this->user_category) && $this->user_category->alias == $user_category;
     }
 }

@@ -13,7 +13,7 @@ class RedirectIfNotActivated
      * @var array
      */
     protected $except = [
-        'account/deactivated'
+        'account/deactivated',
     ];
 
     /**
