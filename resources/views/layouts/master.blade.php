@@ -35,8 +35,8 @@
                             <ul class="navigation">
                                 <li>
                                     <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
-                                </li><!--
-                                --><li>
+                                </li>
+                                <li>
                                     <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
                                 </li>
                             </ul>
@@ -72,7 +72,7 @@
                         <ul class="nav navbar-nav navbar-right">
                                 @if(Auth::check())
                                     <li class="dropdown">
-                                        <a href="{{ route('account.index') }}" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Gravatar::src(Auth::user()->email, 80) }}" class="avatar"> {{ Auth::user()->name }} <span class="caret"></span></a>
+                                        <a href="{{ route('account.index') }}" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Gravatar::src(Auth::user()->email, 80) }}" class="avatar"> {{ Auth::user()->first_name }} <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('account.index') }}">Overzicht</a></li>
                                             <li><a href="{{ route('account.edit') }}">Account wijzigen</a></li>
@@ -123,6 +123,9 @@
                 <div class="container-inner">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                            <h1>@yield('title')</h1>
+                            <hr>
+                            @include('flash::message')
                             @yield('content')
                         </div>
 

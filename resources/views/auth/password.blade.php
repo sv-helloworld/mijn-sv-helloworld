@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <p>Als u uw wachtwoord bent vergeten kunt u hieronder uw e-mailadres opgeven. U zal een link toegestuurd krijgen waarmee u uw wachtwoord opnieuw kunt instellen.</p>
 
             <form method="post" action="{{ action('Auth\PasswordController@postEmail') }}" class="form-horizontal">

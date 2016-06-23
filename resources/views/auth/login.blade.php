@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <form method="post" action="{{ action('Auth\AuthController@getLogin') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 

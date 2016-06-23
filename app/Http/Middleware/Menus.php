@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Menu;
+use Auth;
 
 class Menus
 {
@@ -19,6 +20,14 @@ class Menus
     {
         Menu::make('menu', function ($menu) {
             $menu->add('Home', ['route' => 'index']);
+
+            // Check if the user is authenticated
+            if(Auth::check()) {
+                if(Auth::user()->hasAccountType('admin')) {
+                    $menu->add('Gebruikers', ['route' => 'user.index']);
+                    $menu->gebruikers->add('Voeg een gebruiker toe', ['route' => 'user.create']);
+                }
+            }
         });
 
         return $next($request);

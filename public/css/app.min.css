@@ -6528,6 +6528,12 @@ ol:last-child {
   padding: 10px 20px;
 }
 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  .navbar-brand span {
+    background-image: url("../img/logo@2x.png");
+  }
+}
+
 @media only screen and (min-width: 992px) {
   .navbar-default .navbar-nav>li>a {
     -webkit-transition: box-shadow .2s linear;
@@ -6771,5 +6777,19 @@ footer#footer ul.navigation>li>a:focus {
 
   footer#footer ul.navigation>li:first-child {
     margin-left: 0;
+  }
+}
+
+.navbar-nav>li>a.dropdown-profile img.avatar {
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar-nav>li>a.dropdown-profile {
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 }

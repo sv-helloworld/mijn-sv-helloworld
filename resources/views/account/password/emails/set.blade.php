@@ -1,0 +1,1 @@
+Klik hier om uw wachtwoord in te stellen: {{ route('account.password.set', $token) }}

@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', 'Wachtwoord vergeten')
+@section('title', 'Wachtwoord instellen')
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-8">
+        <div class="col-xs-12 col-sm-10 col-md-10">
             <p>Voer hieronder het gewenste nieuwe wachtwoord in.</p>
 
-            <form method="post" action="{{ action('Auth\PasswordController@postReset') }}" class="form-horizontal">
+            <form method="post" action="{{ action('UserController@postReset') }}" class="form-horizontal">
                 {!! csrf_field() !!}
                 <input type="hidden" name="token" value="{{ $token }}">
 
@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
-                        <button type="submit" class="btn btn-primary">Wachtwoord opnieuw instellen</button>
+                        <button type="submit" class="btn btn-primary">Wachtwoord instellen</button>
                     </div>
                 </div>
             </form>
