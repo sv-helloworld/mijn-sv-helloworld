@@ -66,6 +66,7 @@ class AuthController extends Controller
         UserVerification::send($user, 'Activeer je account');
 
         Flash::success('Je account is succesvol aangemaakt! Controleer je e-mail en activeer je account om volledige toegang te krijgen.');
+
         return redirect($this->redirectPath());
     }
 
