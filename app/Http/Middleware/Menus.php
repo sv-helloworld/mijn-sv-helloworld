@@ -25,6 +25,7 @@ class Menus
             if (Auth::check()) {
                 if (Auth::user()->hasAccountType('admin')) {
                     $menu->add('Gebruikers', ['route' => 'user.index']);
+                    $menu->gebruikers->prepend('<i class="fa fa-users" aria-hidden="true"></i> ');
                     $menu->gebruikers->add('Voeg een gebruiker toe', ['route' => 'user.create']);
                 }
             }

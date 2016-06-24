@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Jrean\UserVerification\Facades\UserVerification;
+use Laracasts\Flash\Flash;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -32,12 +36,37 @@ class AuthController extends Controller
 
     /**
      * Create a new authentication controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+        $this->middleware($this->guestMiddleware(), ['except' => ['logout', 'getVerification', 'getVerificationError']]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+        Auth::guard($this->getGuard())->login($user);
+
+        UserVerification::generate($user);
+        UserVerification::emailView('emails.user-activation');
+        UserVerification::send($user, 'Activeer je account');
+
+        Flash::success('Je account is succesvol aangemaakt! Controleer je e-mail en activeer je account om volledige toegang te krijgen.');
+        return redirect($this->redirectPath());
     }
 
     /**
@@ -49,8 +78,14 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'name_prefix' => 'max:255',
+            'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'phone_number' => 'max:255',
+            'address' => 'required|max:255',
+            'zip_code' => 'required|max:255',
+            'city' => 'required|max:255',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -64,8 +99,14 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'name_prefix' => $data['name_prefix'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'phone_number' => $data['phone_number'],
+            'address' => $data['address'],
+            'zip_code' => $data['zip_code'],
+            'city' => $data['city'],
             'password' => bcrypt($data['password']),
         ]);
     }

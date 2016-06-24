@@ -41,14 +41,6 @@
                 </div>
             </div>
 
-            <div class="form-group {{ $errors->has('email_hz') ? 'has-error' : ''}}">
-                {!! Form::label('email_hz', 'E-mailadres (HZ) *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
-                    {!! Form::email('email_hz', null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('email_hz', '<p class="help-block">:message</p>') !!}
-                </div>
-            </div>
-
             <div class="form-group {{ $errors->has('phone_number') ? 'has-error' : ''}}">
                 {!! Form::label('phone_number', 'Telefoonnummer', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">

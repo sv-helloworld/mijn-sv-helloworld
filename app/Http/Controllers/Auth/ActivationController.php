@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
 use Jrean\UserVerification\Exceptions\UserNotFoundException;
@@ -12,7 +11,7 @@ use Jrean\UserVerification\Facades\UserVerification;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Laracasts\Flash\Flash;
 
-class EmailController extends Controller
+class ActivationController extends Controller
 {
     use VerifiesUsers;
 
@@ -21,35 +20,35 @@ class EmailController extends Controller
      *
      * @var string
      */
-    protected $redirectIfVerified = '/account/email/verifieren';
+    protected $redirectIfVerified = '/account/activeren';
 
     /**
      * Where to redirect after a successful verification token generation.
      *
      * @var string
      */
-    protected $redirectAfterTokenGeneration = '/account/email/verifieren';
+    protected $redirectAfterTokenGeneration = '/account/activeren';
 
     /**
      * Where to redirect after a successful verification.
      *
      * @var string
      */
-    protected $redirectAfterVerification = '/account/email/verifieren';
+    protected $redirectAfterVerification = '/account/activeren';
 
     /**
      * Where to redirect after a failing token verification.
      *
      * @var string
      */
-    protected $redirectIfVerificationFails = '/account/email/verifieren/error';
+    protected $redirectIfVerificationFails = '/account/activeren/error';
 
     /**
      * Name of the view returned by the getVerificationError method.
      *
      * @var string
      */
-    protected $verificationErrorView = 'account.email.verificate.error';
+    protected $verificationErrorView = 'account.activate.error';
 
     /**
      * Email verificate index view.
@@ -63,42 +62,7 @@ class EmailController extends Controller
             return redirect('account');
         }
 
-        return view('account.email.verificate.index');
-    }
-
-    /**
-     * Email edit view.
-     *
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function edit(Request $request)
-    {
-        return view('account.email.edit');
-    }
-
-    /**
-     * Updates the users' email address.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(Request $request)
-    {
-        $this->validate($request, [
-            'email' => 'required|confirmed|unique:users|email',
-        ]);
-
-        $user = Auth::user();
-        $user->update($request->only('email'));
-
-        // Send email verification link
-        UserVerification::generate($user);
-        UserVerification::send($user, 'Verifieer uw e-mailadres');
-
-        Flash::success('Uw e-mailadres is bijgewerkt. Er is een e-mail gestuurd met een link om uw e-mailadres te valideren.');
-
-        return redirect('account');
+        return view('account.activate.index');
     }
 
     /**
@@ -113,18 +77,18 @@ class EmailController extends Controller
         $this->validateRequest($request);
 
         try {
-            Flash::success('Uw e-mailadres is geverifieerd.');
+            Flash::success('Uw account is geactiveerd.');
             UserVerification::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
-            Flash::error('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.');
+            Flash::error('Het account kon niet worden geactiveerd omdat het niet werd gevonden.');
 
             return redirect($this->redirectIfVerificationFails());
         } catch (UserIsVerifiedException $e) {
-            Flash::warning('Het e-mailadres is al geverifieerd.');
+            Flash::warning('Het account is al geactiveerd.');
 
             return redirect($this->redirectIfVerified());
         } catch (TokenMismatchException $e) {
-            Flash:error('Het e-mailadres kon niet worden geverifieerd.');
+            Flash:error('Het account kon niet worden geactiveerd.');
 
             return redirect($this->redirectIfVerificationFails());
         }

@@ -125,7 +125,9 @@
 
                         <!-- Sidebar -->
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-
+                            <ul class="nav nav-pills nav-stacked">
+                                @yield('sidebar-nav')
+                            </ul>
                         </div>
                     </div>
                 </div>

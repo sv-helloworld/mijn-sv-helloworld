@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('title', 'Gebruikers')
 
-{{-- Header button --}}
-@section('header-nav')
+{{-- Sidebar button --}}
+@section('sidebar-nav')
     <li>
         <a href="{{ url('gebruikers/create') }}">
             <i class="fa fa-plus"></i> Maak nieuwe gebruiker

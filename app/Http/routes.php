@@ -47,12 +47,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'account/email', 'as' => 'account.email.'], function () {
         // Edit email address routes
-        Route::get('edit', [
+        Route::get('bewerken', [
             'uses' => 'Account\EmailController@edit',
             'as' => 'edit',
         ]);
 
-        Route::post('edit', [
+        Route::post('bewerken', [
             'uses' => 'Account\EmailController@update',
         ]);
     });
@@ -102,7 +102,7 @@ Route::post('inloggen', [
 ]);
 
 Route::get('uitloggen', [
-    'uses' => 'Auth\AuthController@getLogout',
+    'uses' => 'Auth\AuthController@logout',
     'as' => 'logout',
 ]);
 
@@ -115,6 +115,24 @@ Route::get('registreren', [
 Route::post('registreren', [
     'uses' => 'Auth\AuthController@postRegister',
 ]);
+
+// Account activation routes
+Route::group(['prefix' => 'account/activeren', 'as' => 'account.activate.'], function () {
+    Route::get('/', [
+        'uses' => 'Auth\ActivationController@index',
+        'as' => 'index',
+    ]);
+
+    Route::get('{token}', [
+        'uses' => 'Auth\ActivationController@getVerification',
+        'as' => 'token',
+    ]);
+
+    Route::get('error', [
+        'uses' => 'Auth\ActivationController@getVerificationError',
+        'as' => 'error',
+    ]);
+});
 
 // Email verification routes
 Route::group(['prefix' => 'account/email/verifieren', 'as' => 'account.email.verificate.'], function () {
