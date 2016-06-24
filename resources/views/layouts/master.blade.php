@@ -26,21 +26,15 @@
         <div id="topbar">
             <div class="container-fluid">
                 <div class="container-inner">
-                    <div class="row">
-                        <div class="col-sm-3 hidden-xs">
-                            <span>{{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <ul class="navigation">
-                                <li>
-                                    <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
-                                </li>
-                                <li>
-                                    <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="navigation">
+                        <ul id="top-bar-menu" class="menu">
+                            <li>
+                                <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
+                            </li>
+                            <li>
+                                <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

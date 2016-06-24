@@ -16,28 +16,31 @@ div#topbar {
 		display: none;
 	}
 
-	ul.navigation {
-		text-align: right;
-		margin: 0;
+	div.navigation {
+		> ul {
+			text-align: right;
+			margin: 0;
+			padding: 0;
 
-		> li {
-			line-height: 1;
-			margin-left: 10px;
-			padding-left: 10px;
-			border-left: 1px solid $blue-light-color;
-			display: inline-block;
+			> li {
+				line-height: 1;
+				margin-left: 10px;
+				padding-left: 10px;
+				border-left: 1px solid $blue-light-color;
+				display: inline-block;
 
-			&:first-child {
-				margin-left: 0;
-				padding-left: 0;
-				border-left: none;
-			}
+				&:first-child {
+					margin-left: 0;
+					padding-left: 0;
+					border-left: none;
+				}
 
-			> a {
-				color: #FFF;
+				> a {
+					color: #FFF;
 
-				&:hover, &:active, &:focus {
-					color: rgba(255, 255, 255, .7);
+					&:hover, &:active, &:focus {
+						color: rgba(255, 255, 255, .7);
+					}
 				}
 			}
 		}

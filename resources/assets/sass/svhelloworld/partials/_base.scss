@@ -98,7 +98,7 @@ section {
 	padding-top: 10px;
 	padding-bottom: 10px;
 
-	span {
+	h1, span {
 		background: url('../images/logo.png') no-repeat;
 		background-size: contain;
 		width: 324px;
@@ -111,7 +111,6 @@ section {
 // Buttons
 .btn {
 	font-family: $font-family-headings;
-	padding: 10px 20px;
 }
 
 // Breakpoints
@@ -119,8 +118,8 @@ section {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
 
 	.navbar-brand {
-		span {
-			background-image: url('../img/logo@2x.png');
+		h1, span {
+			background-image: url('../images/logo@2x.png');
 		}
 	}
 
@@ -219,7 +218,7 @@ section {
 		padding-top: 15px;
 		padding-bottom: 15px;
 
-		span {
+		h1, span {
 			width: 259px;
 			height: 40px;
 		}
@@ -234,7 +233,7 @@ section {
 		padding-top: 20px;
 		padding-bottom: 20px;
 
-		span {
+		h1, span {
 			width: 194px;
 			height: 30px;
 		}
