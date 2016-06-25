@@ -85,6 +85,15 @@ section {
 	&:last-child {
 		margin-bottom: 0;
 	}
+
+	> li {
+		> a {
+			> i {
+				margin-right: 5px;
+				line-height: 1.5
+			}
+		}
+	}
 }
 
 .navbar-brand {

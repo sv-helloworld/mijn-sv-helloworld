@@ -9439,6 +9439,11 @@ ol:last-child {
   margin-bottom: 0;
 }
 
+.navbar-nav>li>a>i {
+  margin-right: 5px;
+  line-height: 1.5;
+}
+
 .navbar-brand {
   padding-top: 10px;
   padding-bottom: 10px;
