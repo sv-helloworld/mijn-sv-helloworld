@@ -23,21 +23,26 @@
     <body>
 
         <!-- Top bar -->
-        <div id="topbar">
+        <div id="top-bar">
             <div class="container-fluid">
                 <div class="container-inner">
-                    <div class="row">
-                        <div class="col-sm-3 hidden-xs">
-                            <span>{{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <ul class="navigation">
+                    <div class="top-bar-section top-bar-section-social">
+                        <ul class="social">
+                            <li>
+                                <a href="https://www.facebook.com/svhelloworld/" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div><!--
+                    --><div class="top-bar-section top-bar-section-navigation">
+                        <div class="navigation">
+                            <ul id="top-bar-menu" class="menu">
                                 <li>
-                                    <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
-                                </li><!--
-                                --><li>
-                                    <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
+                                    <a href="/lid-worden" class="">Lid worden</a>
+                                </li>
+                                <li>
+                                    <a href="http://svhelloworld.nl" class="">Website</a>
                                 </li>
                             </ul>
                         </div>
@@ -72,7 +77,7 @@
                         <ul class="nav navbar-nav navbar-right">
                                 @if(Auth::check())
                                     <li class="dropdown">
-                                        <a href="{{ route('account.index') }}" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Gravatar::src(Auth::user()->email, 80) }}" class="avatar"> {{ Auth::user()->name }} <span class="caret"></span></a>
+                                        <a href="{{ route('account.index') }}" class="dropdown-toggle dropdown-profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{ Gravatar::src(Auth::user()->email, 80) }}" class="avatar"> {{ Auth::user()->first_name }} <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ route('account.index') }}">Overzicht</a></li>
                                             <li><a href="{{ route('account.edit') }}">Account wijzigen</a></li>
@@ -82,6 +87,7 @@
                                     </li>
                                     <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Uitloggen</a></li>
                                 @else
+                                    <li><a href="{{ route('register') }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Registreren</a></li>
                                     <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Inloggen</a></li>
                                 @endif
                             </ul>
@@ -123,12 +129,17 @@
                 <div class="container-inner">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
+                            <h1>@yield('title')</h1>
+                            <hr>
+                            @include('flash::message')
                             @yield('content')
                         </div>
 
                         <!-- Sidebar -->
                         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-
+                            <ul class="nav nav-pills nav-stacked">
+                                @yield('sidebar-nav')
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -137,7 +148,7 @@
 
         <!-- Footer -->
         <footer id="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="container-inner">
                     <span>&copy; {{ Carbon\Carbon::now()->year }} Studievereniging "Hello World"</span>
                 </div>
