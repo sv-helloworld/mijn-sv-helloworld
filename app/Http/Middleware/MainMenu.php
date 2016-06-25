@@ -6,7 +6,7 @@ use Closure;
 use Menu;
 use Auth;
 
-class Menus
+class MainMenu
 {
     /**
      * Handle an incoming request.
