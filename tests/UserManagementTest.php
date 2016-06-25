@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserManagementTest extends TestCase
 {
@@ -48,13 +45,13 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $admin->id . '/edit')
+             ->visit('/gebruikers/'.$admin->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('0', 'activated')
              ->press('Gebruiker wijzigen')
              ->see('het is niet toegestaan jezelf te deactiveren.')
              ->dontSee('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $admin->id . '/edit')
+             ->seePageIs('/gebruikers/'.$admin->id.'/edit')
              ->notSeeInDatabase('users', ['id' => $admin->id, 'activated' => 0]);
     }
 
@@ -69,13 +66,13 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $admin->id . '/edit')
+             ->visit('/gebruikers/'.$admin->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('user', 'account_type')
              ->press('Gebruiker wijzigen')
              ->see('het is niet toegestaan om je eigen account type te wijzigen.')
              ->dontSee('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $admin->id . '/edit')
+             ->seePageIs('/gebruikers/'.$admin->id.'/edit')
              ->notSeeInDatabase('users', ['id' => $admin->id, 'account_type' => 'user']);
     }
 
@@ -88,17 +85,17 @@ class UserManagementTest extends TestCase
     {
         $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
-            'first_name' => 'Oude Naam'
+            'first_name' => 'Oude Naam',
         ]);
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->type('Nieuwe Naam', 'first_name')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'first_name' => 'Nieuwe Naam'])
              ->dontSeeInDatabase('users', ['id' => $user->id, 'first_name' => 'Oude Naam']);
     }
@@ -112,17 +109,17 @@ class UserManagementTest extends TestCase
     {
         $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
-            'email' => 'oud123@hz.nl'
+            'email' => 'oud123@hz.nl',
         ]);
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->type('nieuw123@hz.nl', 'email')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'email' => 'nieuw123@hz.nl'])
              ->dontSeeInDatabase('users', ['id' => $user->id, 'email' => 'oud123@hz.nl']);
     }
@@ -139,12 +136,12 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-            ->visit('/gebruikers/' . $user->id . '/edit')
+            ->visit('/gebruikers/'.$user->id.'/edit')
             ->see('Wijzig gebruiker')
             ->type('nieuw123@hz.nl', 'email')
             ->press('Gebruiker wijzigen')
             ->see('Gebruiker bijgewerkt.')
-            ->seePageIs('/gebruikers/' . $user->id)
+            ->seePageIs('/gebruikers/'.$user->id)
             ->seeInDatabase('users', ['id' => $user->id, 'email' => 'nieuw123@hz.nl', 'verified' => false])
             ->dontSeeInDatabase('users', ['id' => $user->id, 'email' => $user->email, 'verified' => true]);
     }
@@ -161,12 +158,12 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('0', 'activated')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'activated' => '0'])
              ->dontSeeInDatabase('users', ['id' => $user->id, 'activated' => '1']);
     }
@@ -180,17 +177,17 @@ class UserManagementTest extends TestCase
     {
         $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
-            'activated' => 0
+            'activated' => 0,
         ]);
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('1', 'activated')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'activated' => '1'])
              ->dontSeeInDatabase('users', ['id' => $user->id, 'activated' => '0']);
     }
@@ -208,12 +205,12 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select($retailer->id, 'retailer_id')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'retailer_id' => $retailer->id]);
     }
 
@@ -229,12 +226,12 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('admin', 'account_type')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'account_type' => 'admin']);
     }
 
@@ -250,13 +247,12 @@ class UserManagementTest extends TestCase
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
-             ->visit('/gebruikers/' . $user->id . '/edit')
+             ->visit('/gebruikers/'.$user->id.'/edit')
              ->see('Wijzig gebruiker')
              ->select('user', 'account_type')
              ->press('Gebruiker wijzigen')
              ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/' . $user->id)
+             ->seePageIs('/gebruikers/'.$user->id)
              ->seeInDatabase('users', ['id' => $user->id, 'account_type' => 'user']);
     }
-
 }
