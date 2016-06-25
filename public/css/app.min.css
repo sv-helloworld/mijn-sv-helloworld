@@ -9936,7 +9936,7 @@ footer#footer ul.navigation>li>a:focus {
 
 @media only screen and (min-width: 768px) {
   .navbar-nav>li>a.dropdown-profile {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
