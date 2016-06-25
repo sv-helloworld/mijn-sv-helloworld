@@ -161,6 +161,7 @@ return [
         /*
          * Other Service Providers...
          */
+        Jenssegers\Rollbar\RollbarServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
 
     ],
