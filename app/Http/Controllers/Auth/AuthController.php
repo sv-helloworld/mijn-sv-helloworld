@@ -80,13 +80,13 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'first_name' => 'required|max:255',
-            'name_prefix' => 'max:255',
+            'name_prefix' => 'max:16',
             'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'phone_number' => 'max:255',
-            'address' => 'required|max:255',
-            'zip_code' => 'required|max:255',
-            'city' => 'required|max:255',
+            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users',
+            'phone_number' => ['regex:/(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/'],
+            'address' => ['required', 'regex:/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i', 'max:255'],
+            'zip_code' => ['required', 'regex:/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i', 'max:7'],
+            'city' => ['required', 'regex:/^([a-zA-Z\x{0080}-\x{024F}]+(?:. |-| |\'))*[a-zA-Z\x{0080}-\x{024F}]*$/u', 'max:255'],
             'password' => 'required|min:6|confirmed',
         ]);
     }
