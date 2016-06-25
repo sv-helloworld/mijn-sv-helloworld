@@ -77,7 +77,7 @@ class ActivationController extends Controller
         $this->validateRequest($request);
 
         try {
-            Flash::success('Uw account is geactiveerd.');
+            Flash::success('Je account is geactiveerd.');
             UserVerification::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
             Flash::error('Het account kon niet worden geactiveerd omdat het niet werd gevonden.');

@@ -46,7 +46,7 @@ class PasswordController extends Controller
         $user->password = bcrypt($credentials['password']);
         $user->save();
 
-        Flash::success('Uw wachtwoord is bijgewerkt.');
+        Flash::success('Je wachtwoord is bijgewerkt.');
 
         return redirect('account');
     }
