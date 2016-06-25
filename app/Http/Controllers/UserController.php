@@ -84,9 +84,9 @@ class UserController extends Controller
         ]);
 
         $this->validate($request, [
-            'first_name' => 'required|max:255',
-            'name_prefix' => 'max:16',
-            'last_name' => 'required|max:255',
+            'first_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:255',
+            'name_prefix' => 'regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:16',
+            'last_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:255',
             'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users',
             'phone_number' => ['regex:/(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/'],
             'address' => ['required', 'regex:/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i', 'max:255'],
@@ -156,9 +156,9 @@ class UserController extends Controller
         ]);
 
         $validator = Validator::make($request->all(), [
-            'first_name' => 'required|max:255',
-            'name_prefix' => 'max:16',
-            'last_name' => 'required|max:255',
+            'first_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:255',
+            'name_prefix' => 'regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:16',
+            'last_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\s-]+$/i|max:255',
             'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255',
             'phone_number' => ['regex:/(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/'],
             'address' => ['required', 'regex:/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i', 'max:255'],
@@ -198,7 +198,7 @@ class UserController extends Controller
         // Send email verification link when the email address has been changed
         if ($user_old_email != $request->get('email')) {
             UserVerification::generate($user);
-            UserVerification::send($user, 'Verifieer uw e-mailadres');
+            UserVerification::send($user, 'Verifieer je e-mailadres');
         }
 
         Flash::success('Gebruiker bijgewerkt.');

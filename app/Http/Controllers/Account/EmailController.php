@@ -94,9 +94,9 @@ class EmailController extends Controller
 
         // Send email verification link
         UserVerification::generate($user);
-        UserVerification::send($user, 'Verifieer uw e-mailadres');
+        UserVerification::send($user, 'Verifieer je e-mailadres');
 
-        Flash::success('Uw e-mailadres is bijgewerkt. Er is een e-mail gestuurd met een link om uw e-mailadres te valideren.');
+        Flash::success('Je e-mailadres is bijgewerkt. Er is een e-mail gestuurd met een link om je e-mailadres te valideren.');
 
         return redirect('account');
     }
@@ -113,7 +113,7 @@ class EmailController extends Controller
         $this->validateRequest($request);
 
         try {
-            Flash::success('Uw e-mailadres is geverifieerd.');
+            Flash::success('Je e-mailadres is geverifieerd.');
             UserVerification::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
             Flash::error('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.');
