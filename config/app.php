@@ -161,7 +161,6 @@ return [
         /*
          * Other Service Providers...
          */
-        Jenssegers\Rollbar\RollbarServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
