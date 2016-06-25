@@ -18,7 +18,7 @@
                 <tr>
                     <th>Naam</th>
                     <th>E-mailadres</th>
-                    <th>E-mailadres status</th>
+                    <th>Status</th>
                     <th>Acties</th>
                 </tr>
             </thead>
