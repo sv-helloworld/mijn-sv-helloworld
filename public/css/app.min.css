@@ -9398,6 +9398,10 @@ a {
   transition: all .2s linear;
 }
 
+p {
+  margin-bottom: 20px;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
