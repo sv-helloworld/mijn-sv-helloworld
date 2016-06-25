@@ -186,7 +186,7 @@ class UserController extends Controller
         }
 
         if ($validator->fails()) {
-            return redirect(route('user.edit', $user->id))
+            return redirect(route('user.edit', $id))
                 ->withErrors($validator)
                 ->withInput();
         }
