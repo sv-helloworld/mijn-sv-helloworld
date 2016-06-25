@@ -3,7 +3,7 @@
 class AccountTest extends TestCase
 {
     /**
-     * Tests if a logged in user can reach the account index
+     * Tests if a logged in user can reach the account index.
      *
      * @return void
      */
@@ -17,7 +17,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can edit his account
+     * Tests if the user can edit his account.
      *
      * @return void
      */
@@ -36,14 +36,14 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can edit his email address
+     * Tests if the user can edit his email address.
      *
      * @return void
      */
     public function testCanEditEmail()
     {
         $user = factory(App\User::class)->create([
-            'email' => 'abc@hz.nl'
+            'email' => 'abc@hz.nl',
         ]);
 
         $this->actingAs($user)
@@ -61,14 +61,14 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user needs to validate his email address after changing it
+     * Tests if the user needs to validate his email address after changing it.
      *
      * @return void
      */
     public function testMustVerifyEmailAfterEditEmail()
     {
         $user = factory(App\User::class)->create([
-            'email' => 'abc@hz.nl'
+            'email' => 'abc@hz.nl',
         ]);
 
         $this->actingAs($user)
@@ -87,14 +87,14 @@ class AccountTest extends TestCase
 
     /**
      * Tests if the user can edit his email address when supplying
-     * two different email addresses
+     * two different email addresses.
      *
      * @return void
      */
     public function testCantEditWithWrongEmail()
     {
         $user = factory(App\User::class)->create([
-            'email' => 'abc@hz.nl'
+            'email' => 'abc@hz.nl',
         ]);
 
         $this->actingAs($user)
@@ -109,14 +109,14 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can change his password
+     * Tests if the user can change his password.
      *
      * @return void
      */
     public function testCanChangePassword()
     {
         $user = factory(App\User::class)->create([
-            'password' => bcrypt('CurrentPassword123')
+            'password' => bcrypt('CurrentPassword123'),
         ]);
 
         $this->actingAs($user)
@@ -131,14 +131,14 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can change his password with wrong current password
+     * Tests if the user can change his password with wrong current password.
      *
      * @return void
      */
     public function testCantChangePasswordWithWrongCurrentPassword()
     {
         $user = factory(App\User::class)->create([
-            'password' => 'CurrentPassword123'
+            'password' => 'CurrentPassword123',
         ]);
 
         $this->actingAs($user)
@@ -153,14 +153,14 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can change his password with different new passwords
+     * Tests if the user can change his password with different new passwords.
      *
      * @return void
      */
     public function testCantChangePasswordWithDifferentPasswords()
     {
         $user = factory(App\User::class)->create([
-            'password' => 'CurrentPassword123'
+            'password' => 'CurrentPassword123',
         ]);
 
         $this->actingAs($user)
@@ -175,7 +175,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can reach the account page when not logged in
+     * Tests if the user can reach the account page when not logged in.
      *
      * @return void
      */
@@ -187,7 +187,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can reach the password change page when not logged in
+     * Tests if the user can reach the password change page when not logged in.
      *
      * @return void
      */
@@ -199,7 +199,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can reach the email address change page when not logged in
+     * Tests if the user can reach the email address change page when not logged in.
      *
      * @return void
      */
@@ -211,7 +211,7 @@ class AccountTest extends TestCase
     }
 
     /**
-     * Tests if the user can reach the index page when the user is deactivated
+     * Tests if the user can reach the index page when the user is deactivated.
      *
      * @return void
      */

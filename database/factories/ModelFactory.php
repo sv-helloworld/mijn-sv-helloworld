@@ -15,8 +15,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'email' => strtolower($faker->firstName) . '@hz.nl',
-        'address' => ucwords($faker->word) . ' ' . rand(1, 999),
+        'email' => strtolower($faker->firstName).'@hz.nl',
+        'address' => ucwords($faker->word).' '.rand(1, 999),
         'zip_code' => '4321 AB',
         'city' => $faker->city,
         'password' => bcrypt(str_random(10)),
