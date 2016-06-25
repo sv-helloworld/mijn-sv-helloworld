@@ -9507,6 +9507,10 @@ ol:last-child {
   border-radius: 0;
 }
 
+.pagination-wrapper {
+  text-align: center;
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
   .navbar-brand h1,
   .navbar-brand span {
