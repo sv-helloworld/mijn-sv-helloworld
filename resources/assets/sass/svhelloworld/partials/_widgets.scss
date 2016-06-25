@@ -1,0 +1,23 @@
+// Widget
+.widget {
+	background: $gray-lightest-color;
+
+	.widgettitle, .widget-title {
+		font-size: 1.2em;
+		background: $primary-color;
+		color: #FFF;
+		margin: 0;
+		padding: 10px;
+	}
+
+	> form, ul {
+		padding: 15px 20px;
+	}
+}
+
+// Search widget
+.widget_search {
+	> form {
+		padding: 10px;
+	}
+}

@@ -32,17 +32,17 @@ footer#footer {
 	}
 
 	/* Extra Small Devices, Phones */
-	@media only screen and (min-width : $screen-xs) {
+	@media only screen and (min-width : $screen-xs - 1) {
 
 	}
 
 	/* Small Devices, Tablets */
-	@media only screen and (min-width : $screen-sm) {
+	@media only screen and (min-width : $screen-sm - 1) {
 
 	}
 
 	/* Medium Devices, Desktops */
-	@media only screen and (min-width : $screen-md) {
+	@media only screen and (min-width : $screen-md - 1) {
 
 		ul.navigation {
 			margin: 0;
@@ -65,7 +65,7 @@ footer#footer {
 	}
 
 	/* Large Devices, Wide Screens */
-	@media only screen and (min-width : $screen-lg) {
+	@media only screen and (min-width : $screen-lg - 1) {
 
 	}
 
