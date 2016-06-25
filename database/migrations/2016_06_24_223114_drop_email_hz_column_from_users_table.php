@@ -25,7 +25,7 @@ class DropEmailHzColumnFromUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email_hz')->unique();
+            $table->string('email_hz')->nullable()->unique();
         });
     }
 }
