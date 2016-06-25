@@ -149,6 +149,15 @@ section {
 // Buttons
 .btn {
 	font-family: $font-family-headings;
+
+	> i {
+		margin-right: 5px;
+	}
+}
+
+// Labels
+.label {
+	border-radius: 0;
 }
 
 // Breakpoints
