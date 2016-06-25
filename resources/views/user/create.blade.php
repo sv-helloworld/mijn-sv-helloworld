@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12">
             {!! Form::open(['url' => 'gebruikers', 'class' => 'form-horizontal']) !!}
 
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">

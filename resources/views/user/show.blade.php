@@ -2,8 +2,8 @@
 @section('back', url('user'))
 @section('title', 'Details gebruiker')
 
-{{-- Header button --}}
-@section('header-nav')
+{{-- Sidebar button --}}
+@section('sidebar-nav')
     <li>
         <a href="{{ route('user.edit', $user->id) }}">
             <i class="fa fa-pencil"></i><span class="hidden-xs hidden-sm">Gebruiker bewerken</span>
@@ -13,7 +13,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8">
+        <div class="col-xs-12">
             <h2>{{ $user->first_name }} {{ $user->name_prefix }} {{ $user->last_name }}</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
