@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Menu;
-use Auth;
 
 class SidebarMenu
 {
@@ -19,7 +18,7 @@ class SidebarMenu
     public function handle($request, Closure $next, $guard = null)
     {
         Menu::make('sidebar', function ($menu) {
-        	// Add items in specific controllers
+            // Add items in specific controllers
         });
 
         return $next($request);
