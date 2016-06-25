@@ -9499,6 +9499,14 @@ ol:last-child {
   font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.btn>i {
+  margin-right: 5px;
+}
+
+.label {
+  border-radius: 0;
+}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
   .navbar-brand h1,
   .navbar-brand span {
