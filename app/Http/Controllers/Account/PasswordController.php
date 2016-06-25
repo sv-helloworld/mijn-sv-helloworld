@@ -22,7 +22,7 @@ class PasswordController extends Controller
 
         $validator = Validator::make($request->all(), [
             'password_current' => 'required',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:8',
         ]);
 
         // Validate current password
