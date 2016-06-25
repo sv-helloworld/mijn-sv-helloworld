@@ -1,0 +1,139 @@
+// Top bar
+div#top-bar {
+	background: $blue-color;
+	font-size: 0.8em;
+	font-weight: 700;
+	color: #FFF;
+	text-align: right;
+	text-transform: uppercase;
+
+	.container-fluid {
+		.container-inner {
+			padding: 0;
+		}
+	}
+
+	.top-bar-section {
+		line-height: 30px;
+		padding: 0 20px;
+		border-left: 1px solid rgba(255, 255, 255, .3);
+		display: inline-block;
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+
+	ul.social {
+		margin: 0;
+		padding: 10px 0;
+		list-style: none;
+
+		li {
+			margin-right: 5px;
+			display: inline-block;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			> a {
+				background: #FFF;
+				font-size: 17px;
+				color: $primary-color;
+				line-height: 24px;
+				width: 30px;
+				padding: 3px;
+				text-align: center;
+				display: block;
+				transition: all .2s linear;
+				border-radius: 15px;
+
+				&:hover, &:active, &:focus {
+					background: rgba(255, 255, 255, .8);
+				}
+
+				> i {
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	div.navigation {
+		> ul {
+			margin: 0;
+			padding: 0;
+
+			> li {
+				padding: 0 10px;
+				display: inline-block;
+
+				&:first-child {
+					margin-left: 0;
+					padding-left: 0;
+					border-left: none;
+				}
+
+				&:last-child {
+					padding-right: 0;
+				}
+
+				> a {
+					color: #FFF;
+					line-height: 50px;
+					height: 50px;
+					display: block;
+
+					&:hover, &:active, &:focus {
+						color: rgba(255, 255, 255, .7);
+					}
+				}
+			}
+		}
+	}
+
+	// Breakpoints
+	/*==========  Non-Mobile First Method  ==========*/
+
+	/* Large Devices, Wide Screens */
+	@media only screen and (max-width : $screen-lg) {
+
+	}
+
+	/* Medium Devices, Desktops */
+	@media only screen and (max-width : $screen-md) {
+
+	}
+
+	/* Small Devices, Tablets */
+	@media only screen and (max-width : $screen-sm) {
+
+	}
+
+	/* Extra Small Devices, Phones */
+	@media only screen and (max-width : $screen-xs) {
+
+		.top-bar-section {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		.top-bar-section-social {
+			display: none;
+		}
+
+		.top-bar-section-navigation {
+			padding: 0;
+			text-align: center;
+			border-left: 0;
+			display: block;
+		}
+
+	}
+
+	/* Custom, iPhone Retina */
+	@media only screen and (max-width : 320px) {
+
+	}
+}

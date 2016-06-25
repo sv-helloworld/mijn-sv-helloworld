@@ -23,18 +23,29 @@
     <body>
 
         <!-- Top bar -->
-        <div id="topbar">
+        <div id="top-bar">
             <div class="container-fluid">
                 <div class="container-inner">
-                    <div class="navigation">
-                        <ul id="top-bar-menu" class="menu">
+                    <div class="top-bar-section top-bar-section-social">
+                        <ul class="social">
                             <li>
-                                <a href="https://mijn.svhelloworld.nl/lid-worden" class="">Lid worden</a>
-                            </li>
-                            <li>
-                                <a href="https://mijn.svhelloworld.nl" class="">Mijn SV "Hello World"</a>
+                                <a href="https://www.facebook.com/svhelloworld/" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
                             </li>
                         </ul>
+                    </div><!--
+                    --><div class="top-bar-section top-bar-section-navigation">
+                        <div class="navigation">
+                            <ul id="top-bar-menu" class="menu">
+                                <li>
+                                    <a href="/lid-worden" class="">Lid worden</a>
+                                </li>
+                                <li>
+                                    <a href="http://svhelloworld.nl" class="">Website</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
