@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \App\Http\Middleware\MainMenu::class,
+            \App\Http\Middleware\SidebarMenu::class,
         ],
 
         'api' => [
