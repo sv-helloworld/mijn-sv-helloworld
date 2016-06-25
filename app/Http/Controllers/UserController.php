@@ -183,15 +183,15 @@ class UserController extends Controller
                 }
 
                 // Check if the user wants to change his own role
-                if ($request->get('user_role') != $user->user_role) {
-                    $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen rol te wijzigen.');
-                    $request->merge(['account_type' => $user->user_role]);
+                if ($request->get('account_type') != $user->account_type) {
+                    $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen account type te wijzigen.');
+                    $request->merge(['account_type' => $user->account_type]);
                 }
             });
         }
 
         if ($validator->fails()) {
-            return redirect(route('user.edit', $user->id))
+            return redirect(route('user.edit', $id))
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -256,11 +256,12 @@ class UserController extends Controller
         $validator->after(function ($validator) use ($id, $user) {
             if ($id == $user->id) {
                 $validator->errors()->add('activated', 'het is niet toegestaan jezelf te activeren of deactiveren.');
+                Flash::error('Het is niet toegestaan jezelf te activeren of deactiveren.');
             }
         });
 
         if ($validator->fails()) {
-            return redirect('user')
+            return redirect(route('user.index'))
                 ->withErrors($validator)
                 ->withInput();
         }

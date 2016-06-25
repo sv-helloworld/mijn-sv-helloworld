@@ -86,7 +86,7 @@ class EmailController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users',
+            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users|confirmed',
         ]);
 
         $user = Auth::user();

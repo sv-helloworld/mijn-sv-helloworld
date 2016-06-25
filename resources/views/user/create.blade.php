@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12">
             {!! Form::open(['url' => 'gebruikers', 'class' => 'form-horizontal']) !!}
 
             <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
@@ -77,17 +77,19 @@
 
             <hr>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('account_type') ? 'has-error' : ''}}">
                 {!! Form::label('account_type', 'Account type *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
                     {!! Form::select('account_type', ['user' => 'Gebruiker', 'admin' => 'Administrator'], null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('account_type', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('activated') ? 'has-error' : ''}}">
                 {!! Form::label('activated', 'Account status *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
                     {!! Form::select('activated', [1 => 'Geactiveerd', 0 => 'Gedeactiveerd'], null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('activated', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 
