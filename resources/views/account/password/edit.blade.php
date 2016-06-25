@@ -9,24 +9,27 @@
             <form method="post" action="{{ action('Account\PasswordController@update') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('password_current') ? 'has-error' : ''}}">
                     <label for="password_current" class="control-label col-sm-4">Huidig wachtwoord</label>
                     <div class="col-sm-8">
                         <input type="password" name="password_current" id="password_current" class="form-control">
+                        {!! $errors->first('password_current', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
                     <label for="password" class="control-label col-sm-4">Nieuw wachtwoord</label>
                     <div class="col-sm-8">
                         <input type="password" name="password" id="password" class="form-control">
+                        {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
                     <label for="password_confirmation" class="control-label col-sm-4">Herhaal wachtwoord</label>
                     <div class="col-sm-8">
                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+                        {!! $errors->first('password_confirmation', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 

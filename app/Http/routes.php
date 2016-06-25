@@ -39,7 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => 'Account\AccountController@update',
         ]);
 
-        Route::get('account/deactiveren', [
+        Route::get('account/gedeactiveerd', [
             'uses' => 'Account\AccountController@deactivated',
             'as' => 'deactivated',
         ]);

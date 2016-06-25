@@ -178,9 +178,9 @@ class UserController extends Controller
                 }
 
                 // Check if the user wants to change his own role
-                if ($request->get('user_role') != $user->user_role) {
-                    $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen rol te wijzigen.');
-                    $request->merge(['account_type' => $user->user_role]);
+                if ($request->get('account_type') != $user->account_type) {
+                    $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen account type te wijzigen.');
+                    $request->merge(['account_type' => $user->account_type]);
                 }
             });
         }
