@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="col-xs-12">
             <form method="post" action="{{ action('Auth\AuthController@getLogin') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
@@ -38,7 +38,8 @@
                 </div>
             </form>
 
-            <p>Bent u uw wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
+            <p>Bent je je wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
+            <p>Heb je nog geen account? <a href="{{ route('register') }}">Maak een account aan!</a></p>
         </div>
     </div>
 @endsection

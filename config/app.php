@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'nl',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +162,10 @@ return [
          * Other Service Providers...
          */
         Lavary\Menu\ServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
 
     ],
 
@@ -190,7 +194,10 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
+        'Flash' => Laracasts\Flash\Flash::class,
+        'Form' => Collective\Html\FormFacade::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
@@ -207,6 +214,7 @@ return [
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 

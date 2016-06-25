@@ -7,7 +7,12 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "lavary/laravel-menu": "dev-master"
+        "lavary/laravel-menu": "dev-master",
+        "laracasts/flash": "^2.0",
+        "jrean/laravel-user-verification": "^2.2",
+        "laravelcollective/html": "^5.2",
+        "thomaswelton/laravel-gravatar": "~1.0",
+        "caouecs/laravel-lang": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -38,10 +43,12 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "cp vendor/caouecs/laravel-lang/src/nl/* resources/lang/nl",
             "php artisan optimize"
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "cp vendor/caouecs/laravel-lang/src/nl/* resources/lang/nl",
             "php artisan optimize"
         ]
     },

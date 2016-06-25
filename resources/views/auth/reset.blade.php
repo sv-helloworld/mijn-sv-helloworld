@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-6">
+        <div class="col-xs-12">
             <p>Voer hieronder het gewenste nieuwe wachtwoord in.</p>
 
             <form method="post" action="{{ action('Auth\PasswordController@postReset') }}" class="form-horizontal">

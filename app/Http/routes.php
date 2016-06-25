@@ -16,6 +16,81 @@ Route::get('/', [
     'as' => 'index',
 ]);
 
+// Protected group
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', [
+        'uses' => 'IndexController@index',
+        'as' => 'index',
+    ]);
+
+    Route::group(['as' => 'account.'], function () {
+        // Account settings routes
+        Route::get('account', [
+            'uses' => 'Account\AccountController@index',
+            'as' => 'index',
+        ]);
+
+        Route::get('account/bewerken', [
+            'uses' => 'Account\AccountController@edit',
+            'as' => 'edit',
+        ]);
+
+        Route::post('account/bewerken', [
+            'uses' => 'Account\AccountController@update',
+        ]);
+
+        Route::get('account/gedeactiveerd', [
+            'uses' => 'Account\AccountController@deactivated',
+            'as' => 'deactivated',
+        ]);
+    });
+
+    Route::group(['prefix' => 'account/email', 'as' => 'account.email.'], function () {
+        // Edit email address routes
+        Route::get('bewerken', [
+            'uses' => 'Account\EmailController@edit',
+            'as' => 'edit',
+        ]);
+
+        Route::post('bewerken', [
+            'uses' => 'Account\EmailController@update',
+        ]);
+    });
+
+    Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], function () {
+        // Edit password routes
+        Route::get('bewerken', [
+            'uses' => 'Account\PasswordController@edit',
+            'as' => 'edit',
+        ]);
+
+        Route::post('bewerken', [
+            'uses' => 'Account\PasswordController@update',
+        ]);
+    });
+
+    Route::group(['middleware' => ['verified', 'account.type:admin']], function () {
+        // User management routes
+        Route::patch('gebruikers/{user}/activeren', [
+            'uses' => 'UserController@activate',
+            'as' => 'user.activate',
+        ]);
+
+        Route::resource('gebruikers', 'UserController', [
+            'names' => [
+                'index' => 'user.index',
+                'create' => 'user.create',
+                'store' => 'user.store',
+                'show' => 'user.show',
+                'edit' => 'user.edit',
+                'update' => 'user.update',
+                'destroy' => 'user.destroy',
+            ],
+        ]);
+    });
+});
+
+
 // Authentication routes
 Route::get('inloggen', [
     'uses' => 'Auth\AuthController@getLogin',
@@ -27,9 +102,55 @@ Route::post('inloggen', [
 ]);
 
 Route::get('uitloggen', [
-    'uses' => 'Auth\AuthController@getLogout',
+    'uses' => 'Auth\AuthController@logout',
     'as' => 'logout',
 ]);
+
+// Registration routes...
+Route::get('registreren', [
+    'uses' => 'Auth\AuthController@getRegister',
+    'as' => 'register',
+]);
+
+Route::post('registreren', [
+    'uses' => 'Auth\AuthController@postRegister',
+]);
+
+// Account activation routes
+Route::group(['prefix' => 'account/activeren', 'as' => 'account.activate.'], function () {
+    Route::get('/', [
+        'uses' => 'Auth\ActivationController@index',
+        'as' => 'index',
+    ]);
+
+    Route::get('{token}', [
+        'uses' => 'Auth\ActivationController@getVerification',
+        'as' => 'token',
+    ]);
+
+    Route::get('error', [
+        'uses' => 'Auth\ActivationController@getVerificationError',
+        'as' => 'error',
+    ]);
+});
+
+// Email verification routes
+Route::group(['prefix' => 'account/email/verifieren', 'as' => 'account.email.verificate.'], function () {
+    Route::get('/', [
+        'uses' => 'Account\EmailController@index',
+        'as' => 'index',
+    ]);
+
+    Route::get('{token}', [
+        'uses' => 'Account\EmailController@getVerification',
+        'as' => 'token',
+    ]);
+
+    Route::get('error', [
+        'uses' => 'Account\EmailController@getVerificationError',
+        'as' => 'error',
+    ]);
+});
 
 // Password reset routes
 Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], function () {
@@ -51,5 +172,15 @@ Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], fu
 
     Route::post('reset', [
         'uses' => 'Auth\PasswordController@postReset',
+    ]);
+
+    // Password set routes
+    Route::get('set/{token}', [
+        'uses' => 'UserController@getReset',
+        'as' => 'set',
+    ]);
+
+    Route::post('set', [
+        'uses' => 'UserController@postReset',
     ]);
 });
