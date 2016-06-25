@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-10">
-            <p>Na het wijzigen van uw e-mailadres moet u opnieuw uw e-mailadres valideren.</p>
+            <p>Na het wijzigen van je e-mailadres moet je opnieuw je e-mailadres valideren voor je je kunt aanmelden voor activiteiten.</p>
 
             <form method="post" action="{{ action('Account\EmailController@update') }}" class="form-horizontal">
                 {!! csrf_field() !!}

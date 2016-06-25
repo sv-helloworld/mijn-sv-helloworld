@@ -2,8 +2,10 @@
 @section('title', 'Registreren')
 
 @section('content')
+    <p>Met een account kun je jezelf aanmelden voor activiteiten en je registreren als lid. Je hoeft geen lid te zijn van onze vereniging om je aan te kunnen melden voor activiteiten. Heb je al een account? Klik dan <a href="{{ route('login') }}">hier</a> om in te loggen.</p>
+
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-10">
+        <div class="col-xs-12">
             <form method="post" action="{{ action('Auth\AuthController@getRegister') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
@@ -99,8 +101,6 @@
                     </div>
                 </div>
             </form>
-
-            <p>Heeft u al een account? <a href="{{ route('login') }}">Log in.</a></p>
         </div>
     </div>
 @endsection

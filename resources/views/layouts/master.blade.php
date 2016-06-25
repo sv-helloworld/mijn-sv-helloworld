@@ -87,6 +87,7 @@
                                     </li>
                                     <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Uitloggen</a></li>
                                 @else
+                                    <li><a href="{{ route('register') }}">Registreren</a></li>
                                     <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Inloggen</a></li>
                                 @endif
                             </ul>
@@ -147,7 +148,7 @@
 
         <!-- Footer -->
         <footer id="footer">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="container-inner">
                     <span>&copy; {{ Carbon\Carbon::now()->year }} Studievereniging "Hello World"</span>
                 </div>

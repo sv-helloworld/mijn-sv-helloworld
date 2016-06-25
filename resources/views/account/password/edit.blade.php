@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12 col-sm-10 col-md-10">
-            <p>Hier kunt u het wachtwoord van uw account wijzigen.</p>
+            <p>Hier kun je het wachtwoord van je account wijzigen.</p>
 
             <form method="post" action="{{ action('Account\PasswordController@update') }}" class="form-horizontal">
                 {!! csrf_field() !!}
