@@ -15,8 +15,7 @@ class UsersTableSeeder extends Seeder
             [
                 'first_name' => 'Voorbeeld',
                 'last_name' => 'Admin',
-                'email' => 'admin@voorbeeld.hw',
-                'email_hz' => 'admin@hz.hw',
+                'email' => 'admin@hz.nl',
                 'password' => bcrypt('Admin123'),
                 'account_type' => 'admin',
                 'activated' => true,
@@ -28,8 +27,7 @@ class UsersTableSeeder extends Seeder
             [
                 'first_name' => 'Voorbeeld',
                 'last_name' => 'Gebruiker',
-                'email' => 'gebruiker@voorbeeld.hw',
-                'email_hz' => 'gebruiker@hz.hw',
+                'email' => 'gebruiker@hz.nl',
                 'password' => bcrypt('Gebruiker123'),
                 'account_type' => 'user',
                 'activated' => true,
@@ -44,8 +42,7 @@ class UsersTableSeeder extends Seeder
             [
                 'first_name' => 'Voorbeeld',
                 'last_name' => 'Lid',
-                'email' => 'lid@voorbeeld.hw',
-                'email_hz' => 'lid@hz.hw',
+                'email' => 'lid@hz.nl',
                 'password' => bcrypt('Lid123'),
                 'account_type' => 'user',
                 'user_category' => 'lid',
