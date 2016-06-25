@@ -193,28 +193,6 @@ class UserManagementTest extends TestCase
     }
 
     /**
-     * Tests if an admin can change the retailer of a user.
-     *
-     * @return void
-     */
-    public function testAdminCanChangeUserRetailer()
-    {
-        $this->seed('TestingDatabaseSeeder');
-        $retailer = factory(App\Retailer::class)->create();
-        $user = factory(App\User::class, 'retailer')->create();
-        $admin = factory(App\User::class, 'admin')->create();
-
-        $this->actingAs($admin)
-             ->visit('/gebruikers/'.$user->id.'/edit')
-             ->see('Wijzig gebruiker')
-             ->select($retailer->id, 'retailer_id')
-             ->press('Gebruiker wijzigen')
-             ->see('Gebruiker bijgewerkt.')
-             ->seePageIs('/gebruikers/'.$user->id)
-             ->seeInDatabase('users', ['id' => $user->id, 'retailer_id' => $retailer->id]);
-    }
-
-    /**
      * Tests if an admin can change the account type of a user to admin.
      *
      * @return void

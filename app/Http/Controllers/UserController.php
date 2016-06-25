@@ -251,11 +251,12 @@ class UserController extends Controller
         $validator->after(function ($validator) use ($id, $user) {
             if ($id == $user->id) {
                 $validator->errors()->add('activated', 'het is niet toegestaan jezelf te activeren of deactiveren.');
+                Flash::error('Het is niet toegestaan jezelf te activeren of deactiveren.');
             }
         });
 
         if ($validator->fails()) {
-            return redirect('user')
+            return redirect(route('user.index'))
                 ->withErrors($validator)
                 ->withInput();
         }

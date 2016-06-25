@@ -43,9 +43,6 @@ class AddColumnsToUserCategoriesTable extends Migration
             $table->string('zip_code');
             $table->string('city');
 
-            // HZ e-mail
-            $table->string('email_hz')->unique();
-
             // Phone number
             $table->string('phone_number')->nullable();
         });
@@ -88,9 +85,6 @@ class AddColumnsToUserCategoriesTable extends Migration
             $table->dropColumn('address');
             $table->dropColumn('zip_code');
             $table->dropColumn('city');
-
-            // HZ e-mail
-            $table->dropColumn('email_hz');
 
             // Phone number
             $table->dropColumn('phone_number');
