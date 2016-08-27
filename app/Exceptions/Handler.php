@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App;
 use Exception;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
@@ -58,7 +59,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($this->shouldReport($e)) {
+        if (App::environment('production') && $this->shouldReport($e)) {
             return response()->view('errors.500', [
                 'sentryID' => $this->sentryID,
             ], 500);
