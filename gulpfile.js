@@ -1,5 +1,3 @@
-"use strict";
-
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     sass = require('gulp-sass'),
@@ -90,6 +88,6 @@ gulp.task('watch', function() {
     gulp.watch('resources/assets/js/*.js', ['scripts_app']);
 });
 
-gulp.task('vendor', ['scripts_vendor'])
+gulp.task('vendor', ['scripts_vendor']);
 
 gulp.task('default', ['watch']);
