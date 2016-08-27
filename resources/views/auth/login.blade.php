@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <form method="post" action="{{ action('Auth\AuthController@getLogin') }}" class="form-horizontal">
+            <form method="post" action="{{ action('Auth\LoginController@login') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
                 <div class="form-group">
