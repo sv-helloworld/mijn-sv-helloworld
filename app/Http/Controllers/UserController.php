@@ -17,13 +17,6 @@ class UserController extends Controller
     use ResetsPasswords;
 
     /**
-     * Use the password broker settings for new users.
-     *
-     * @var string
-     */
-    protected $broker = 'new_users';
-
-    /**
      * Where to redirect users after login / registration.
      *
      * @var string
