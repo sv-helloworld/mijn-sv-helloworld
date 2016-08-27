@@ -158,6 +158,7 @@ return [
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Mollie\Laravel\MollieServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
 
@@ -206,6 +207,7 @@ return [
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Menu' => Lavary\Menu\Facade::class,
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
