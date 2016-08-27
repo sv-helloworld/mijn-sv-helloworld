@@ -1,15 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Gebruikers')
 
-{{-- Sidebar button --}}
-@section('sidebar-nav')
-    <li>
-        <a href="{{ url('gebruikers/create') }}">
-            <i class="fa fa-plus"></i> Maak nieuwe gebruiker
-        </a>
-    </li>
-@stop
-
 @section('content')
 
     <div class="table-responsive">

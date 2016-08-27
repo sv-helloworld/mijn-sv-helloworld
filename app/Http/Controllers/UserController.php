@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\UserCategory;
-use Illuminate\Foundation\Auth\ResetsPasswords;
-use Illuminate\Http\Request;
-use Laracasts\Flash\Flash;
-use Validator;
 use Auth;
+use Menu;
+use App\User;
+use Validator;
+use App\UserCategory;
 use UserVerification;
+use Laracasts\Flash\Flash;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class UserController extends Controller
 {
@@ -51,6 +52,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(15);
+
+        // Add sidebar menu items
+        $menu = Menu::get('sidebar');
+        $menu->add('Maak nieuwe gebruiker', ['route' => 'user.create']);
 
         return view('user.index', compact('users'));
     }

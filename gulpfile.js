@@ -1,5 +1,3 @@
-"use strict";
-
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     sass = require('gulp-sass'),
@@ -19,7 +17,7 @@ var scripts = {
         'resources/assets/js/**/*.js',
     ],
     vendor: [
-        'public/bower_components/jquery/dist/jquery.min.js',
+        'public/bower_components/jquery/dist/jquery.slim.min.js',
     ],
 };
 
@@ -90,6 +88,8 @@ gulp.task('watch', function() {
     gulp.watch('resources/assets/js/*.js', ['scripts_app']);
 });
 
-gulp.task('vendor', ['scripts_vendor'])
+gulp.task('vendor', ['scripts_vendor']);
+
+gulp.task('build', ['scripts_vendor', 'scripts_app', 'css']);
 
 gulp.task('default', ['watch']);

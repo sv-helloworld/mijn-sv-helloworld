@@ -72,7 +72,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-main">
                         <ul class="nav navbar-nav">
-                            @include(config('laravel-menu.views.bootstrap-items'), array('items' => $menu->roots()))
+                            @include(config('laravel-menu.views.bootstrap-items'), array('items' => Menu::get('menu')->roots()))
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                                 @if(Auth::check())
@@ -136,11 +136,16 @@
                         </div>
 
                         <!-- Sidebar -->
-                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4">
-                            <ul class="nav nav-pills nav-stacked">
-                                @yield('sidebar-nav')
-                            </ul>
-                        </div>
+                        <aside id="secondary" class="col-xs-12 col-sm-12 col-md-3 col-lg-4 widget-area" role="complementary">
+                            @if (! Menu::get('sidebar')->all()->isEmpty())
+                            <section class="widget widget_menu">
+                                <h2 class="widget-title">Menu</h2>
+                                <ul class="nav nav-pills nav-stacked">
+                                    @include(config('laravel-menu.views.bootstrap-items'), array('items' => Menu::get('sidebar')->roots()))
+                                </ul>
+                            </section>
+                            @endif
+                        </aside>
                     </div>
                 </div>
             </div>
