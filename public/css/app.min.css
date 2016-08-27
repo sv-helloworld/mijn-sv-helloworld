@@ -1422,7 +1422,6 @@ a:focus {
 }
 
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3322,7 +3321,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3958,7 +3956,6 @@ select[multiple].input-lg,
 .btn:active.focus,
 .btn.active:focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -9398,10 +9395,6 @@ a {
   transition: all .2s linear;
 }
 
-p {
-  margin-bottom: 20px;
-}
-
 p:last-child {
   margin-bottom: 0;
 }
@@ -9441,11 +9434,6 @@ ol:last-child {
 
 .navbar-nav:last-child {
   margin-bottom: 0;
-}
-
-.navbar-nav>li>a>i {
-  margin-right: 5px;
-  line-height: 1.5;
 }
 
 .navbar-brand {
@@ -9499,19 +9487,7 @@ ol:last-child {
   font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.btn>i {
-  margin-right: 5px;
-}
-
-.label {
-  border-radius: 0;
-}
-
-.pagination-wrapper {
-  text-align: center;
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
   .navbar-brand h1,
   .navbar-brand span {
     background-image: url("../images/logo@2x.png");
