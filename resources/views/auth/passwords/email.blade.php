@@ -6,7 +6,7 @@
         <div class="col-xs-12">
             <p>Als je je wachtwoord bent vergeten kun je hieronder je e-mailadres opgeven. Je zal dan een link toegestuurd krijgen waarmee je je wachtwoord opnieuw kan instellen.</p>
 
-            <form method="post" action="{{ action('Auth\PasswordController@postEmail') }}" class="form-horizontal">
+            <form method="post" action="{{ action('Auth\ForgotPasswordController@sendResetLinkEmail') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
                 <div class="form-group">
