@@ -17,7 +17,7 @@ var scripts = {
         'resources/assets/js/**/*.js',
     ],
     vendor: [
-        'public/bower_components/jquery/dist/jquery.min.js',
+        'public/bower_components/jquery/dist/jquery.slim.min.js',
     ],
 };
 
