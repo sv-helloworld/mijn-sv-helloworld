@@ -2,8 +2,8 @@
 
 namespace App\Exceptions;
 
-use Log;
 use Exception;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -28,6 +28,7 @@ class Handler extends ExceptionHandler
         AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
+        TokenMismatchException::class,
         ValidationException::class,
     ];
 
@@ -44,6 +45,7 @@ class Handler extends ExceptionHandler
         if ($this->shouldReport($e)) {
             $this->sentryID = app('sentry')->captureException($e);
         }
+        
         parent::report($e);
     }
 
@@ -56,8 +58,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        return response()->view('errors.500', [
-            'sentryID' => $this->sentryID,
-        ], 500);
+        if ($this->shouldReport($e)) {
+            return response()->view('errors.500', [
+                'sentryID' => $this->sentryID,
+            ], 500);
+        }
+
+        return parent::render($request, $e);
     }
 }
