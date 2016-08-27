@@ -90,4 +90,6 @@ gulp.task('watch', function() {
 
 gulp.task('vendor', ['scripts_vendor']);
 
+gulp.task('build', ['scripts_vendor', 'scripts_app', 'css']);
+
 gulp.task('default', ['watch']);
