@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
         if ($this->shouldReport($e)) {
             $this->sentryID = app('sentry')->captureException($e);
         }
-        
+
         parent::report($e);
     }
 
