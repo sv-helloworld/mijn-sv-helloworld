@@ -2,12 +2,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
+| This file is where you may define all of the routes that are handled
+| by your application. Just tell Laravel the URIs it should respond
+| to using a Closure or controller method. Build something great!
 |
 */
 
@@ -93,27 +93,27 @@ Route::group(['middleware' => ['auth']], function () {
 
 // Authentication routes
 Route::get('inloggen', [
-    'uses' => 'Auth\AuthController@getLogin',
+    'uses' => 'Auth\LoginController@showLoginForm',
     'as' => 'login',
 ]);
 
 Route::post('inloggen', [
-    'uses' => 'Auth\AuthController@postLogin',
+    'uses' => 'Auth\LoginController@login',
 ]);
 
 Route::get('uitloggen', [
-    'uses' => 'Auth\AuthController@logout',
+    'uses' => 'Auth\LoginController@logout',
     'as' => 'logout',
 ]);
 
 // Registration routes...
 Route::get('registreren', [
-    'uses' => 'Auth\AuthController@getRegister',
+    'uses' => 'Auth\RegisterController@showRegistrationForm',
     'as' => 'register',
 ]);
 
 Route::post('registreren', [
-    'uses' => 'Auth\AuthController@postRegister',
+    'uses' => 'Auth\RegisterController@register',
 ]);
 
 // Account activation routes
@@ -156,22 +156,22 @@ Route::group(['prefix' => 'account/email/verifieren', 'as' => 'account.email.ver
 Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], function () {
     // Password reset link request routes
     Route::get('email', [
-        'uses' => 'Auth\PasswordController@getEmail',
+        'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm',
         'as' => 'email',
     ]);
 
     Route::post('email', [
-        'uses' => 'Auth\PasswordController@postEmail',
+        'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail',
     ]);
 
     // Password reset routes
     Route::get('reset/{token}', [
-        'uses' => 'Auth\PasswordController@getReset',
+        'uses' => 'Auth\ResetPasswordController@showResetForm',
         'as' => 'reset',
     ]);
 
     Route::post('reset', [
-        'uses' => 'Auth\PasswordController@postReset',
+        'uses' => 'Auth\ResetPasswordController@reset',
     ]);
 
     // Password set routes

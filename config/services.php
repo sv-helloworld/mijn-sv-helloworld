@@ -23,11 +23,6 @@ return [
         'secret' => env('MANDRILL_SECRET'),
     ],
 
-    'rollbar' => [
-        'access_token' => env('ROLLBAR_TOKEN'),
-        'level' => env('ROLLBAR_LEVEL'),
-    ],
-
     'ses' => [
         'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),

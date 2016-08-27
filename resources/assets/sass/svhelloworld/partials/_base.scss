@@ -31,8 +31,6 @@ a {
 
 // Paragraphs
 p {
-	margin-bottom: 20px;
-
 	&:last-child {
 		margin-bottom: 0;
 	}
@@ -87,15 +85,6 @@ section {
 	&:last-child {
 		margin-bottom: 0;
 	}
-
-	> li {
-		> a {
-			> i {
-				margin-right: 5px;
-				line-height: 1.5
-			}
-		}
-	}
 }
 
 .navbar-brand {
@@ -149,25 +138,11 @@ section {
 // Buttons
 .btn {
 	font-family: $font-family-headings;
-
-	> i {
-		margin-right: 5px;
-	}
-}
-
-// Labels
-.label {
-	border-radius: 0;
-}
-
-// Pagination
-.pagination-wrapper {
-	text-align: center;
 }
 
 // Breakpoints
 // HiDPI screens
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
 
 	.navbar-brand {
 		h1, span {

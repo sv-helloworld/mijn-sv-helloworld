@@ -28,13 +28,18 @@ class Kernel extends HttpKernel
      */
     protected $middlewareGroups = [
         'web' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\SidebarMenu::class,
         ],
 
         'api' => [
             'throttle:60,1',
+            'bindings',
         ],
 
         'auth' => [
@@ -52,12 +57,13 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'activated' => \App\Http\Middleware\RedirectIfNotActivated::class,
-        'verified' => \App\Http\Middleware\RedirectIfNotVerified::class,
-        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'account.type' => \App\Http\Middleware\AccountType::class,
-        'user.category' => \App\Http\Middleware\UserCategory::class,
+        'activated' => \App\Http\Middleware\RedirectIfNotActivated::class,
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'user.category' => \App\Http\Middleware\UserCategory::class,
+        'verified' => \App\Http\Middleware\RedirectIfNotVerified::class,
     ];
 }

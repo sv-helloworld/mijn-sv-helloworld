@@ -140,6 +140,7 @@ return [
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\Pagination\PaginationServiceProvider::class,
         Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
@@ -151,21 +152,24 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Package Service Providers...
+         */
+        Collective\Html\HtmlServiceProvider::class,
+        Jrean\UserVerification\UserVerificationServiceProvider::class,
+        Lavary\Menu\ServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Mollie\Laravel\MollieServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        /*
-         * Other Service Providers...
-         */
-        Lavary\Menu\ServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
-        Jrean\UserVerification\UserVerificationServiceProvider::class,
 
     ],
 
@@ -203,6 +207,7 @@ return [
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Menu' => Lavary\Menu\Facade::class,
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
@@ -211,6 +216,7 @@ return [
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Session' => Illuminate\Support\Facades\Session::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
