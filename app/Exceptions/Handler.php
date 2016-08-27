@@ -13,7 +13,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 class Handler extends ExceptionHandler
 {
     /**
-     * Sentry Event ID
+     * Sentry Event ID.
      *
      * @var string
      */
