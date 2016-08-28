@@ -99,11 +99,11 @@
                 </div>
             </div>
 
-            <div class="form-group {{ $errors->has('user_category') ? 'has-error' : ''}}">
-                {!! Form::label('user_category', 'Gebruikerscategorie *', ['class' => 'col-sm-4 control-label']) !!}
+            <div class="form-group {{ $errors->has('user_category_alias') ? 'has-error' : ''}}">
+                {!! Form::label('user_category_alias', 'Gebruikerscategorie *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::select('user_category', array_replace(['' => 'Geen lid'], $user_categories_values), null, ['class' => 'form-control']) !!}
-                    {!! $errors->first('user_category', '<p class="help-block">:message</p>') !!}
+                    {!! Form::select('user_category_alias', array_replace(['' => 'Geen lid'], $user_categories_values), null, ['class' => 'form-control']) !!}
+                    {!! $errors->first('user_category_alias', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
 

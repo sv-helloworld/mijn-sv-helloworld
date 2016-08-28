@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
                 'email' => 'lid@hz.nl',
                 'password' => bcrypt('Lid123'),
                 'account_type' => 'user',
-                'user_category' => 'lid',
+                'user_category_alias' => 'lid',
                 'activated' => true,
                 'verified' => true,
                 'address' => 'Voorbeeldstraat 123',
