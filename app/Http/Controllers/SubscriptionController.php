@@ -92,7 +92,7 @@ class SubscriptionController extends Controller
         if (! $subscription->isEmpty()) {
             flash(sprintf('Inschrijving voor periode %s is niet gelukt omdat je al bent ingeschreven.', $contribution->period->name), 'danger');
 
-            return redirect(route('subscription.show', $contribution->id));
+            return redirect(route('subscription.show', $subscription->id));
         }
 
         // Check succesful, add new subscription
@@ -110,7 +110,7 @@ class SubscriptionController extends Controller
 
         flash(sprintf('Je hebt je succesvol ingeschreven als lid voor de periode %s. Binnen enkele ogenblikken zal het mogelijk zijn om je contributie te betalen. Je ontvangt ook per mail een link om de betaling te voldoen.', $contribution->period->name), 'success');
 
-        return redirect(route('subscription.show', $contribution->id));
+        return redirect(route('subscription.show', $subscription->id));
     }
 
     /**
