@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contribution;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ContributionController extends Controller
 {
@@ -24,21 +23,21 @@ class ContributionController extends Controller
         return view('contribution.index', compact('contributions'));
     }
 
-     /**
-      * Handles the payment.
-      *
-      * @param  Request $request
-      * @return mixed The payment view
-      */
+    /**
+     * Handles the payment.
+     *
+     * @param  Request $request
+     * @return mixed The payment view
+     */
     public function pay(Request $request)
     {
         $user = Auth::user();
         $contribution = Contribution::where('user_category_alias', $user->user_category_alias)->find($request->id);
 
         $payment = Mollie::api()->payments()->create([
-            "amount"      => $contribution->amount,
-            "description" => "Betaling voor " . $contribution->period->name,
-            "redirectUrl" => "",
+            'amount'      => $contribution->amount,
+            'description' => 'Betaling voor '.$contribution->period->name,
+            'redirectUrl' => '',
         ]);
     }
 }
