@@ -15,7 +15,7 @@ class Contribution extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'early_bird_amount', 'early_bird_end_date', 'user_category', 'period',
+        'amount', 'early_bird_amount', 'early_bird_end_date', 'user_category_alias', 'period_id'
     ];
 
     /**
@@ -32,7 +32,7 @@ class Contribution extends Model
      */
     public function user_category()
     {
-        return $this->hasOne('App\UserCategory', 'alias', 'user_category');
+        return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
     }
 
     /**
@@ -42,6 +42,14 @@ class Contribution extends Model
      */
     public function period()
     {
-        return $this->hasOne('App\Period', 'id', 'period');
+        return $this->hasOne('App\Period', 'id', 'period_id');
+    }
+
+    /**
+     * Get all of the contributions payments.
+     */
+    public function payable()
+    {
+        return $this->morphMany('App\Payment', 'payable');
     }
 }

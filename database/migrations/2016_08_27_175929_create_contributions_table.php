@@ -21,12 +21,12 @@ class CreateContributionsTable extends Migration
             $table->date('early_bird_end_date');
 
             // User category
-            $table->string('user_category')->nullable();
-            $table->foreign('user_category')->references('alias')->on('user_categories');
+            $table->string('user_category_alias')->nullable();
+            $table->foreign('user_category_alias')->references('alias')->on('user_categories');
 
             // Period
-            $table->integer('period')->unsigned();
-            $table->foreign('period')->references('id')->on('periods');
+            $table->integer('period_id')->unsigned();
+            $table->foreign('period_id')->references('id')->on('periods');
 
             // Properties
             $table->softDeletes();

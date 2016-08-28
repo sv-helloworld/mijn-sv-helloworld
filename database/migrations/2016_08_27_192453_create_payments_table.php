@@ -23,8 +23,12 @@ class CreatePaymentsTable extends Migration
             $table->decimal('refund_amount', 8, 2)->nullable();
 
             // User
-            $table->integer('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+
+            // Payable
+            $table->integer('payable_id')->nullable();
+            $table->string('payable_type')->nullable();
 
             // Properties
             $table->softDeletes();
