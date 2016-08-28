@@ -9,6 +9,7 @@ use Validator;
 use App\UserCategory;
 use UserVerification;
 use Laracasts\Flash\Flash;
+use App\Events\UserDeleted;
 use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
@@ -221,14 +222,19 @@ class UserController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $user = $request->user();
+        $admin_user = $request->user();
 
         // Check if the user wants to delete his own account
-        if ($id == $user->id) {
+        if ($id == $admin_user->id) {
             Flash::error('Het is niet toegestaan jezelf te verwijderen.');
 
             return redirect(route('user.index'));
         }
+
+        $user = User::findOrFail($id);
+
+        // Fire 'UserDeleted' event
+        event(new UserDeleted($user));
 
         User::destroy($id);
 

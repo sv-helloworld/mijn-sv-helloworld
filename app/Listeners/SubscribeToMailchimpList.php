@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use Newsletter;
 use App\Events\UserCreatedOrChanged;
-use App\UserCategory;
-use Exception;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

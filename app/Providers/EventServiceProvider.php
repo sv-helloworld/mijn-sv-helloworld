@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserCreatedOrChanged' => [
             'App\Listeners\SubscribeToMailchimpList',
         ],
+
+        'App\Events\UserDeleted' => [
+            'App\Listeners\UnsubscribeFromMailchimpList',
+        ],
     ];
 
     /**

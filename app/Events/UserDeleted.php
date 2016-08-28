@@ -10,12 +10,12 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UserCreatedOrChanged
+class UserDeleted
 {
     use InteractsWithSockets, SerializesModels;
 
     /**
-     * The user that needs to be subscribed.
+     * The user that needs to be unsubscribed.
      *
      * @var User
      */
@@ -24,13 +24,13 @@ class UserCreatedOrChanged
     /**
      * Create a new event instance.
      *
-     * @param User $user The user that needs to be subscribed.
+     * @param User $user The user that needs to be unsubscribed.
      * @return void
      */
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+     public function __construct(User $user)
+     {
+         $this->user = $user;
+     }
 
     /**
      * Get the channels the event should broadcast on.
