@@ -17,6 +17,7 @@ class CreatePeriodsTable extends Migration
             // Fields
             $table->increments('id');
             $table->string('name');
+            $table->string('slug');
             $table->date('start_date');
             $table->date('end_date');
 

@@ -42,7 +42,7 @@ class Contribution extends Model
      */
     public function period()
     {
-        return $this->hasOne('App\Period', 'id', 'period_id');
+        return $this->belongsTo('App\Period');
     }
 
     /**

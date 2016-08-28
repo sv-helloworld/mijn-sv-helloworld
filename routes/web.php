@@ -89,6 +89,28 @@ Route::group(['middleware' => ['auth']], function () {
         ]);
     });
 
+    Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
+        Route::get('/', [
+            'uses' => 'SubscriptionController@index',
+            'as' => 'index',
+        ]);
+
+        Route::get('inschrijven/{slug}', [
+            'uses' => 'SubscriptionController@create',
+            'as' => 'create',
+        ]);
+
+        Route::post('inschrijven/{slug}', [
+            'uses' => 'SubscriptionController@store',
+            'as' => 'store',
+        ]);
+
+        Route::get('{id}', [
+            'uses' => 'SubscriptionController@show',
+            'as' => 'show',
+        ]);
+    });
+
     Route::group(['prefix' => 'contributie', 'as' => 'contribution.'], function () {
         Route::get('/', [
             'uses' => 'ContributionController@index',
