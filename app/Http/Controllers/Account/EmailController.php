@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Controllers\Controller;
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
+use App\Events\UserCreatedOrChanged;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
 use Jrean\UserVerification\Exceptions\UserNotFoundException;
-use Jrean\UserVerification\Facades\UserVerification;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Laracasts\Flash\Flash;
 
 class EmailController extends Controller
 {
@@ -91,6 +92,9 @@ class EmailController extends Controller
 
         $user = Auth::user();
         $user->update($request->only('email'));
+
+        // Fire 'UserCreatedOrChanged' event
+        event(new UserCreatedOrChanged($user));
 
         // Send email verification link
         UserVerification::generate($user);

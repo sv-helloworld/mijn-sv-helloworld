@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -68,7 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'name_prefix' => $data['name_prefix'],
             'last_name' => $data['last_name'],
@@ -79,5 +80,10 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'password' => bcrypt($data['password']),
         ]);
+
+        // Fire 'UserCreatedOrChanged' event
+        event(new UserCreatedOrChanged($user));
+
+        return $user;
     }
 }

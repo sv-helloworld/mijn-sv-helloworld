@@ -21,5 +21,5 @@ class UserCategory extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'alias'];
+    protected $fillable = ['title', 'alias', 'mailchimp_interest_id'];
 }

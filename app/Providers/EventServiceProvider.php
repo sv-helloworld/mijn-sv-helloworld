@@ -13,8 +13,12 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'App\Events\UserCreatedOrChanged' => [
+            'App\Listeners\SubscribeToMailchimpList',
+        ],
+
+        'App\Events\UserDeleted' => [
+            'App\Listeners\UnsubscribeFromMailchimpList',
         ],
     ];
 

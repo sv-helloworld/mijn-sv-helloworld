@@ -172,6 +172,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Mollie\Laravel\MollieServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Spatie\Newsletter\NewsletterServiceProvider::class,
         Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
 
         /*
@@ -220,6 +221,7 @@ return [
         'Mail' => Illuminate\Support\Facades\Mail::class,
         'Menu' => Lavary\Menu\Facade::class,
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+        'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
