@@ -15,13 +15,13 @@ class UserCategoriesSeeder extends Seeder
             [
                 'title' => 'Lid',
                 'alias' => 'lid',
-                'mailchimp_interest_id' => '8f570f4705'
+                'mailchimp_interest_id' => '8f570f4705',
             ],
 
             [
                 'title' => 'Donateur',
                 'alias' => 'donateur',
-                'mailchimp_interest_id' => 'f4125631e0'
+                'mailchimp_interest_id' => 'f4125631e0',
             ],
         ]);
     }
