@@ -95,31 +95,14 @@
                 </div>
             </nav>
 
-            @if (isset($banners))
             <!-- Banners -->
             <div id="banners">
-                @foreach ($banners as $banner)
                 <div class="banner">
                     <div class="banner-inner">
-                        <div class="banner-photo" data-115-start="transform: translate(0px, 0px);" data--715-top="transform: translate(0%, 120%);" style="background-image: url('{{ banner.image }}');"></div>
-
-                        <div class="banner-heading">
-                            <div class="container">
-                                <div class="banner-heading-inner">
-                                    <span class="banner-type-label banner-type-label-{{ banner.type }}">{{ banner.type | capitalize }}</span>
-                                    <h2>{{ banner.title }}</h2>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="banner-photo" style="background-image: url('/images/banner.jpg');"></div>
                     </div>
                 </div>
-                @endforeach
-
-                <div id="banner-slider-pager" class="item-slider-pager">
-                    <div class="item-slider-pager-inner"></div>
-                </div>
             </div>
-            @endif
         </header>
 
 
