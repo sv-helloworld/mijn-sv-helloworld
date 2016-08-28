@@ -10,11 +10,12 @@ use App\UserCategory;
 use UserVerification;
 use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Events\UserCreatedOrChanged;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
 class UserController extends Controller
 {
-    use ResetsPasswords;
+    use SendsPasswordResetEmails;
 
     /**
      * Where to redirect users after login / registration.
@@ -94,10 +95,13 @@ class UserController extends Controller
             'activated' => 'required|boolean',
         ]);
 
-        User::create($request->all());
+        $user = User::create($request->all());
 
         // Send password reset link to the user
         $this->sendResetLinkEmail($request);
+
+        // Fire 'UserCreatedOrChanged' event
+        event(new UserCreatedOrChanged($user));
 
         Flash::success('Gebruiker toegevoegd!');
 
@@ -198,6 +202,9 @@ class UserController extends Controller
             UserVerification::generate($user);
             UserVerification::send($user, 'Verifieer je e-mailadres');
         }
+
+        // Fire 'UserCreatedOrChanged' event
+        event(new UserCreatedOrChanged($user));
 
         Flash::success('Gebruiker bijgewerkt.');
 
