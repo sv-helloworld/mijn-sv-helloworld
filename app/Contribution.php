@@ -48,7 +48,7 @@ class Contribution extends Model
     /**
      * Get all of the contributions payments.
      */
-    public function payable()
+    public function payments()
     {
         return $this->morphMany('App\Payment', 'payable');
     }
