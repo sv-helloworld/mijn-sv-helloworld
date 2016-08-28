@@ -53,7 +53,7 @@ class User extends Authenticatable
      */
     public function user_category()
     {
-        return $this->hasOne('App\UserCategory', 'alias', 'user_category');
+        return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
     }
 
     /**
