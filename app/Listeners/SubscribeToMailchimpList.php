@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use Newsletter;
 use App\Events\UserCreatedOrChanged;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SubscribeToMailchimpList implements ShouldQueue
@@ -44,7 +43,7 @@ class SubscribeToMailchimpList implements ShouldQueue
                 return;
             }
 
-            $interests = array();
+            $interests = [];
             foreach ($result['interests'] as $interest) {
                 $interests[$interest['id']] = ($user_mailchimp_interest_id == $interest['id']);
             }
@@ -58,7 +57,7 @@ class SubscribeToMailchimpList implements ShouldQueue
 
         Newsletter::subscribe($event->user->email, [
             'FNAME' => $event->user->first_name,
-            'LNAME' => trim($event->user->name_prefix . ' ' . $event->user->last_name),
+            'LNAME' => trim($event->user->name_prefix.' '.$event->user->last_name),
         ], '', [
             'interests' => $interests,
         ]);
