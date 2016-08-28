@@ -110,18 +110,6 @@ Route::group(['middleware' => ['auth']], function () {
             'as' => 'show',
         ]);
     });
-
-    Route::group(['prefix' => 'contributie', 'as' => 'contribution.'], function () {
-        Route::get('/', [
-            'uses' => 'ContributionController@index',
-            'as' => 'index',
-        ]);
-
-        Route::get('/betalen/{id}', [
-            'uses' => 'ContributionController@pay',
-            'as' => 'pay',
-        ]);
-    });
 });
 
 
