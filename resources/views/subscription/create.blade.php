@@ -20,21 +20,21 @@
             <div class="form-group">
                     {!! Form::label('first_name', 'Voornaam *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('first_name', $user->first_name, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('first_name', $user->first_name, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                     {!! Form::label('name_prefix', 'Tussenvoegsel *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('name_prefix', $user->name_prefix, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('name_prefix', $user->name_prefix, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                     {!! Form::label('last_name', 'Achternaam *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('last_name', $user->last_name, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('last_name', $user->last_name, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
@@ -43,14 +43,14 @@
             <div class="form-group">
                 {!! Form::label('email', 'E-mailadres *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::email('email', $user->email, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::email('email', $user->email, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 {!! Form::label('phone_number', 'Telefoonnummer', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('phone_number', $user->phone_number, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('phone_number', $user->phone_number, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
@@ -59,21 +59,21 @@
             <div class="form-group">
                 {!! Form::label('address', 'Adres *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('address', $user->address, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('address', $user->address, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 {!! Form::label('zip_code', 'Postcode *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('zip_code', $user->zip_code, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('zip_code', $user->zip_code, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
                 {!! Form::label('city', 'Stad *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::text('city', $user->city, ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('city', $user->city, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
