@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "abc4dabf1867289ff5e086bdd3e82973",
-    "content-hash": "7cf3d509a78cb0bdc00485cc5b8118e4",
+    "hash": "64c68315d44e96af0eb91aa25ff977ae",
+    "content-hash": "05a58b4bf144f58ddb168a7749ba1110",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
@@ -200,6 +200,49 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "drewm/mailchimp-api",
+            "version": "v2.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drewm/mailchimp-api.git",
+                "reference": "89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drewm/mailchimp-api/zipball/89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8",
+                "reference": "89b7dbc54b7ba8c2e249d6e63f66d22ecb8070f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*",
+                "vlucas/phpdotenv": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DrewM\\MailChimp\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Drew McLellan",
+                    "email": "drew.mclellan@gmail.com",
+                    "homepage": "http://allinthehead.com/"
+                }
+            ],
+            "description": "Super-simple, minimum abstraction MailChimp API v3 wrapper",
+            "homepage": "https://github.com/drewm/mailchimp-api",
+            "time": "2016-07-01 15:53:33"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1462,6 +1505,56 @@
                 "sentry"
             ],
             "time": "2016-05-06 09:26:08"
+        },
+        {
+            "name": "spatie/laravel-newsletter",
+            "version": "3.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-newsletter.git",
+                "reference": "c4e16ae646f81eb25d20b09627b0263b80d98cb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-newsletter/zipball/c4e16ae646f81eb25d20b09627b0263b80d98cb0",
+                "reference": "c4e16ae646f81eb25d20b09627b0263b80d98cb0",
+                "shasum": ""
+            },
+            "require": {
+                "drewm/mailchimp-api": "^2.1",
+                "illuminate/support": "~5.1.0|~5.2.0|~5.3.0",
+                "php": "^5.5|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Newsletter\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Manage newsletters in Laravel 5",
+            "homepage": "https://github.com/spatie/laravel-newsletter",
+            "keywords": [
+                "laravel",
+                "mailchimp",
+                "newsletter"
+            ],
+            "time": "2016-08-24 05:54:14"
         },
         {
             "name": "swiftmailer/swiftmailer",
