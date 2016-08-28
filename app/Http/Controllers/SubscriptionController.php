@@ -37,16 +37,27 @@ class SubscriptionController extends Controller
             return redirect(route('subscription.index'));
         }
 
-        $user = Auth::user();
-
+        // Retrieve the contribution
         $contribution = Contribution::where([
-            'user_category_alias' => $user->user_category_alias,
+            'user_category_alias' => Auth::user()->user_category_alias,
         ])->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
 
         if (! $contribution) {
             return redirect(route('subscription.index'));
+        }
+
+        // Check if there is already an subscription
+        $subscription = Subscription::where([
+            'user_id' => Auth::user()->id,
+            'contribution_id' => $contribution->id,
+        ])->get();
+
+        if (! $subscription->isEmpty()) {
+            flash(sprintf('Je bent al ingeschreven!', $contribution->period->name), 'info');
+
+            return redirect(route('subscription.show', $subscription->first()->id));
         }
 
         return view('subscription.create', compact('user', 'contribution'));
@@ -89,7 +100,7 @@ class SubscriptionController extends Controller
         if (! $subscription->isEmpty()) {
             flash(sprintf('Inschrijving voor periode %s is niet gelukt omdat je al bent ingeschreven.', $contribution->period->name), 'danger');
 
-            return redirect(route('subscription.show', $subscription->id));
+            return redirect(route('subscription.show', $subscription->first()->id));
         }
 
         // Check succesful, add new subscription
