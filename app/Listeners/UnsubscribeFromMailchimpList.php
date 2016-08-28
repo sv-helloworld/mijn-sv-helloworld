@@ -4,7 +4,6 @@ namespace App\Listeners;
 
 use Newsletter;
 use App\Events\UserDeleted;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UnsubscribeFromMailchimpList implements ShouldQueue
@@ -37,7 +36,7 @@ class UnsubscribeFromMailchimpList implements ShouldQueue
             return;
         }
 
-        $interests = array();
+        $interests = [];
         foreach ($result['interests'] as $interest) {
             $interests[$interest['id']] = false;
         }
