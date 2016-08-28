@@ -58,11 +58,11 @@
                     <tbody>
                         <tr>
                             <td>Accounttype</td>
-                            <td>{{ $user->account_type ? $user->account_type : 'Accounttype onbekend' }}</td>
+                            <td>{{ $user->account_type ? ucfirst($user->account_type) : 'Accounttype onbekend' }}</td>
                         </tr>
                         <tr>
                             <td>Gebruikerscategorie</td>
-                            <td>{{ $user->user_category ? $user->user_category : 'Geen lid' }}</td>
+                            <td>{{ $user->user_category ? $user->user_category->title : 'Geen lid' }}</td>
                         </tr>
                     </tbody>
                 </table>
