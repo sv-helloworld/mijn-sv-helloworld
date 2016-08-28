@@ -44,7 +44,7 @@
                         <div class="navigation">
                             <ul id="top-bar-menu" class="menu">
                                 <li>
-                                    <a href="/lid-worden" class="">Lid worden</a>
+                                    <a href="/inschrijving/inschrijven/schooljaar-2016-2017" class="">Lid worden</a>
                                 </li>
                                 <li>
                                     <a href="http://svhelloworld.nl" class="">Website</a>
