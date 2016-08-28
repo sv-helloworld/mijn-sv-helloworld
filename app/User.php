@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'account_type', 'user_category', 'activated', 'verified', 'first_name', 'name_prefix', 'last_name', 'address', 'zip_code', 'city', 'phone_number',
+        'email', 'password', 'account_type', 'user_category_alias', 'activated', 'verified', 'first_name', 'name_prefix', 'last_name', 'address', 'zip_code', 'city', 'phone_number',
     ];
 
     /**
@@ -53,7 +53,7 @@ class User extends Authenticatable
      */
     public function user_category()
     {
-        return $this->hasOne('App\UserCategory', 'alias', 'user_category');
+        return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
     }
 
     /**
@@ -64,6 +64,6 @@ class User extends Authenticatable
      */
     public function hasUserCategory($user_category)
     {
-        return ! is_null($this->user_category) && $this->user_category->alias == $user_category;
+        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
     }
 }
