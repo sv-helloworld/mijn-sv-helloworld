@@ -14,7 +14,9 @@ class RenameUserCategoryColumnUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['user_category']);
             $table->renameColumn('user_category', 'user_category_alias');
+            $table->foreign('user_category_alias')->references('alias')->on('user_categories');
         });
     }
 
@@ -26,7 +28,9 @@ class RenameUserCategoryColumnUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['user_category_alias']);
             $table->renameColumn('user_category_alias', 'user_category');
+            $table->foreign('user_category')->references('alias')->on('user_categories');
         });
     }
 }
