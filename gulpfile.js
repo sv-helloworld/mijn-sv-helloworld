@@ -4,9 +4,7 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     livereload = require('gulp-livereload'),
     uglify = require('gulp-uglify'),
-    concat = require('gulp-concat'),
-    concatCss = require('gulp-concat-css'),
-    cssnano = require('gulp-cssnano');
+    concat = require('gulp-concat');
 
 var stylesheets = [
     'resources/assets/css/**/*.css'
@@ -39,14 +37,13 @@ gulp.task('sass', function() {
 
 gulp.task('css', ['sass'], function() {
     return gulp.src(stylesheets)
-        .pipe(concatCss('app.min.css'))
+        .pipe(concat('app.min.css'))
         .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('minify_css', ['sass'], function() {
     return gulp.src(stylesheets)
-        .pipe(concatCss('app.min.css'))
-        .pipe(cssnano())
+        .pipe(concat('app.min.css'))
         .pipe(gulp.dest('.'))
         .pipe(livereload());
 });

@@ -21,6 +21,9 @@ class MainMenu
         Menu::make('menu', function ($menu) {
             $menu->add('Home', ['route' => 'index']);
 
+            $menu->add('Lidmaatschap', ['route' => 'subscription.index']);
+            $menu->lidmaatschap->prepend('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ');
+
             // Check if the user is authenticated
             if (Auth::check()) {
                 if (Auth::user()->hasAccountType('admin')) {

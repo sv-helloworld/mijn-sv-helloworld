@@ -47,6 +47,17 @@ class User extends Authenticatable
     }
 
     /**
+     * Checks if the user has the given user category.
+     *
+     * @param $user_category
+     * @return bool
+     */
+    public function hasUserCategory($user_category)
+    {
+        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
+    }
+
+    /**
      * Returns the user category associated with the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -57,13 +68,10 @@ class User extends Authenticatable
     }
 
     /**
-     * Checks if the user has the given user category.
-     *
-     * @param $user_category
-     * @return bool
+     * Get the subscriptions of the user.
      */
-    public function hasUserCategory($user_category)
+    public function subscriptions()
     {
-        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
+        return $this->hasMany('App\Subscription');
     }
 }

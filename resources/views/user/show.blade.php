@@ -2,15 +2,6 @@
 @section('back', url('user'))
 @section('title', 'Details gebruiker')
 
-{{-- Sidebar button --}}
-@section('sidebar-nav')
-    <li>
-        <a href="{{ route('user.edit', $user->id) }}">
-            <i class="fa fa-pencil"></i><span class="hidden-xs hidden-sm">Gebruiker bewerken</span>
-        </a>
-    </li>
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-xs-12">
