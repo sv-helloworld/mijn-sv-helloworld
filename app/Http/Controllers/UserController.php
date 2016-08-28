@@ -78,7 +78,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'user_category' => $request->get('user_category') ? $request->get('user_category') : null,
+            'user_category_alias' => $request->get('user_category_alias') ? $request->get('user_category_alias') : null,
         ]);
 
         $this->validate($request, [
@@ -150,7 +150,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         $request->merge([
-            'user_category' => $request->get('user_category') ? $request->get('user_category') : null,
+            'user_category_alias' => $request->get('user_category_alias') ? $request->get('user_category_alias') : null,
         ]);
 
         $validator = Validator::make($request->all(), [
