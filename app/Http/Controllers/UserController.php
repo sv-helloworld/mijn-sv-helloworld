@@ -17,13 +17,6 @@ class UserController extends Controller
     use ResetsPasswords;
 
     /**
-     * Use the password broker settings for new users.
-     *
-     * @var string
-     */
-    protected $broker = 'new_users';
-
-    /**
      * Where to redirect users after login / registration.
      *
      * @var string
@@ -85,7 +78,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->merge([
-            'user_category' => $request->get('user_category') ? $request->get('user_category') : null,
+            'user_category_alias' => $request->get('user_category_alias') ? $request->get('user_category_alias') : null,
         ]);
 
         $this->validate($request, [
@@ -157,7 +150,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         $request->merge([
-            'user_category' => $request->get('user_category') ? $request->get('user_category') : null,
+            'user_category_alias' => $request->get('user_category_alias') ? $request->get('user_category_alias') : null,
         ]);
 
         $validator = Validator::make($request->all(), [
