@@ -48,7 +48,7 @@ class ResetPasswordNotification extends Notification
                 'Je ontvangt deze mail omdat we een wachtwoord reset verzoek hebben gekregen voor jouw account.',
                 'Klik op de knop hieronder om je wachtwoord opnieuw in te stellen:',
             ])
-            ->action('Wachtwoord opnieuw instellen', route('account.password.reset', $this->token))
+            ->action('Wachtwoord opnieuw instellen', route('account.password.show', $this->token))
             ->line('Als je dit verzoek niet zelf hebt ingediend hoef je geen verdere actie te ondernemen.');
     }
 }
