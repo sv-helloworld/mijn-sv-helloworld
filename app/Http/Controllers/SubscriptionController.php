@@ -129,10 +129,15 @@ class SubscriptionController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $subscription = Subscription::find($id);
 
         if (! $subscription) {
             abort(404);
+        }
+
+        if (! $user->can('view', $subscription)) {
+            abort(403);
         }
 
         return view('subscription.show', compact('subscription'));
