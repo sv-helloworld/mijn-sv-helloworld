@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Facades\UserVerification;
 
 class RegisterController extends Controller
 {
@@ -38,6 +41,29 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $user = $this->create($request->all());
+        
+        $this->guard()->login($user);
+
+        UserVerification::generate($user);
+        UserVerification::emailView('emails.user-activation');
+        UserVerification::send($user, 'Activeer je account');
+
+        flash('Je account is succesvol aangemaakt! Controleer je e-mail en activeer je account om volledige toegang te krijgen.', 'success');
+
+        return redirect($this->redirectPath());
     }
 
     /**
