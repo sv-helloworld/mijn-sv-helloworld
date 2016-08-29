@@ -33,13 +33,15 @@ class SubscriptionController extends Controller
      */
     public function create($slug = null)
     {
+        $user = Auth::user();
+
         if (is_null($slug)) {
             return redirect(route('subscription.index'));
         }
 
         // Retrieve the contribution
         $contribution = Contribution::where([
-            'user_category_alias' => Auth::user()->user_category_alias,
+            'user_category_alias' => $user->user_category_alias,
         ])->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
@@ -50,7 +52,7 @@ class SubscriptionController extends Controller
 
         // Check if there is already an subscription
         $subscription = Subscription::where([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             'contribution_id' => $contribution->id,
         ])->get();
 
