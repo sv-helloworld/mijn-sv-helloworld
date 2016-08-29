@@ -23,6 +23,31 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'index',
     ]);
 
+    Route::group(['middleware' => ['verified']], function () {
+        // Subscriptions
+        Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
+            Route::get('/', [
+                'uses' => 'SubscriptionController@index',
+                'as' => 'index',
+            ]);
+
+            Route::get('inschrijven/{slug}', [
+                'uses' => 'SubscriptionController@create',
+                'as' => 'create',
+            ]);
+
+            Route::post('inschrijven/{slug}', [
+                'uses' => 'SubscriptionController@store',
+                'as' => 'store',
+            ]);
+
+            Route::get('{id}', [
+                'uses' => 'SubscriptionController@show',
+                'as' => 'show',
+            ]);
+        });
+    });
+
     Route::group(['as' => 'account.'], function () {
         // Account settings routes
         Route::get('account', [
@@ -72,29 +97,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['verified', 'account.type:admin']], function () {
-        // Subscriptions
-        Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
-            Route::get('/', [
-                'uses' => 'SubscriptionController@index',
-                'as' => 'index',
-            ]);
-
-            Route::get('inschrijven/{slug}', [
-                'uses' => 'SubscriptionController@create',
-                'as' => 'create',
-            ]);
-
-            Route::post('inschrijven/{slug}', [
-                'uses' => 'SubscriptionController@store',
-                'as' => 'store',
-            ]);
-
-            Route::get('{id}', [
-                'uses' => 'SubscriptionController@show',
-                'as' => 'show',
-            ]);
-        });
-
         // User management routes
         Route::patch('gebruikers/{user}/activeren', [
             'uses' => 'UserController@activate',
