@@ -1,0 +1,90 @@
+.navbar-nav {
+	> li {
+		> a {
+			&.dropdown-profile {
+				img.avatar {
+					border-radius: 20px;
+					width: 40px;
+					height: 40px;
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}
+
+.pagination-wrapper {
+	text-align: center;
+}
+
+.block {
+	display: block;
+}
+
+// Breakpoints
+/*==========  Mobile First Method  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : $screen-xs) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : $screen-sm) {
+
+	.navbar-nav {
+		> li {
+			> a {
+				&.dropdown-profile {
+					padding-top: 15px;
+					padding-bottom: 15px;
+				}
+			}
+		}
+	}
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : $screen-md) {
+
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : $screen-lg) {
+
+}
+
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : $screen-lg - 1) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : $screen-md - 1) {
+
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : $screen-sm - 1) {
+
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : $screen-xs - 1) {
+
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+
+}

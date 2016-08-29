@@ -2,17 +2,22 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use Notifiable, SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'account_type', 'user_category_alias', 'activated', 'verified', 'first_name', 'name_prefix', 'last_name', 'address', 'zip_code', 'city', 'phone_number',
     ];
 
     /**
@@ -21,6 +26,64 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'verification_token', 'mollie_customer_id',
     ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
+    /**
+     * Checks if the user has the given account type.
+     *
+     * @param $account_type
+     * @return bool
+     */
+    public function hasAccountType($account_type)
+    {
+        return ! is_null($this->account_type) && $this->account_type == $account_type;
+    }
+
+    /**
+     * Checks if the user has the given user category.
+     *
+     * @param $user_category
+     * @return bool
+     */
+    public function hasUserCategory($user_category)
+    {
+        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
+    }
+
+    /**
+     * Returns the user category associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user_category()
+    {
+        return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
+    }
+
+    /**
+     * Get the subscriptions of the user.
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany('App\Subscription');
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }

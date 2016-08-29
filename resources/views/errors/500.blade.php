@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Oeps, er is iets misgegaan.</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -14,6 +14,7 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
+                color: #B0BEC5;
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
@@ -31,14 +32,28 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 72px;
+                margin-bottom: 40px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">Oeps, er is iets misgegaan.</div>
+                @unless(empty($sentryID))
+                    <!-- Sentry JS SDK 2.1.+ required -->
+                    <script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
+
+                    <script>
+                    Raven.showReportDialog({
+                        eventId: '{{ $sentryID }}',
+
+                        // use the public DSN (dont include your secret!)
+                        dsn: 'https://a621251fd1b2472cb9a91bcb0ca77f5e@app.getsentry.com/94778'
+                    });
+                    </script>
+                @endunless
             </div>
         </div>
     </body>
