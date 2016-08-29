@@ -72,6 +72,29 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['verified', 'account.type:admin']], function () {
+        // Subscriptions
+        Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
+            Route::get('/', [
+                'uses' => 'SubscriptionController@index',
+                'as' => 'index',
+            ]);
+
+            Route::get('inschrijven/{slug}', [
+                'uses' => 'SubscriptionController@create',
+                'as' => 'create',
+            ]);
+
+            Route::post('inschrijven/{slug}', [
+                'uses' => 'SubscriptionController@store',
+                'as' => 'store',
+            ]);
+
+            Route::get('{id}', [
+                'uses' => 'SubscriptionController@show',
+                'as' => 'show',
+            ]);
+        });
+
         // User management routes
         Route::patch('gebruikers/{user}/activeren', [
             'uses' => 'UserController@activate',
@@ -88,28 +111,6 @@ Route::group(['middleware' => ['auth']], function () {
                 'update' => 'user.update',
                 'destroy' => 'user.destroy',
             ],
-        ]);
-    });
-
-    Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
-        Route::get('/', [
-            'uses' => 'SubscriptionController@index',
-            'as' => 'index',
-        ]);
-
-        Route::get('inschrijven/{slug}', [
-            'uses' => 'SubscriptionController@create',
-            'as' => 'create',
-        ]);
-
-        Route::post('inschrijven/{slug}', [
-            'uses' => 'SubscriptionController@store',
-            'as' => 'store',
-        ]);
-
-        Route::get('{id}', [
-            'uses' => 'SubscriptionController@show',
-            'as' => 'show',
         ]);
     });
 });
