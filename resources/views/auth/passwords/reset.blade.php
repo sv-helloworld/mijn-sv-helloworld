@@ -6,7 +6,7 @@
         <div class="col-xs-12">
             <p>Voer hieronder het gewenste nieuwe wachtwoord in.</p>
 
-            <form method="post" action="{{ action('Auth\PasswordController@postReset') }}" class="form-horizontal">
+            <form method="post" action="{{ route('account.password.reset') }}" class="form-horizontal">
                 {!! csrf_field() !!}
                 <input type="hidden" name="token" value="{{ $token }}">
 

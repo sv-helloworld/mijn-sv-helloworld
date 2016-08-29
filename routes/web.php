@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('bewerken', [
             'uses' => 'Account\EmailController@update',
+            'as' => 'update',
         ]);
     });
 
@@ -66,6 +67,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::post('bewerken', [
             'uses' => 'Account\PasswordController@update',
+            'as' => 'update',
         ]);
     });
 
@@ -116,11 +118,12 @@ Route::group(['middleware' => ['auth']], function () {
 // Authentication routes
 Route::get('inloggen', [
     'uses' => 'Auth\LoginController@showLoginForm',
-    'as' => 'login',
+    'as' => 'show',
 ]);
 
 Route::post('inloggen', [
     'uses' => 'Auth\LoginController@login',
+    'as' => 'login',
 ]);
 
 Route::get('uitloggen', [
@@ -131,11 +134,12 @@ Route::get('uitloggen', [
 // Registration routes...
 Route::get('registreren', [
     'uses' => 'Auth\RegisterController@showRegistrationForm',
-    'as' => 'register',
+    'as' => 'show',
 ]);
 
 Route::post('registreren', [
     'uses' => 'Auth\RegisterController@register',
+    'as' => 'register',
 ]);
 
 // Account activation routes
@@ -184,25 +188,28 @@ Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], fu
 
     Route::post('email', [
         'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail',
+        'as' => 'send',
     ]);
 
     // Password reset routes
     Route::get('reset/{token}', [
         'uses' => 'Auth\ResetPasswordController@showResetForm',
-        'as' => 'reset',
+        'as' => 'show',
     ]);
 
     Route::post('reset', [
         'uses' => 'Auth\ResetPasswordController@reset',
+        'as' => 'reset',
     ]);
 
     // Password set routes
     Route::get('set/{token}', [
-        'uses' => 'UserController@getReset',
-        'as' => 'set',
+        'uses' => 'Account\UserController@getReset',
+        // 'as' => 'show',
     ]);
 
     Route::post('set', [
-        'uses' => 'UserController@postReset',
+        'uses' => 'Account\UserController@postReset',
+        'as' => 'set',
     ]);
 });
