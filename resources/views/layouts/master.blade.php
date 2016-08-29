@@ -119,6 +119,26 @@
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
                             <h1>@yield('title')</h1>
                             <hr>
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                @if (count($errors->all()) > 1)
+                                    <strong>De volgende fouten hebben zich voorgedaan:</strong>
+                                @else
+                                    <strong>De volgende fout heeft zich voorgedaan:</strong>
+                                @endif
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if (Session::has('status'))
+                                <div class="alert alert-info">
+                                    <span>{{ Session::get('status') }}</span>
+                                </div>
+                            @endif
                             @include('flash::message')
                             @yield('content')
                         </div>
