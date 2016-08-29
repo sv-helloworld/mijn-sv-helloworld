@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Laracasts\Flash\Flash;
 
 class AccountController extends Controller
 {
@@ -57,7 +56,7 @@ class AccountController extends Controller
         $user = Auth::user();
         $user->update($request->only('first_name', 'name_prefix', 'last_name', 'phone_number', 'address', 'zip_code', 'city'));
 
-        Flash::success('Je gegevens zijn bijgewerkt!');
+        flash('Je gegevens zijn bijgewerkt!', 'success');
 
         return redirect('account');
     }
