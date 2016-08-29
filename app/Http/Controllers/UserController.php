@@ -104,7 +104,7 @@ class UserController extends Controller
         // Fire 'UserCreatedOrChanged' event
         event(new UserCreatedOrChanged($user));
 
-        Flash::success('Gebruiker toegevoegd!');
+        flash('Gebruiker toegevoegd!', 'success');
 
         return redirect(route('user.index'));
     }
@@ -207,7 +207,7 @@ class UserController extends Controller
         // Fire 'UserCreatedOrChanged' event
         event(new UserCreatedOrChanged($user));
 
-        Flash::success('Gebruiker bijgewerkt.');
+        flash('Gebruiker bijgewerkt.', 'success');
 
         return redirect(route('user.show', $id));
     }
@@ -226,7 +226,7 @@ class UserController extends Controller
 
         // Check if the user wants to delete his own account
         if ($id == $admin_user->id) {
-            Flash::error('Het is niet toegestaan jezelf te verwijderen.');
+            flash('Het is niet toegestaan jezelf te verwijderen.', 'error');
 
             return redirect(route('user.index'));
         }
@@ -238,7 +238,7 @@ class UserController extends Controller
 
         User::destroy($id);
 
-        Flash::success('Gebruiker verwijderd!');
+        flash('Gebruiker verwijderd!', 'success');
 
         return redirect(route('user.index'));
     }
@@ -262,7 +262,7 @@ class UserController extends Controller
         $validator->after(function ($validator) use ($id, $user) {
             if ($id == $user->id) {
                 $validator->errors()->add('activated', 'het is niet toegestaan jezelf te activeren of deactiveren.');
-                Flash::error('Het is niet toegestaan jezelf te activeren of deactiveren.');
+                flash('Het is niet toegestaan jezelf te activeren of deactiveren.', 'error');
             }
         });
 
@@ -277,9 +277,9 @@ class UserController extends Controller
 
         $activated = $request->get('activated');
         if ($activated) {
-            Flash::success('Gebruiker geactiveerd.');
+            flash('Gebruiker geactiveerd.', 'success');
         } else {
-            Flash::success('Gebruiker gedeactiveerd.');
+            flash('Gebruiker gedeactiveerd.', 'success');
         }
 
         return redirect(route('user.index'));

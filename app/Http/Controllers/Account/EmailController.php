@@ -100,7 +100,7 @@ class EmailController extends Controller
         UserVerification::generate($user);
         UserVerification::send($user, 'Verifieer je e-mailadres');
 
-        Flash::success('Je e-mailadres is bijgewerkt. Er is een e-mail gestuurd met een link om je e-mailadres te valideren.');
+        flash('Je e-mailadres is bijgewerkt. Er is een e-mail gestuurd met een link om je e-mailadres te valideren.', 'success');
 
         return redirect('account');
     }
@@ -117,18 +117,18 @@ class EmailController extends Controller
         $this->validateRequest($request);
 
         try {
-            Flash::success('Je e-mailadres is geverifieerd.');
+            flash('Je e-mailadres is geverifieerd.', 'success');
             UserVerification::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
-            Flash::error('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.');
+            flash('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
         } catch (UserIsVerifiedException $e) {
-            Flash::warning('Het e-mailadres is al geverifieerd.');
+            flash('Het e-mailadres is al geverifieerd.', 'error');
 
             return redirect($this->redirectIfVerified());
         } catch (TokenMismatchException $e) {
-            Flash:error('Het e-mailadres kon niet worden geverifieerd.');
+            flash('Het e-mailadres kon niet worden geverifieerd.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
         }

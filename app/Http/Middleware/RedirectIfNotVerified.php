@@ -31,7 +31,7 @@ class RedirectIfNotVerified
         }
 
         if (! Auth::user()->verified) {
-            Flash::warning('U moet uw e-mailadres verifieren voor u deze pagina kunt bezoeken.');
+            flash('U moet uw e-mailadres verifieren voor u deze pagina kunt bezoeken.', 'warning');
 
             return redirect('/');
         }
