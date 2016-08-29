@@ -7,7 +7,6 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Jrean\UserVerification\Facades\UserVerification;
 
@@ -54,7 +53,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
-        
+
         $this->guard()->login($user);
 
         UserVerification::generate($user);
