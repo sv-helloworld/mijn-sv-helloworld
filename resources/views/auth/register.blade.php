@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <form method="post" action="{{ action('Auth\RegisterController@register') }}" class="form-horizontal">
+            <form method="post" action="{{ route('register') }}" class="form-horizontal">
                 {!! csrf_field() !!}
 
                 <div class="form-group {{ $errors->has('first_name') ? 'has-error' : ''}}">
