@@ -22,10 +22,6 @@
                         <td>{!! !$subscription->canceled ? '<span class="label label-info">Inschrijvingsverzoek ingediend</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
                     </tr>
                     <tr>
-                        <td>Status betaling</td>
-                        <td></td>
-                    </tr>
-                    <tr>
                         <td>Periode</td>
                         <td>
                             <span class="block">{{ $subscription->contribution->period->name }}</span>
