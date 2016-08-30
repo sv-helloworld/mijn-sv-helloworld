@@ -117,8 +117,10 @@
                 <div class="container-inner">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-9 col-lg-8">
-                            <h1>@yield('title')</h1>
-                            <hr>
+                            <div class="page-header">
+                                <h1>@yield('title')</h1>
+                            </div>
+
                             @if ($errors->any())
                                 <div class="alert alert-danger">
                                 @if (count($errors->all()) > 1)
@@ -139,19 +141,21 @@
                                     <span>{{ Session::get('status') }}</span>
                                 </div>
                             @endif
+
                             @include('flash::message')
+
                             @yield('content')
                         </div>
 
                         <!-- Sidebar -->
                         <aside id="secondary" class="col-xs-12 col-sm-12 col-md-3 col-lg-4 widget-area" role="complementary">
                             @if (! Menu::get('sidebar')->all()->isEmpty())
-                            <section class="widget widget_menu">
-                                <h2 class="widget-title">Menu</h2>
-                                <ul class="nav nav-pills nav-stacked">
-                                    @include(config('laravel-menu.views.bootstrap-items'), array('items' => Menu::get('sidebar')->roots()))
-                                </ul>
-                            </section>
+                                <section class="widget widget_menu">
+                                    <h2 class="widget-title">Menu</h2>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        @include(config('laravel-menu.views.bootstrap-items'), array('items' => Menu::get('sidebar')->roots()))
+                                    </ul>
+                                </section>
                             @endif
                         </aside>
                     </div>

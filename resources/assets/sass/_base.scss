@@ -13,6 +13,12 @@
 	}
 }
 
+.page-header {
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
 .pagination-wrapper {
 	text-align: center;
 }
