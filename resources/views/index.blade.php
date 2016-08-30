@@ -3,9 +3,11 @@
 
 @section('content')
     <p>
-        Mijn SV "Hello World" is het portaal voor alle leden en niet-leden van de opleiding HBO-ICT van de HZ University of Applied Sciences.
+        Mijn SV "Hello World" is het portaal voor alle leden van Studievereniging "Hello World",
+        maar ook niet-leden zich aanmelden voor activiteiten via dit portaal!
+        Je moet hiervoor wel student zijn aan de opleiding HBO-ICT van de HZ University of Applied Sciences.
         Op dit moment is het portaal nog enigszins beperkt qua functionaliteit.
-        Je kunt je op dit moment in ieder geval al lid worden en de contributie via iDeal betalen, makkelijk!
+        Je kunt je op dit moment in ieder geval al inschrijven als lid! De mogelijkheid om je contributie te betalen komt later.
     </p>
 
     <p>
