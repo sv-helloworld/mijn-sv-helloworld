@@ -12,7 +12,6 @@
                         <tr>
                             <th>Periode</th>
                             <th>Status</th>
-                            <th>Betaalstatus</th>
                             <th>Acties</th>
                         </tr>
                     </thead>
@@ -20,8 +19,7 @@
                     @foreach($subscriptions as $subscription)
                         <tr>
                             <td><a href="{{ route('subscription.show', $subscription->id) }}">{{ $subscription->contribution->period->name }}</a></td>
-                            <td>{!! !$subscription->canceled ? '<span class="label label-success">Ingeschreven</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
-                            <td></td>
+                            <td>{!! !$subscription->canceled ? '<span class="label label-info">Inschrijvingsverzoek ingediend</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
                             <td>
                                 <a href="{{ route('subscription.show', $subscription->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                             </td>

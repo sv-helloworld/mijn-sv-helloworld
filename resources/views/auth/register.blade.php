@@ -36,7 +36,7 @@
                 <hr>
 
                 <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
-                    <label for="email" class="control-label col-sm-4">E-mailadres *</label>
+                    <label for="email" class="control-label col-sm-4">HZ e-mailadres *</label>
                     <div class="col-sm-8">
                         <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
                         {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
@@ -80,7 +80,7 @@
                 <hr>
 
                 <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
-                    <label for="password" class="control-label col-sm-4">Wachtwoord</label>
+                    <label for="password" class="control-label col-sm-4">Wachtwoord *</label>
                     <div class="col-sm-8">
                         <input type="password" name="password" id="password" class="form-control">
                         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : ''}}">
-                    <label for="password_confirmation" class="control-label col-sm-4">Wachtwoord herhalen</label>
+                    <label for="password_confirmation" class="control-label col-sm-4">Wachtwoord herhalen *</label>
                     <div class="col-sm-8">
                         <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                         {!! $errors->first('password_confirmation', '<p class="help-block">:message</p>') !!}

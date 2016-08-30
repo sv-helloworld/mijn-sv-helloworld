@@ -8,7 +8,7 @@
                 {!! csrf_field() !!}
 
                 <div class="form-group">
-                    <label for="email" class="control-label col-sm-4">E-mailadres</label>
+                    <label for="email" class="control-label col-sm-4">HZ e-mailadres</label>
                     <div class="col-sm-8">
                         <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control">
                     </div>
@@ -38,7 +38,7 @@
                 </div>
             </form>
 
-            <p>Bent je je wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
+            <p>Ben je je wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
             <p>Heb je nog geen account? <a href="{{ route('register') }}">Maak een account aan!</a></p>
         </div>
     </div>

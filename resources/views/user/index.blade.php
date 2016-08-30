@@ -48,8 +48,8 @@
             @endforeach
             </tbody>
         </table>
-
-        <div class="pagination-wrapper">{!! $users->render() !!}</div>
     </div>
+
+    <div class="pagination-wrapper">{!! $users->render() !!}</div>
 
 @endsection

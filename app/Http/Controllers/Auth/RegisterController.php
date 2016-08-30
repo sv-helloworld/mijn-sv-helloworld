@@ -60,7 +60,7 @@ class RegisterController extends Controller
         UserVerification::emailView('emails.user-activation');
         UserVerification::send($user, 'Activeer je account');
 
-        flash('Je account is succesvol aangemaakt! Controleer je e-mail en activeer je account om volledige toegang te krijgen.', 'success');
+        flash('Je account is succesvol aangemaakt! We hebben een activatielink naar je e-mailadres gestuurd. Het kan even duren voor je de activatielink ontvangt.', 'success');
 
         return redirect($this->redirectPath());
     }
