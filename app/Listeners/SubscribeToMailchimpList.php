@@ -30,23 +30,23 @@ class SubscribeToMailchimpList implements ShouldQueue
             return;
         }
 
-        $user_mailchimp_interest_id = $event->user->user_category->mailchimp_interest_id;
+        $api = Newsletter::getApi();
+        $list_id = env('MAILCHIMP_LIST_ID');
+        $interest_category_id = env('MAILCHIMP_INTEREST_CATEGORY_ID');
+        $result = $api->get("lists/$list_id/interest-categories/$interest_category_id/interests");
+
+        if (! isset($result['interests']) || count($result['interests']) == 0) {
+            return;
+        }
+
+        $interests = [];
+
+        foreach ($result['interests'] as $interest) {
+            $interests[$interest['id']] = ($event->user->user_category->mailchimp_interest_id == $interest['id']);
+        }
 
         if (Newsletter::hasMember($event->user->email)) {
-            $api = Newsletter::getApi();
-            $list_id = env('MAILCHIMP_LIST_ID');
-            $interest_category_id = env('MAILCHIMP_INTEREST_CATEGORY_ID');
             $subscriber_hash = $api->subscriberHash($event->user->email);
-
-            $result = $api->get("lists/$list_id/interest-categories/$interest_category_id/interests");
-            if (! isset($result['interests']) || count($result['interests']) == 0) {
-                return;
-            }
-
-            $interests = [];
-            foreach ($result['interests'] as $interest) {
-                $interests[$interest['id']] = ($user_mailchimp_interest_id == $interest['id']);
-            }
 
             $api->patch("lists/$list_id/members/$subscriber_hash", [
                 'interests' => $interests,
