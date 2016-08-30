@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <td>Status inschrijving</td>
-                        <td>{!! !$subscription->canceled ? '<span class="label label-success">Ingeschreven</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
+                        <td>{!! !$subscription->canceled ? '<span class="label label-info">Inschrijvingsverzoek ingediend</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
                     </tr>
                     <tr>
                         <td>Status betaling</td>
