@@ -38,7 +38,7 @@
                 </div>
             </form>
 
-            <p>Bent je je wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
+            <p>Ben je je wachtwoord vergeten? <a href="{{ route('account.password.email') }}">Wachtwoord opnieuw instellen.</a></p>
             <p>Heb je nog geen account? <a href="{{ route('register') }}">Maak een account aan!</a></p>
         </div>
     </div>
