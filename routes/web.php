@@ -24,6 +24,45 @@ Route::group(['middleware' => ['auth']], function () {
     ]);
 
     Route::group(['middleware' => ['verified']], function () {
+        // Administrator routes
+        Route::group(['middleware' => ['account.type:admin']], function () {
+            // Subscriptions
+            Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
+                Route::get('overzicht', [
+                    'uses' => 'SubscriptionController@manage',
+                    'as' => 'manage',
+                ]);
+
+                Route::patch('{id}/goedkeuren', [
+                    'uses' => 'SubscriptionController@approve',
+                    'as' => 'approve',
+                ]);
+
+                Route::patch('{id}/weigeren', [
+                    'uses' => 'SubscriptionController@decline',
+                    'as' => 'decline',
+                ]);
+            });
+
+            // User management routes
+            Route::patch('gebruikers/{user}/activeren', [
+                'uses' => 'UserController@activate',
+                'as' => 'user.activate',
+            ]);
+
+            Route::resource('gebruikers', 'UserController', [
+                'names' => [
+                    'index' => 'user.index',
+                    'create' => 'user.create',
+                    'store' => 'user.store',
+                    'show' => 'user.show',
+                    'edit' => 'user.edit',
+                    'update' => 'user.update',
+                    'destroy' => 'user.destroy',
+                ],
+            ]);
+        });
+
         // Subscriptions
         Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
             Route::get('/', [
@@ -93,26 +132,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('bewerken', [
             'uses' => 'Account\PasswordController@update',
             'as' => 'update',
-        ]);
-    });
-
-    Route::group(['middleware' => ['verified', 'account.type:admin']], function () {
-        // User management routes
-        Route::patch('gebruikers/{user}/activeren', [
-            'uses' => 'UserController@activate',
-            'as' => 'user.activate',
-        ]);
-
-        Route::resource('gebruikers', 'UserController', [
-            'names' => [
-                'index' => 'user.index',
-                'create' => 'user.create',
-                'store' => 'user.store',
-                'show' => 'user.show',
-                'edit' => 'user.edit',
-                'update' => 'user.update',
-                'destroy' => 'user.destroy',
-            ],
         ]);
     });
 });

@@ -21,7 +21,7 @@ class Subscription extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'canceled_at'];
+    protected $dates = ['deleted_at', 'canceled_at', 'approved_at', 'declined_at'];
 
     /**
      * Get the user that owns the subscription.
@@ -45,5 +45,35 @@ class Subscription extends Model
     public function payments()
     {
         return $this->morphMany('App\Payment', 'payable');
+    }
+
+    /**
+     * Returns true if the subscription is canceled.
+     *
+     * @return bool True if the subscription is canceled.
+     */
+    public function canceled()
+    {
+        return ! is_null($this->canceled_at);
+    }
+
+    /**
+     * Returns true if the subscription is approved.
+     *
+     * @return bool True if the subscription is approved.
+     */
+    public function approved()
+    {
+        return ! is_null($this->approved_at);
+    }
+
+    /**
+     * Returns true if the subscription is declined.
+     *
+     * @return bool True if the subscription is declined.
+     */
+    public function declined()
+    {
+        return ! is_null($this->declined_at);
     }
 }
