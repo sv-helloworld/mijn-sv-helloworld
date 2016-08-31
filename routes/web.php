@@ -207,12 +207,12 @@ Route::group(['prefix' => 'account/wachtwoord', 'as' => 'account.password.'], fu
 
     // Password set routes
     Route::get('set/{token}', [
-        'uses' => 'Account\UserController@getReset',
+        'uses' => 'UserController@getReset',
         // 'as' => 'show',
     ]);
 
     Route::post('set', [
-        'uses' => 'Account\UserController@postReset',
+        'uses' => 'UserController@postReset',
         'as' => 'set',
     ]);
 });
