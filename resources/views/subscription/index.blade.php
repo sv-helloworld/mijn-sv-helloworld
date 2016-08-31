@@ -19,7 +19,17 @@
                     @foreach($subscriptions as $subscription)
                         <tr>
                             <td><a href="{{ route('subscription.show', $subscription->id) }}">{{ $subscription->contribution->period->name }}</a></td>
-                            <td>{!! !$subscription->canceled ? '<span class="label label-info">Inschrijvingsverzoek ingediend</span>' : '<span class="label label-warning">Uitgeschreven</span>' !!}</td>
+                            <td>
+                                @if ($subscription->canceled())
+                                    <span class="label label-danger">Inschrijving stopgezet</span>
+                                @elseif ($subscription->approved())
+                                    <span class="label label-success">Inschrijvingsverzoek goedgekeurd</span>
+                                @elseif ($subscription->declined())
+                                    <span class="label label-danger">Inschrijvingsverzoek geweigerd</span>
+                                @else
+                                    <span class="label label-info">Inschrijvingsverzoek ingediend</span>
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('subscription.show', $subscription->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                             </td>

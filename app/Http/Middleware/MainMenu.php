@@ -27,9 +27,10 @@ class MainMenu
             // Check if the user is authenticated
             if (Auth::check()) {
                 if (Auth::user()->hasAccountType('admin')) {
-                    $menu->add('Gebruikers', ['route' => 'user.index']);
-                    $menu->gebruikers->prepend('<i class="fa fa-users" aria-hidden="true"></i> ');
-                    $menu->gebruikers->add('Voeg een gebruiker toe', ['route' => 'user.create']);
+                    $menu->add('Beheren', ['route' => 'user.index']);
+                    $menu->beheren->prepend('<i class="fa fa-cog" aria-hidden="true"></i> ');
+                    $menu->beheren->add('Gebruikers beheren', ['route' => 'user.index']);
+                    $menu->beheren->add('Inschrijvingen beheren', ['route' => 'subscription.manage']);
                 }
             }
         });
