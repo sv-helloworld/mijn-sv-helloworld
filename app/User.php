@@ -37,6 +37,20 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     /**
+     * Get the full name of the user.
+     *
+     * @return string The full name of the user.
+     */
+    public function full_name()
+    {
+        return implode(' ', [
+            $this->first_name,
+            $this->name_prefix,
+            $this->last_name,
+        ]);
+    }
+
+    /**
      * Checks if the user has the given account type.
      *
      * @param $account_type

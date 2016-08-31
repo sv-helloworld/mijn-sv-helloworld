@@ -47,7 +47,7 @@ class SubscriptionController extends Controller
         })->first();
 
         if (! $contribution) {
-            return redirect(route('subscription.index'));
+            return abort(404);
         }
 
         // Check if there is already an subscription
@@ -90,7 +90,7 @@ class SubscriptionController extends Controller
         })->first();
 
         if (! $contribution) {
-            return redirect(route('subscription.index'));
+            return abort(404);
         }
 
         // Check if there is already an subscription
@@ -132,14 +132,10 @@ class SubscriptionController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $subscription = Subscription::find($id);
-
-        if (! $subscription) {
-            abort(404);
-        }
+        $subscription = Subscription::findOrFail($id);
 
         if (! $user->can('view', $subscription)) {
-            abort(403);
+            return abort(403);
         }
 
         return view('subscription.show', compact('subscription'));
@@ -177,5 +173,65 @@ class SubscriptionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resources for administrators.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function manage()
+    {
+        $subscriptions = Subscription::whereNull('approved_at')->whereNull('declined_at')->get();
+
+        return view('subscription.manage', compact('subscriptions'));
+    }
+
+    /**
+     * Approve the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(Request $request, $id)
+    {
+        $subscription = Subscription::findOrFail($id);
+
+        $subscription->approved_at = time();
+
+        if ($subscription->touch()) {
+            flash('De inschrijving is succesvol goedgekeurd.', 'success');
+
+            return redirect(route('subscription.manage'));
+        }
+
+        flash('De inschrijving kon niet worden goedgekeurd.', 'danger');
+
+        return redirect(route('subscription.manage'));
+    }
+
+    /**
+     * Decline the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function decline(Request $request, $id)
+    {
+        $subscription = Subscription::findOrFail($id);
+
+        $subscription->declined_at = time();
+
+        if ($subscription->touch()) {
+            flash('De inschrijving is succesvol geweigerd.', 'success');
+
+            return redirect(route('subscription.manage'));
+        }
+
+        flash('De inschrijving kon niet worden geweigerd.', 'danger');
+
+        return redirect(route('subscription.manage'));
     }
 }
