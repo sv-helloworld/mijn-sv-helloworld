@@ -29,7 +29,7 @@
                     <div class="top-bar-section top-bar-section-social">
                         <ul class="social">
                             <li>
-                                <a href="https://github.com/sv-helloworld/mijn-sv-helloworld" target="_blank">
+                                <a href="https://github.com/sv-helloworld" target="_blank">
                                     <i class="fa fa-github-alt"></i>
                                 </a>
                             </li>
@@ -157,6 +157,8 @@
                                     </ul>
                                 </section>
                             @endif
+
+                            @yield('sidebar')
                         </aside>
                     </div>
                 </div>

@@ -102,7 +102,7 @@
             <div class="form-group {{ $errors->has('user_category_alias') ? 'has-error' : ''}}">
                 {!! Form::label('user_category_alias', 'Gebruikerscategorie *', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
-                    {!! Form::select('user_category_alias', array_replace(['' => 'Geen lid'], $user_categories_values), null, ['class' => 'form-control']) !!}
+                    {!! Form::select('user_category_alias', array_replace(['' => 'Geen gebruikerscategorie'], $user_categories_values), null, ['class' => 'form-control']) !!}
                     {!! $errors->first('user_category_alias', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -117,4 +117,31 @@
             {!! Form::close() !!}
         </div>
     </div>
+@endsection
+
+@section('sidebar')
+    <section class="widget">
+        <h2 class="widget-title">Gebruiker beheren</h2>
+        <div class="widget-content">
+            {!! Form::open([
+                'method'=>'PATCH',
+                'route' => ['user.activate', $user->id]
+            ]) !!}
+                @if ($user->activated)
+                    {!! Form::hidden('activated', false) !!}
+                    {!! Form::button('Deactiveren', ['type' => 'submit', 'class' => 'btn btn-warning btn-block btn-sm']) !!}
+                @else
+                    {!! Form::hidden('activated', true) !!}
+                    {!! Form::button('Activeren', ['type' => 'submit', 'class' => 'btn btn-success btn-block btn-sm']) !!}
+                @endif
+            {!! Form::close() !!}
+
+            {!! Form::open([
+                'method'=>'DELETE',
+                'url' => ['gebruikers', $user->id]
+            ]) !!}
+                {!! Form::button('<i class="fa fa-trash"></i> Gebruiker verwijderen', ['type' => 'submit', 'class' => 'btn btn-danger btn-block btn-sm']) !!}
+            {!! Form::close() !!}
+        </div>
+    </section>
 @endsection

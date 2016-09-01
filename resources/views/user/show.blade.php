@@ -53,7 +53,7 @@
                         </tr>
                         <tr>
                             <td>Gebruikerscategorie</td>
-                            <td>{{ $user->user_category ? $user->user_category->title : 'Geen lid' }}</td>
+                            <td>{{ $user->user_category ? $user->user_category->title : 'Geen gebruikerscategorie' }}</td>
                         </tr>
                     </tbody>
                 </table>
