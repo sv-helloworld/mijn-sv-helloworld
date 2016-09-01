@@ -3,7 +3,7 @@ header {
 	div#banners {
 		background: $gray-lightest-color;
 		width: 100%;
-		height: 320px;
+		height: 180px;
 		overflow: hidden;
 
 		.banner {
@@ -82,7 +82,7 @@ header {
 	@media only screen and (min-width : $screen-xs - 1) {
 
 		div#banners {
-			height: 360px;
+			height: 240px;
 		}
 
 	}
@@ -91,7 +91,7 @@ header {
 	@media only screen and (min-width : $screen-sm - 1) {
 
 		div#banners {
-			height: 400px;
+			height: 300px;
 		}
 
 	}
@@ -100,7 +100,7 @@ header {
 	@media only screen and (min-width : $screen-md - 1) {
 
 		div#banners {
-			height: 440px;
+			height: 360px;
 		}
 
 	}
@@ -109,7 +109,7 @@ header {
 	@media only screen and (min-width : $screen-lg - 1) {
 
 		div#banners {
-			height: 500px;
+			height: 400px;
 		}
 
 	}
