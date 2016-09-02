@@ -26,6 +26,10 @@ class SubscribeToMailchimpList implements ShouldQueue
      */
     public function handle(UserCreatedOrChanged $event)
     {
+        if (is_null(env('MAILCHIMP_APIKEY')) || is_null(env('MAILCHIMP_LIST_ID')) || is_null(env('MAILCHIMP_INTEREST_CATEGORY_ID'))) {
+            return;
+        }
+
         if (! $event->user->user_category) {
             return;
         }
