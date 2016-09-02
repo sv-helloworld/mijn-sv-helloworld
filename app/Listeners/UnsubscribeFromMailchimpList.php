@@ -29,7 +29,7 @@ class UnsubscribeFromMailchimpList implements ShouldQueue
         if (is_null(env('MAILCHIMP_APIKEY')) || is_null(env('MAILCHIMP_LIST_ID')) || is_null(env('MAILCHIMP_INTEREST_CATEGORY_ID'))) {
             return;
         }
-        
+
         $api = Newsletter::getApi();
         $list_id = env('MAILCHIMP_LIST_ID');
         $interest_category_id = env('MAILCHIMP_INTEREST_CATEGORY_ID');
