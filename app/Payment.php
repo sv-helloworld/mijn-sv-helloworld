@@ -15,7 +15,14 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
-        'payment_id', 'payment_amount', 'status', 'refund_id', 'refund_amount', 'user_id', 'payable_id', 'payable_type',
+        'payment_id',
+        'payment_amount',
+        'status',
+        'refund_id',
+        'refund_amount',
+        'user_id',
+        'payable_id',
+        'payable_type',
     ];
 
     /**
@@ -23,7 +30,9 @@ class Payment extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 
     /**
      * Returns the user associated with the payment.

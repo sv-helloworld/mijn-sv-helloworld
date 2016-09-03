@@ -11,6 +11,7 @@
                     <tr>
                         <th>Naam</th>
                         <th>Periode</th>
+                        <th>Contributie</th>
                         <th>Acties</th>
                     </tr>
                 </thead>
@@ -19,6 +20,12 @@
                     <tr>
                         <td><a href="{{ route('user.show', $subscription->user->id) }}">{{ $subscription->user->full_name() }}</a></td>
                         <td>{{ $subscription->contribution->period->name }}</td>
+                        <td>
+                            @if ($subscription->contribution->is_early_bird)
+                                <span class="label label-success label-offset-right">Early Bird</span>
+                            @endif
+                            &euro; {{ $subscription->contribution->amount }}
+                        </td>
                         <td>
                             {!! Form::open([
                                 'method'=>'PATCH',
@@ -41,6 +48,8 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="pagination-wrapper">{!! $subscriptions->render() !!}</div>
     @else
         <p class="alert alert-info">Er zijn op dit moment geen nieuwe inschrijvingen bekend.</p>
     @endif

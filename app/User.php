@@ -17,7 +17,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'account_type', 'user_category_alias', 'activated', 'verified', 'first_name', 'name_prefix', 'last_name', 'address', 'zip_code', 'city', 'phone_number',
+        'email',
+        'password',
+        'account_type',
+        'user_category_alias',
+        'activated',
+        'verified',
+        'first_name',
+        'name_prefix',
+        'last_name',
+        'address',
+        'zip_code',
+        'city',
+        'phone_number',
     ];
 
     /**
@@ -26,7 +38,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'verification_token', 'mollie_customer_id',
+        'password',
+        'remember_token',
+        'verification_token',
+        'mollie_customer_id',
     ];
 
     /**
@@ -34,7 +49,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+    ];
 
     /**
      * Get the full name of the user.

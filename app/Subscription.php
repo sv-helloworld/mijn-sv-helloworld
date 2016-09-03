@@ -14,14 +14,24 @@ class Subscription extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'contribution_id', 'canceled', 'canceled_at'];
+    protected $fillable = [
+        'user_id',
+        'contribution_id',
+        'canceled',
+        'canceled_at',
+    ];
 
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'canceled_at', 'approved_at', 'declined_at'];
+    protected $dates = [
+        'deleted_at',
+        'canceled_at',
+        'approved_at',
+        'declined_at',
+    ];
 
     /**
      * Get the user that owns the subscription.

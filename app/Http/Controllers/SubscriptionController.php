@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 use App\Contribution;
 use App\Subscription;
 
@@ -17,12 +18,11 @@ class SubscriptionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $subscriptions = $user->subscriptions;
-        $contribution = Contribution::where([
-            'user_category_alias' => $user->user_category_alias,
-        ])->first();
 
-        return view('subscription.index', compact('subscriptions', 'contribution'));
+        $subscriptions = $user->subscriptions;
+        $contributions = $this->availableContributionsForUser($user)->get();
+
+        return view('subscription.index', compact('subscriptions', 'contributions'));
     }
 
     /**
@@ -40,9 +40,8 @@ class SubscriptionController extends Controller
         }
 
         // Retrieve the contribution
-        $contribution = Contribution::where([
-            'user_category_alias' => $user->user_category_alias,
-        ])->whereHas('period', function ($query) use ($slug) {
+        $contributions = $this->availableContributionsForUser($user);
+        $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
 
@@ -82,10 +81,11 @@ class SubscriptionController extends Controller
             'accept' => 'required|boolean',
         ], $messages);
 
+        $user = Auth::user();
+
         // Retrieve the contribution
-        $contribution = Contribution::where([
-            'user_category_alias' => Auth::user()->user_category_alias,
-        ])->whereHas('period', function ($query) use ($slug) {
+        $contributions = $this->availableContributionsForUser($user);
+        $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
 
@@ -95,7 +95,7 @@ class SubscriptionController extends Controller
 
         // Check if there is already an subscription
         $subscription = Subscription::where([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             'contribution_id' => $contribution->id,
         ])->get();
 
@@ -107,7 +107,7 @@ class SubscriptionController extends Controller
 
         // Check succesful, add new subscription
         $subscription = Subscription::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
             'contribution_id' => $contribution->id,
         ]);
 
@@ -182,7 +182,7 @@ class SubscriptionController extends Controller
      */
     public function manage()
     {
-        $subscriptions = Subscription::whereNull('approved_at')->whereNull('declined_at')->get();
+        $subscriptions = Subscription::whereNull('approved_at')->whereNull('declined_at')->paginate(10);
 
         return view('subscription.manage', compact('subscriptions'));
     }
@@ -233,5 +233,36 @@ class SubscriptionController extends Controller
         flash('De inschrijving kon niet worden geweigerd.', 'danger');
 
         return redirect(route('subscription.manage'));
+    }
+
+    /**
+     * Returns the available contributions for the given user.
+     *
+     * @param  User   $user
+     * @param  array  $ignoreCurrentSubscriptions
+     * @return array
+     */
+    private function availableContributionsForUser(User $user, $ignoreCurrentSubscriptions = false)
+    {
+        $periods = [];
+
+        // Get periods the user is already subscribed to
+        if (! $ignoreCurrentSubscriptions) {
+            $periods = $user->subscriptions->map(function ($subscription) {
+                return $subscription->contribution->period->id;
+            })->all();
+        }
+
+        $contributions = Contribution::where('user_category_alias', $user->user_category_alias)
+            ->where([
+                ['available_from', '<=', date('Y-m-d H:i:s')],
+                ['available_to', '>', date('Y-m-d H:i:s')],
+            ])
+            ->whereHas('period', function ($query) use ($periods) {
+                $query->whereNotIn('id', $periods);
+            })
+            ->orderBy('available_from', 'asc');
+
+        return $contributions;
     }
 }

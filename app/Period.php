@@ -15,7 +15,10 @@ class Period extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'start_date', 'end_date',
+        'name',
+        'slug',
+        'start_date',
+        'end_date',
     ];
 
     /**
@@ -23,5 +26,9 @@ class Period extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+        'start_date',
+        'end_date',
+    ];
 }

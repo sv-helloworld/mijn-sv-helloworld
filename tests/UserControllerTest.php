@@ -1,7 +1,7 @@
 <?php
 
 
-class UserManagementTest extends TestCase
+class UserControllerTest extends TestCase
 {
     /**
      * Tests if an normal user can reach the user management index.

@@ -15,7 +15,7 @@ class Contribution extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'early_bird_amount', 'early_bird_end_date', 'user_category_alias', 'period_id',
+        'amount', 'available_from', 'available_to', 'user_category_alias', 'period_id', 'is_early_bird',
     ];
 
     /**
@@ -23,7 +23,20 @@ class Contribution extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = [
+        'deleted_at',
+        'available_from',
+        'available_to',
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_early_bird' => 'boolean',
+    ];
 
     /**
      * Returns the user category associated with the contribution.
