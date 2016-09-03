@@ -3,9 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Payment extends Model
+class Refund extends Model
 {
     use SoftDeletes;
 
@@ -15,9 +14,9 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
+        'refund_id',
+        'refund_amount',
         'payment_id',
-        'payment_amount',
-        'status',
         'user_id',
         'payable_id',
         'payable_type',
@@ -30,11 +29,11 @@ class Payment extends Model
      */
     protected $dates = [
         'deleted_at',
-        'payed_at',
+        'refunded_at',
     ];
 
     /**
-     * Returns the user associated with the payment.
+     * Returns the user associated with the refund.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -44,20 +43,12 @@ class Payment extends Model
     }
 
     /**
-     * Returns the refund associated with the payment.
+     * Returns the payment associated with the refund.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function refund()
+    public function payment()
     {
-        return $this->hasOne('App\Refund');
-    }
-
-    /**
-     * Get all of the owning payable models.
-     */
-    public function payable()
-    {
-        return $this->morphTo();
+        return $this->belongsTo('App\Payment');
     }
 }
