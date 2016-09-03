@@ -15,7 +15,7 @@ class Contribution extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'available_from', 'available_to', 'user_category_alias', 'period_id', 'is_early_bird'
+        'amount', 'available_from', 'available_to', 'user_category_alias', 'period_id', 'is_early_bird',
     ];
 
     /**
