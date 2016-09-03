@@ -15,12 +15,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'email' => strtolower($faker->firstName).'@hz.nl',
+        'email' => str_random(10).'@hz.nl',
         'address' => ucwords($faker->word).' '.rand(1, 999),
         'zip_code' => '4321 AB',
         'city' => $faker->city,
         'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
         'activated' => true,
         'verified' => true,
     ];
@@ -34,7 +33,7 @@ $factory->defineAs(App\User::class, 'admin', function (Faker\Generator $faker) u
     ]);
 });
 
-/*$factory->defineAs(App\User::class, 'member', function (Faker\Generator $faker) use ($factory) {
+$factory->defineAs(App\User::class, 'member', function (Faker\Generator $faker) use ($factory) {
     $user = $factory->raw(App\User::class);
 
     return array_merge($user, [
@@ -46,30 +45,51 @@ $factory->define(App\Period::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
         'slug' => str_slug($faker->word),
-        'start_date' => $faker->dateTimeThisYear(),
-        'end_date' => $faker->dateTimeBetween('now', '+1 year'),
+        'start_date' => $faker->dateTimeBetween('now', '+1 week'),
+        'end_date' => $faker->dateTimeBetween('+6 months', '+1 year'),
     ];
 });
 
-$factory->define(App\Contribution::class, function (Faker\Generator $faker) use ($factory) {
-    $member = factory(App\User::class, 'member')->create();
-    $period = $factory->raw(App\Period::class);
-
+$factory->define(App\Contribution::class, function (Faker\Generator $faker) {
     return [
-        'amount' => $faker->randomFloat(2, 15, 20),
-        'early_bird_amount' => $faker->randomFloat(2, 10, 15),
-        'early_bird_end_date' => $faker->dateTimeBetween('now', '+1 day'),
-        'user_category_alias' => $member->user_category_alias,
-        'period_id' => $period->id,
+        'amount' => $faker->randomFloat(2, 18, 20),
+        'available_from' => $faker->dateTimeBetween('-1 week', 'now'),
+        'available_to' => $faker->dateTimeBetween('now', '+1 year'),
+        'user_category_alias' => function () {
+            return factory(App\User::class, 'member')->create()->user_category_alias;
+        },
+        'period_id' => function () {
+            return factory(App\Period::class)->create()->id;
+        },
     ];
 });
 
-$factory->define(App\Subscription::class, function (Faker\Generator $faker) use ($factory) {
-    $member = factory(App\User::class, 'member')->create();
-    $contribution = factory(App\Contribution::class)->create();
+$factory->defineAs(App\Contribution::class, 'early_bird', function (Faker\Generator $faker) use ($factory) {
+    $contribution = $factory->raw(App\Contribution::class);
 
+    return array_merge($contribution, [
+        'amount' => $faker->randomFloat(2, 10, 15),
+        'is_early_bird' => true,
+    ]);
+});
+
+$factory->define(App\Subscription::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => $member->id,
-        'contribution_id' => $contribution->id,
+        'user_id' => function () {
+            return factory(App\User::class, 'member')->create()->id;
+        },
+        'contribution_id' => function () {
+            return factory(App\Contribution::class)->create()->id;
+        },
     ];
-});*/
+});
+
+$factory->defineAs(App\Subscription::class, 'early_bird', function (Faker\Generator $faker) use ($factory) {
+    $subscription = $factory->raw(App\Subscription::class);
+
+    return array_merge($subscription, [
+        'contribution_id' => function () {
+            return factory(App\Contribution::class, 'early_bird')->create()->id;
+        },
+    ]);
+});
