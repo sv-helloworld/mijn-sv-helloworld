@@ -50,14 +50,6 @@ class Subscription extends Model
     }
 
     /**
-     * Get all of the contributions payments.
-     */
-    public function payments()
-    {
-        return $this->morphMany('App\Payment', 'payable');
-    }
-
-    /**
      * Returns true if the subscription is canceled.
      *
      * @return bool True if the subscription is canceled.
