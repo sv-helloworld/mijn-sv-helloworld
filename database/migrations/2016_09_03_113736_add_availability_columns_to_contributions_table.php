@@ -14,8 +14,8 @@ class AddAvailabilityColumnsToContributionsTable extends Migration
     public function up()
     {
         Schema::table('contributions', function (Blueprint $table) {
-            $table->timestamp('available_to');
-            $table->timestamp('available_from');
+            $table->timestamp('available_from')->nullable();
+            $table->timestamp('available_to')->nullable();
         });
     }
 
@@ -27,8 +27,8 @@ class AddAvailabilityColumnsToContributionsTable extends Migration
     public function down()
     {
         Schema::table('contributions', function (Blueprint $table) {
-            $table->dropColumn('available_to');
             $table->dropColumn('available_from');
+            $table->dropColumn('available_to');
         });
     }
 }
