@@ -14,11 +14,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('datetime', function($expression) {
+        Blade::directive('datetime', function ($expression) {
             return "<?php echo Carbon\Carbon::parse($expression)->format('d-m-Y H:i'); ?>";
         });
 
-        Blade::directive('date', function($expression) {
+        Blade::directive('date', function ($expression) {
             return "<?php echo Carbon\Carbon::parse($expression)->format('d-m-Y'); ?>";
         });
     }
