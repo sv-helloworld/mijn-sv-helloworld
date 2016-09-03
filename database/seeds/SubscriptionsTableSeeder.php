@@ -11,12 +11,8 @@ class SubscriptionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Subscription::class, 5)->create()->each(function ($s) {
-            $s->save();
-        });
+        factory(App\Subscription::class, 5)->make();
 
-        factory(App\Subscription::class, 'early_bird', 5)->create()->each(function ($s) {
-            $s->save();
-        });
+        factory(App\Subscription::class, 'early_bird', 5)->make();
     }
 }
