@@ -261,8 +261,7 @@ class SubscriptionController extends Controller
             ->whereHas('period', function ($query) use ($periods) {
                 $query->whereNotIn('id', $periods);
             })
-            ->orderBy('available_from', 'asc')
-        ;
+            ->orderBy('available_from', 'asc');
 
         return $contributions;
     }
