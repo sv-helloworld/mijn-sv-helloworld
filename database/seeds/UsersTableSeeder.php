@@ -51,11 +51,11 @@ class UsersTableSeeder extends Seeder
             'city' => 'Voorbeeldstad',
         ]);
 
-        factory(App\User::class, 'member', 2)->create()->each(function($u) {
+        factory(App\User::class, 'member', 2)->create()->each(function ($u) {
             $u->subscriptions()->save(factory(App\Subscription::class)->make());
         });
 
-        factory(App\User::class, 'member', 2)->create()->each(function($u) {
+        factory(App\User::class, 'member', 2)->create()->each(function ($u) {
             $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
         });
     }
