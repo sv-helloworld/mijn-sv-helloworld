@@ -23,7 +23,20 @@ class Contribution extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at', 'available_from', 'available_to'];
+    protected $dates = [
+        'deleted_at',
+        'available_from',
+        'available_to',
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_early_bird' => 'boolean',
+    ];
 
     /**
      * Returns the user category associated with the contribution.
