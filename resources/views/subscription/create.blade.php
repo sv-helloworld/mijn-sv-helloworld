@@ -7,8 +7,8 @@
         De contributie voor deze periode bedraagt &euro;{{ $contribution->amount }}.
     </p>
 
-    @if (date('Y-m-d') <= $contribution->early_bird_end_date)
-        <p class="alert alert-info">Als je je inschrijft voor <strong>{{ $contribution->early_bird_end_date }}</strong> bedraagt de contributie slechts <strong>&euro;{{ $contribution->early_bird_amount }}</strong> in plaats van de reguliere &euro;{{ $contribution->amount }}!</strong></p>
+    @if ($contribution->is_early_bird)
+        <p class="alert alert-info">Dit is een Early Bird-contributie. Als je je inschrijft voor <strong>{{ $contribution->available_to }}</strong> bedraagt de contributie slechts <strong>&euro;{{ $contribution->amount }}</strong>!</strong></p>
     @endif
 
     <p>Controlleer de gegevens in het onderstaante formulier goed! Gegevens kun je aanpassen in het <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>

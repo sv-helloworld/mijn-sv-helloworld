@@ -6,6 +6,18 @@ form {
 	}
 }
 
+.table {
+	> thead,
+	> tbody {
+		> tr,
+		> th {
+			> td {
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
 .navbar-nav {
 	> li {
 		> a {
@@ -27,12 +39,12 @@ form {
 	}
 }
 
-.pagination-wrapper {
-	text-align: center;
+.label-offset-right {
+	margin-right: 5px;
 }
 
-.block {
-	display: block;
+.pagination-wrapper {
+	text-align: center;
 }
 
 // Breakpoints
