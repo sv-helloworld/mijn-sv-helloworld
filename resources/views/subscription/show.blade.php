@@ -14,8 +14,22 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Ingeschreven op</td>
-                        <td>{{ $subscription->created_at }}</td>
+                        <td>Contributie</td>
+                        <td>
+                            <div>
+                                @if ($subscription->contribution->is_early_bird)
+                                    <span class="label label-success label-offset-right">Early Bird</span>
+                                @endif
+                                &euro; {{ $subscription->contribution->amount }}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Periode</td>
+                        <td>
+                            <div>{{ $subscription->contribution->period->name }}</div>
+                            <small class="text-muted">@date($subscription->contribution->period->start_date) tot @date($subscription->contribution->period->end_date)</small>
+                        </td>
                     </tr>
                     <tr>
                         <td>Status inschrijving</td>
@@ -32,11 +46,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Periode</td>
-                        <td>
-                            <span class="block">{{ $subscription->contribution->period->name }}</span>
-                            <small class="text-muted">{{ $subscription->contribution->period->start_date }} tot {{ $subscription->contribution->period->end_date }}</small>
-                        </td>
+                        <td>Ingeschreven op</td>
+                        <td>@datetime($subscription->created_at)</td>
                     </tr>
                 </tbody>
             </table>

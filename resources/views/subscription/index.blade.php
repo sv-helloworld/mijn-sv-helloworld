@@ -64,7 +64,7 @@
                                     @endif
                                     {{ $contribution->period->name }}
                                 </div>
-                                <small class="text-muted">{{ $contribution->period->start_date }} tot {{ $contribution->period->end_date }}</small>
+                                <small class="text-muted">@date($contribution->period->start_date) tot @date($contribution->period->end_date)</small>
                             </td>
                             <td>
                                 <a href="{{ route('subscription.create', $contribution->period->slug) }}" class="btn btn-primary btn-sm">Inschrijven</a>

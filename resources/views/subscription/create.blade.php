@@ -8,10 +8,10 @@
     </p>
 
     @if ($contribution->is_early_bird)
-        <p class="alert alert-info">Dit is een Early Bird-contributie. Als je je inschrijft voor <strong>{{ $contribution->available_to }}</strong> bedraagt de contributie slechts <strong>&euro;{{ $contribution->amount }}</strong>!</strong></p>
+        <p class="alert alert-info">Dit is een Early Bird-contributie. Als je je inschrijft voor <strong>@datetime($contribution->available_to)</strong> bedraagt de contributie slechts <strong>&euro;{{ $contribution->amount }}</strong>!</strong></p>
     @endif
 
-    <p>Controlleer de gegevens in het onderstaante formulier goed! Gegevens kun je aanpassen in het <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
+    <p>Controlleer de gegevens in het onderstaande formulier goed! Gegevens kun je aanpassen bij <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
 
     <div class="row">
         <div class="col-xs-12">
@@ -94,6 +94,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     {!! Form::button('Inschrijven als lid', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
+                    <a href="{{ route('subscription.index') }}" class="btn btn-danger">Annuleren</a>
                 </div>
             </div>
 
