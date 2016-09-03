@@ -182,7 +182,7 @@ class SubscriptionController extends Controller
      */
     public function manage()
     {
-        $subscriptions = Subscription::whereNull('approved_at')->whereNull('declined_at')->get();
+        $subscriptions = Subscription::whereNull('approved_at')->whereNull('declined_at')->paginate(10);
 
         return view('subscription.manage', compact('subscriptions'));
     }
