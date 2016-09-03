@@ -1,6 +1,6 @@
 <?php
 
-class AccountTest extends TestCase
+class AccountControllerTest extends TestCase
 {
     /**
      * Tests if a logged in user can reach the account index.
