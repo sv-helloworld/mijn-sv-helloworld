@@ -248,18 +248,21 @@ class SubscriptionController extends Controller
 
         // Get periods the user is already subscribed to
         if (! $ignoreCurrentSubscriptions) {
-            foreach ($user->subscriptions as $subscription) {
-                $periods[] = $subscription->contribution->period->id;
-            }
+            $periods = $user->subscriptions->map(function ($subscription) {
+                return $subscription->contribution->period->id;
+            })->all();
         }
 
-        $contributions = Contribution::where([
-            'user_category_alias' => $user->user_category_alias,
-            ['available_from', '>=', time()],
-            ['available_to', '>', time()],
-        ])->whereHas('period', function ($query) use ($periods) {
-            $query->whereNotIn('id', $periods);
-        })->orderBy('available_from', 'asc');
+        $contributions = Contribution::where('user_category_alias', $user->user_category_alias)
+            ->where([
+                ['available_from', '<=', date('Y-m-d H:i:s')],
+                ['available_to', '>', date('Y-m-d H:i:s')],
+            ])
+            ->whereHas('period', function ($query) use ($periods) {
+                $query->whereNotIn('id', $periods);
+            })
+            ->orderBy('available_from', 'asc')
+        ;
 
         return $contributions;
     }
