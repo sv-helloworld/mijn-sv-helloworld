@@ -79,6 +79,16 @@ class Subscription extends Model
     }
 
     /**
+     * Returns true if the subscription is confirmed.
+     *
+     * @return bool True if the subscription is confirmed.
+     */
+    public function confirmed()
+    {
+        return ! is_null($this->confirmed_at);
+    }
+
+    /**
      * Get all of the subscriptions payments.
      */
     public function payments()
