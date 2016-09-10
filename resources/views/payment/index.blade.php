@@ -21,7 +21,7 @@
                         <tr>
                             <td>{{ $payment->id }}</th>
                             <td>{{ $payment->description }}</td>
-                            <td>{!! $payment->paid_at ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
+                            <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
                             <td>
                                 <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                             </td>
@@ -54,7 +54,7 @@
                         <tr>
                             <td>{{ $payment->id }}</th>
                             <td>{{ $payment->description }}</td>
-                            <td>{!! $payment->paid_at ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
+                            <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
                             <td>@datetime($payment->paid_at)</td>
                             <td>
                                 <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
