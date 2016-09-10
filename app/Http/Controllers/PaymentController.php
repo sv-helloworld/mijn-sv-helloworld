@@ -94,7 +94,7 @@ class PaymentController extends Controller
 
         $payment->update(['payment_id' => $mollie_payment->id]);
 
-        return $this->redirect($mollie_payment->getPaymentUrl());
+        return redirect($mollie_payment->getPaymentUrl());
     }
 
     /**
