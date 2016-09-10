@@ -24,6 +24,9 @@ class MainMenu
             $menu->add('Lidmaatschap', ['route' => 'subscription.index']);
             $menu->lidmaatschap->prepend('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ');
 
+            $menu->add('Betalingen', ['route' => 'payment.index']);
+            $menu->betalingen->prepend('<i class="fa fa-money" aria-hidden="true"></i> ');
+
             // Check if the user is authenticated
             if (Auth::check()) {
                 if (Auth::user()->hasAccountType('admin')) {

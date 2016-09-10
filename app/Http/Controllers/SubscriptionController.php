@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Contribution;
 use App\Subscription;
+use Illuminate\Http\Request;
+use App\Events\SubscriptionApproved;
 
 class SubscriptionController extends Controller
 {
@@ -40,7 +41,7 @@ class SubscriptionController extends Controller
         }
 
         // Retrieve the contribution
-        $contributions = $this->availableContributionsForUser($user);
+        $contributions = $this->availableContributionsForUser($user, true);
         $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
@@ -118,7 +119,7 @@ class SubscriptionController extends Controller
             return back()->withInput();
         }
 
-        flash(sprintf('Je hebt je succesvol ingeschreven als lid voor de periode %s. De mogelijkheid om de contributie te betalen verschijnt binnenkort.', $contribution->period->name), 'success');
+        flash(sprintf('Je hebt je succesvol ingeschreven als lid voor de periode %s. We zullen je op de hoogte brengen wanneer je inschrijving is goedgekeurd, en je de contributie kunt betalen.', $contribution->period->name), 'success');
 
         return redirect(route('subscription.show', $subscription->id));
     }
@@ -202,6 +203,9 @@ class SubscriptionController extends Controller
 
         if ($subscription->touch()) {
             flash('De inschrijving is succesvol goedgekeurd.', 'success');
+
+            // Fire 'SubscriptionApproved' event
+            event(new SubscriptionApproved($subscription));
 
             return redirect(route('subscription.manage'));
         }

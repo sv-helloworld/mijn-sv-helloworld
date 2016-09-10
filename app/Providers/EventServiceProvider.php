@@ -20,6 +20,14 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserDeleted' => [
             'App\Listeners\UnsubscribeFromMailchimpList',
         ],
+
+        'App\Events\SubscriptionApproved' => [
+            'App\Listeners\CreateSubscriptionPayment',
+        ],
+
+        'App\Events\PaymentCompleted' => [
+            'App\Listeners\UpdateSubscriptionStatus',
+        ],
     ];
 
     /**

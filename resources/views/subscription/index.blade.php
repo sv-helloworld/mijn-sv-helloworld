@@ -22,8 +22,10 @@
                             <td>
                                 @if ($subscription->canceled())
                                     <span class="label label-danger">Inschrijving stopgezet</span>
+                                @elseif ($subscription->confirmed())
+                                    <span class="label label-success">Ingeschreven</span>
                                 @elseif ($subscription->approved())
-                                    <span class="label label-success">Inschrijvingsverzoek goedgekeurd</span>
+                                    <span class="label label-info">Inschrijvingsverzoek goedgekeurd</span>
                                 @elseif ($subscription->declined())
                                     <span class="label label-danger">Inschrijvingsverzoek geweigerd</span>
                                 @else

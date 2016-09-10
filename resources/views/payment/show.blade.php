@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('back', url('payment'))
-@section('title', 'Details Betaling')
+@section('title', 'Details betaling')
 
 @section('content')
     <div class="row">
@@ -27,21 +27,21 @@
                             <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
                         </tr>
                         @if ($payment->paid())
-                        <tr>
-                            <td>Betaald op</td>
-                            <td>@datetime($payment->paid_at)</td>
-                        </tr>
-                        @else
-                        <tr>
-                            <td>Actie</td>
-                            <td>
-                                <a href="{{ route('payment.pay', $payment->id) }}" class="btn btn-primary btn-xs">Betalen</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Betaald op</td>
+                                <td>@datetime($payment->paid_at)</td>
+                            </tr>
                         @endif
                     </tbody>
                 </table>
             </div>
+
+            @if (! $payment->paid())
+                <a href="{{ route('payment.pay', $payment->id) }}" class="btn btn-primary">Betalen</a>
+                <a href="{{ route('payment.index') }}" class="btn btn-danger">Annuleren</a>
+            @else
+                <a href="{{ route('payment.index') }}" class="btn btn-primary">Terug naar het overzicht</a>
+            @endif
         </div>
     </div>
 @endsection

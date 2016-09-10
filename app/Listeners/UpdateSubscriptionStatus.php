@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Listeners;
+
+use App\Subscription;
+use App\Events\PaymentCompleted;
+use App\Notifications\SubscriptionConfirmed;
+
+class UpdateSubscriptionStatus
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  PaymentCompleted  $event
+     * @return void
+     */
+    public function handle(PaymentCompleted $event)
+    {
+        $subscription = $event->payment->payable;
+
+        if (! $subscription instanceof Subscription) {
+            return;
+        }
+
+        // The total paid amount isn't equal to the contribution amount
+        if ($subscription->contribution->amount > $event->payment->amount) {
+            return;
+        }
+
+        $subscription->confirmed_at = time();
+
+        if ($subscription->touch()) {
+            // Send notification to user
+            $event->payment->user->notify(new SubscriptionConfirmed($subscription->id));
+        }
+    }
+}

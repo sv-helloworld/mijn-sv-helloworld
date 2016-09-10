@@ -17,8 +17,6 @@ class Subscription extends Model
     protected $fillable = [
         'user_id',
         'contribution_id',
-        'canceled',
-        'canceled_at',
     ];
 
     /**
@@ -31,6 +29,7 @@ class Subscription extends Model
         'canceled_at',
         'approved_at',
         'declined_at',
+        'confirmed_at',
     ];
 
     /**
@@ -47,14 +46,6 @@ class Subscription extends Model
     public function contribution()
     {
         return $this->belongsTo('App\Contribution');
-    }
-
-    /**
-     * Get all of the contributions payments.
-     */
-    public function payments()
-    {
-        return $this->morphMany('App\Payment', 'payable');
     }
 
     /**
@@ -85,5 +76,23 @@ class Subscription extends Model
     public function declined()
     {
         return ! is_null($this->declined_at);
+    }
+
+    /**
+     * Returns true if the subscription is confirmed.
+     *
+     * @return bool True if the subscription is confirmed.
+     */
+    public function confirmed()
+    {
+        return ! is_null($this->confirmed_at);
+    }
+
+    /**
+     * Get all of the subscriptions payments.
+     */
+    public function payments()
+    {
+        return $this->morphMany('App\Payment', 'payable');
     }
 }
