@@ -3,7 +3,7 @@
 
 @section('content')
     <h3>Openstaande betalingen</h3>
-    @if (count($payments))
+    @if (count($open_payments))
         <p>Dit is een overzicht van openstaande betalingen.</p>
 
         <div class="table-responsive">
@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $payment)
+                    @foreach($open_payments as $payment)
                         <tr>
                             <td>
                                 <a href="{{ route('subscription.show', $subscription->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
@@ -31,7 +31,7 @@
     @endif
 
     <h3>Betalingsgeschiedenis</h3>
-    @if (count($payments) > 0)
+    @if (count($finalized_payments) > 0)
         <p>Dit is een overzicht van afgeronde betalingen.</p>
 
         <div class="table-responsive">
@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $payment)
+                    @foreach($finalized_payments as $payment)
                         <tr>
                             <td></td>
                             <td>

@@ -30,7 +30,7 @@ class Payment extends Model
      */
     protected $dates = [
         'deleted_at',
-        'payed_at',
+        'paid_at',
     ];
 
     /**
