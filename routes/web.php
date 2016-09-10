@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'index',
     ]);
 
-    Route::group(['middleware' => ['verified']], function () {
+    Route::group(['middleware' => ['verified', 'account.profile.complete']], function () {
         // Administrator routes
         Route::group(['middleware' => ['account.type:admin']], function () {
             // Subscriptions
