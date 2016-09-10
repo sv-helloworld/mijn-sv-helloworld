@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Mollie;
+use Gate;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Events\PaymentCompleted;
@@ -54,7 +55,11 @@ class PaymentController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $payment = Payment::where('user_id', $user->id)->findOrFail($id);
+        $payment = Payment::findOrFail($id);
+
+        if (! Gate::forUser($user)->allows('pay', $payment)) {
+            return abort(403);
+        }
 
         return view('payment.show', compact('payment'));
     }
@@ -68,7 +73,11 @@ class PaymentController extends Controller
     public function pay($id)
     {
         $user = Auth::user();
-        $payment = Payment::where('user_id', $user->id)->findOrFail($id);
+        $payment = Payment::findOrFail($id);
+
+        if (! Gate::forUser($user)->allows('pay', $payment)) {
+            return abort(403);
+        }
 
         $metadata = [
             'payment_id' => $payment->id,
@@ -98,7 +107,12 @@ class PaymentController extends Controller
     public function paid($id)
     {
         $user = Auth::user();
-        $payment = Payment::where('user_id', $user->id)->findOrFail($id);
+        $payment = Payment::findOrFail($id);
+
+        if (! Gate::forUser($user)->allows('pay', $payment)) {
+            return abort(403);
+        }
+
         $mollie_payment = Mollie::api()->payments()->get($payment->payment_id);
 
         if ($mollie_payment->isPaid()) {

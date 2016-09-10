@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('pay', function($user, $payment) {
+            return $user->id === $payment->user_id;
+        });
     }
 }
