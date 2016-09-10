@@ -114,6 +114,7 @@ class PaymentController extends Controller
 
         if ($payment->paid()) {
             flash('Deze betaling is al afgerond.', 'info');
+
             return redirect(route('payment.show', $payment->id));
         }
 
