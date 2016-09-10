@@ -4,7 +4,6 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class SubscriptionConfirmed extends Notification
@@ -52,7 +51,7 @@ class SubscriptionConfirmed extends Notification
             ->line([
                 'Bedankt voor je inschrijving, je bent nu succesvol ingeschreven als lid van Studievereniging "Hello World".',
                 'Als lid van de studievereniging zul je, gedurende de gehele periode waarin de contributie geldig, is ',
-                'korting krijgen op activiteiten die we gaan organiseren!'
+                'korting krijgen op activiteiten die we gaan organiseren!',
             ])
             ->line('Klik op de knop hieronder om naar de details van je inschrijving te gaan:')
             ->action('Bekijk inschrijving', route('subscription.show', $this->subscription_id))
