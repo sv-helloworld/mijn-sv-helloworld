@@ -24,6 +24,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SubscriptionApproved' => [
             'App\Listeners\CreateSubscriptionPayment',
         ],
+
+        'App\Events\PaymentCompleted' => [
+            'App\Listeners\UpdateSubscriptionStatus',
+        ],
     ];
 
     /**

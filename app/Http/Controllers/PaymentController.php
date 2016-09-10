@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use App\Payment;
+use Illuminate\Http\Request;
+use App\Events\PaymentCompleted;
 
 class PaymentController extends Controller
 {
@@ -52,6 +53,17 @@ class PaymentController extends Controller
     public function show($id)
     {
         //
+    }
+
+    /**
+     * Pay the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pay($id)
+    {
+        // event(new PaymentCompleted($payment));
     }
 
     /**
