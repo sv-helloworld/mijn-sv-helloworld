@@ -55,6 +55,16 @@ class Payment extends Model
     }
 
     /**
+     * Returns true if the payment is paid.
+     *
+     * @return bool True if the payment is paid.
+     */
+    public function paid()
+    {
+        return ! is_null($this->paid_at);
+    }
+
+    /**
      * Get all of the owning payable models.
      */
     public function payable()
