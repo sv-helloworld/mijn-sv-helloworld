@@ -70,11 +70,11 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::where('user_id', $user->id)->findOrFail($id);
 
-        $metadata = array(
+        $metadata = [
             'payment_id' => $payment->id,
             'user_id' => $payment->user_id,
             'payable_id' => $payment->payable_id,
-        );
+        ];
 
         $mollie_payment = Mollie::api()->payments()->create([
             'amount'      => $payment->amount,
@@ -85,7 +85,7 @@ class PaymentController extends Controller
 
         $payment->update(['payment_id' => $mollie_payment->id]);
 
-        header("Location: " . $mollie_payment->getPaymentUrl());
+        header('Location: '.$mollie_payment->getPaymentUrl());
         exit;
     }
 
@@ -106,7 +106,7 @@ class PaymentController extends Controller
                 'status' => $mollie_payment->status,
                 'paid_at' => strtotime($mollie_payment->paidDatetime),
             ]);
-            
+
             event(new PaymentCompleted($payment));
             flash('Betaling succesvol!', 'success');
         } else {
