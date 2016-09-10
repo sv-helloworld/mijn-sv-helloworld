@@ -16,11 +16,10 @@ class PaymentController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $payments = Payment::where('user_id', $user->id);
-        $open_payments = $payments->whereNull('paid_at')->get();
-        $finalized_payments = $payments->whereNotNull('paid_at')->get();
+        $open_payments = Payment::where('user_id', $user->id)->whereNull('paid_at')->get();
+        $finalized_payments = Payment::where('user_id', $user->id)->whereNotNull('paid_at')->get();
 
-        return view('payment.index', compact('payments', 'open_payments', 'finalized_payments'));
+        return view('payment.index', compact('open_payments', 'finalized_payments'));
     }
 
     /**

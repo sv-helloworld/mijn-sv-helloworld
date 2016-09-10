@@ -10,7 +10,8 @@
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Periode</th>
+                        <th>#</th>
+                        <th>Beschrijving</th>
                         <th>Status</th>
                         <th>Acties</th>
                     </tr>
@@ -18,8 +19,11 @@
                 <tbody>
                     @foreach($open_payments as $payment)
                         <tr>
+                            <td>{{ $payment->id }}</th>
+                            <td>{{ $payment->description }}</td>
+                            <td>{!! $payment->paid_at ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
                             <td>
-                                <a href="{{ route('subscription.show', $subscription->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
+                                <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                             </td>
                         </tr>
                     @endforeach
@@ -38,16 +42,22 @@
             <table class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Periode</th>
+                        <th>#</th>
+                        <th>Beschrijving</th>
+                        <th>Status</th>
+                        <th>Betaald op</th>
                         <th>Acties</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($finalized_payments as $payment)
                         <tr>
-                            <td></td>
+                            <td>{{ $payment->id }}</th>
+                            <td>{{ $payment->description }}</td>
+                            <td>{!! $payment->paid_at ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
+                            <td>@datetime($payment->paid_at)</td>
                             <td>
-                                <a href="{{ route('subscription.create', $contribution->period->slug) }}" class="btn btn-primary btn-sm">Inschrijven</a>
+                                <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                             </td>
                         </tr>
                     @endforeach
