@@ -119,7 +119,7 @@ class SubscriptionController extends Controller
             return back()->withInput();
         }
 
-        flash(sprintf('Je hebt je succesvol ingeschreven als lid voor de periode %s. De mogelijkheid om de contributie te betalen verschijnt binnenkort.', $contribution->period->name), 'success');
+        flash(sprintf('Je hebt je succesvol ingeschreven als lid voor de periode %s. We zullen je op de hoogte brengen wanneer je inschrijving is goedgekeurd, en je de contributie kunt betalen.', $contribution->period->name), 'success');
 
         return redirect(route('subscription.show', $subscription->id));
     }
