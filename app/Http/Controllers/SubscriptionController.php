@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Contribution;
 use App\Subscription;
+use Illuminate\Http\Request;
+use App\Events\SubscriptionApproved;
 
 class SubscriptionController extends Controller
 {
@@ -203,11 +204,11 @@ class SubscriptionController extends Controller
         if ($subscription->touch()) {
             flash('De inschrijving is succesvol goedgekeurd.', 'success');
 
+            // Fire 'SubscriptionApproved' event
+            event(new SubscriptionApproved($subscription));
+
             return redirect(route('subscription.manage'));
         }
-
-        // Fire 'SubscriptionApproved' event
-        event(new SubscriptionApproved($subscription));
 
         flash('De inschrijving kon niet worden goedgekeurd.', 'danger');
 

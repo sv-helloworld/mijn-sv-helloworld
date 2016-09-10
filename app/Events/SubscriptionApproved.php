@@ -13,6 +13,13 @@ class SubscriptionApproved extends PaymentEvent
     use InteractsWithSockets, SerializesModels;
 
     /**
+     * The subscription where the payment belongs to.
+     *
+     * @var Subscription
+     */
+    public $subscription;
+
+    /**
      * Create a new event instance.
      *
      * @param Subscription $subscription The subscription that has been approved.
@@ -20,6 +27,7 @@ class SubscriptionApproved extends PaymentEvent
      */
     public function __construct(Subscription $subscription)
     {
+        $this->subscription = $subscription;
         $this->user = $subscription->user;
         $this->amount = $subscription->contribution->amount;
         $this->description = sprintf('Betaling contributie voor periode %s.', $subscription->contribution->period->name);

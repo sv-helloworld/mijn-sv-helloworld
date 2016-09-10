@@ -22,7 +22,7 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         'App\Events\SubscriptionApproved' => [
-            'App\Listeners\CreatePayment',
+            'App\Listeners\CreateSubscriptionPayment',
         ],
     ];
 
