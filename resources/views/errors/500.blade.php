@@ -43,14 +43,14 @@
                 <div class="title">Oeps, er is iets misgegaan.</div>
                 @unless(empty($sentryID))
                     <!-- Sentry JS SDK 2.1.+ required -->
-                    <script src="https://cdn.ravenjs.com/3.3.0/raven.min.js"></script>
+                    <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
 
                     <script>
                     Raven.showReportDialog({
                         eventId: '{{ $sentryID }}',
 
                         // use the public DSN (dont include your secret!)
-                        dsn: 'https://a621251fd1b2472cb9a91bcb0ca77f5e@app.getsentry.com/94778'
+                        dsn: 'https://1d5b662fe3cf4d79af178683be91db84@sentry.io/94778'
                     });
                     </script>
                 @endunless
