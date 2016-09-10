@@ -74,7 +74,13 @@
                                 <td>{{ $payment->id }}</th>
                                 <td>{{ $payment->description }}</td>
                                 <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
-                                <td>@datetime($payment->paid_at)</td>
+                                <td>
+                                    @if ($payment->paid())
+                                        @datetime($payment->paid_at)
+                                    @else
+                                        N.v.t.
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
                                 </td>
