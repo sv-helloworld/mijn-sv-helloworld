@@ -8,7 +8,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use App\Subscription;
 
-class SubscriptionApproved extends PaymentEvent
+class SubscriptionApproved
 {
     use InteractsWithSockets, SerializesModels;
 
@@ -18,6 +18,27 @@ class SubscriptionApproved extends PaymentEvent
      * @var Subscription
      */
     public $subscription;
+
+    /**
+     * The user that is responsible for the payment.
+     *
+     * @var User
+     */
+    public $user;
+
+    /**
+     * The amount of the payment.
+     *
+     * @var float
+     */
+    public $amount;
+
+    /**
+     * The description of the payment.
+     *
+     * @var string
+     */
+    public $description;
 
     /**
      * Create a new event instance.
