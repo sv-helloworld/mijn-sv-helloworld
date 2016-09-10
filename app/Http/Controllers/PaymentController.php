@@ -94,8 +94,7 @@ class PaymentController extends Controller
 
         $payment->update(['payment_id' => $mollie_payment->id]);
 
-        header('Location: '.$mollie_payment->getPaymentUrl());
-        exit;
+        return $this->redirect($mollie_payment->getPaymentUrl());
     }
 
     /**
@@ -123,9 +122,11 @@ class PaymentController extends Controller
 
             event(new PaymentCompleted($payment));
             flash('Betaling succesvol!', 'success');
-        } else {
-            flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoud.', 'danger');
+
+            return view('payment.show', compact('payment'));
         }
+
+        flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoud.', 'danger');
 
         return view('payment.show', compact('payment'));
     }
