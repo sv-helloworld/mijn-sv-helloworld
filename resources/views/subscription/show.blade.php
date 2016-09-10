@@ -53,6 +53,40 @@
             </table>
         </div>
 
+        <h3>Betalingen</h3>
+        @if (count($subscription->payments) > 0)
+            <p>Dit is een overzicht van de betalingen behorende bij deze inschrijving.</p>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Beschrijving</th>
+                            <th>Status</th>
+                            <th>Betaald op</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($subscription->payments as $payment)
+                            <tr>
+                                <td>{{ $payment->id }}</th>
+                                <td>{{ $payment->description }}</td>
+                                <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
+                                <td>@datetime($payment->paid_at)</td>
+                                <td>
+                                    <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <p class="alert alert-info">Er zijn geen betalingen gevonden behorende bij deze inschrijving.</p>
+        @endif
+
         <a href="{{ route('subscription.index') }}" class="btn btn-primary">Terug naar overzicht</a>
     </div>
 </div>
