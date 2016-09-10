@@ -5,9 +5,7 @@ namespace App\Events;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Subscription;
 
 class SubscriptionApproved extends PaymentEvent
@@ -24,7 +22,7 @@ class SubscriptionApproved extends PaymentEvent
     {
         $this->user = $subscription->user;
         $this->amount = $subscription->contribution->amount;
-        $this->description = "Betaling contributie voor periode '" . $subscription->contribution->period->name . "'.";
+        $this->description = "Betaling contributie voor periode '".$subscription->contribution->period->name."'.";
     }
 
     /**
