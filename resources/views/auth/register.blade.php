@@ -2,7 +2,7 @@
 @section('title', 'Registreren')
 
 @section('content')
-    <p>Met een account kun je jezelf aanmelden voor activiteiten en je registreren als lid. Je hoeft geen lid te zijn van onze vereniging om je aan te kunnen melden voor activiteiten. Heb je al een account? Klik dan <a href="{{ route('login') }}">hier</a> om in te loggen.</p>
+    <p>Met een account kun je jezelf aanmelden voor activiteiten en je inschrijven als lid. Je hoeft geen lid te zijn van onze vereniging om je aan te kunnen melden voor activiteiten. Heb je al een account? Klik dan <a href="{{ route('login') }}">hier</a> om in te loggen.</p>
 
     <div class="row">
         <div class="col-xs-12">
