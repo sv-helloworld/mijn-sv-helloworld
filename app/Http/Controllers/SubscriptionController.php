@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
         }
 
         // Retrieve the contribution
-        $contributions = $this->availableContributionsForUser($user);
+        $contributions = $this->availableContributionsForUser($user, true);
         $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
