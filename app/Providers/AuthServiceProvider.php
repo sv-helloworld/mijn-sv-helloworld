@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('pay', function($user, $payment) {
+        Gate::define('pay', function ($user, $payment) {
             return $user->id === $payment->user_id;
         });
     }
