@@ -55,6 +55,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'account.type' => \App\Http\Middleware\AccountType::class,
+        'account.profile.complete' => \App\Http\Middleware\CheckUserDetails::class,
         'activated' => \App\Http\Middleware\RedirectIfNotActivated::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
