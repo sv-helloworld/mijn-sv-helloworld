@@ -45,11 +45,11 @@ class PaymentCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line([
-                        'Er staat een nieuwe betaling voor je klaar.',
-                        'Druk op de knop hieronder om naar de de betaling te gaan:',
-                    ])
-                    ->action('Naar betaling', route('payment.show', $this->payment_id))
-                    ->line('Als je de betling al hebt gedaan kan je deze mail negeren');
+            ->line([
+                'Er staat een nieuwe betaling voor je klaar.',
+                'Druk op de knop hieronder om naar de de betaling te gaan:',
+            ])
+            ->action('Naar betaling', route('payment.show', $this->payment_id))
+            ->line('Als je de betaling reeds hebt voldaan kun je deze e-mail negeren.');
     }
 }
