@@ -44,6 +44,7 @@ class ResetPasswordNotification extends Notification
     public function toMail()
     {
         return (new MailMessage)
+            ->subject('Wachtwoord opnieuw instellen')
             ->line([
                 'Je ontvangt deze mail omdat we een wachtwoord reset verzoek hebben gekregen voor jouw account.',
                 'Klik op de knop hieronder om je wachtwoord opnieuw in te stellen:',

@@ -45,6 +45,7 @@ class PaymentCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('Er staat een nieuwe betaling voor je klaar')
             ->line([
                 'Er staat een nieuwe betaling voor je klaar.',
                 'Druk op de knop hieronder om naar de de betaling te gaan:',
