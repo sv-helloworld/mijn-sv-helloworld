@@ -3,8 +3,6 @@
 namespace App\Listeners;
 
 use App\Events\PaymentCompleted;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\SubscriptionConfirmed;
 
 class UpdateSubscriptionStatus
@@ -33,7 +31,7 @@ class UpdateSubscriptionStatus
 
         $payments = $subscription->payments->each(function ($payment) {
             if ($payment->paid()) {
-                $total =+ $payment->amount;
+                $total = +$payment->amount;
             }
         });
 
