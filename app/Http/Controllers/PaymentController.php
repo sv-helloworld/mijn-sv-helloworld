@@ -88,7 +88,7 @@ class PaymentController extends Controller
         $mollie_payment = Mollie::api()->payments()->create([
             'amount'      => $payment->amount,
             'description' => $payment->description,
-            'redirectUrl' => route('payment.webhook', $payment->id),
+            'redirectUrl' => route('payment.callback', $payment->id),
             'metadata' => $metadata,
         ]);
 
@@ -100,10 +100,35 @@ class PaymentController extends Controller
     /**
      * Payment webhook.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function webhook(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
+
+        $mollie_payment = Mollie::api()->payments()->get($request->input('id'));
+
+        if ($mollie_payment->isPaid()) {
+            $payment = Payment::findOrFail($mollie_payment->metadata->payment_id);
+            $payment->update([
+                'status' => $mollie_payment->status,
+                'paid_at' => strtotime($mollie_payment->paidDatetime),
+            ]);
+
+            event(new PaymentCompleted($payment));
+        }
+    }
+
+    /**
+     * Display the specified resource with callback messages.
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function webhook($id)
+    public function callback($id)
     {
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
@@ -112,29 +137,17 @@ class PaymentController extends Controller
             return abort(403);
         }
 
-        if ($payment->paid()) {
-            flash('Deze betaling is al afgerond.', 'info');
-
-            return redirect(route('payment.show', $payment->id));
-        }
-
         $mollie_payment = Mollie::api()->payments()->get($payment->payment_id);
 
         if ($mollie_payment->isPaid()) {
-            $payment->update([
-                'status' => $mollie_payment->status,
-                'paid_at' => strtotime($mollie_payment->paidDatetime),
-            ]);
-
-            event(new PaymentCompleted($payment));
             flash('Betaling succesvol!', 'success');
 
-            return redirect(route('payment.show', $payment->id));
+            return redirect(route('payment.show', $id));
         }
 
-        flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoudt.', 'danger');
+        flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoudt.', 'warning');
 
-        return redirect(route('payment.show', $payment->id));
+        return redirect(route('payment.show', $id));
     }
 
     /**
