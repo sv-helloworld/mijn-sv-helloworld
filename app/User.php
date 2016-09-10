@@ -108,6 +108,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the payments of the user.
+     */
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
+
+    /**
+     * Get the refunds of the user.
+     */
+    public function refunds()
+    {
+        return $this->hasMany('App\Refund');
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token

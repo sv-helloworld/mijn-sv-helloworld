@@ -23,6 +23,7 @@ class MainMenu
 
             $menu->add('Lidmaatschap', ['route' => 'subscription.index']);
             $menu->lidmaatschap->prepend('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ');
+            $menu->lidmaatschap->add('Betalingen', ['route' => 'payment.index']);
 
             // Check if the user is authenticated
             if (Auth::check()) {

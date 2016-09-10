@@ -44,6 +44,24 @@ Route::group(['middleware' => ['auth']], function () {
                 ]);
             });
 
+            // Payments
+            Route::group(['prefix' => 'betaling', 'as' => 'payment.'], function () {
+                Route::get('/', [
+                    'uses' => 'PaymentController@index',
+                    'as' => 'index',
+                ]);
+
+                Route::get('{payment}', [
+                    'uses' => 'PaymentController@show',
+                    'as' => 'show',
+                ]);
+
+                Route::get('{payment}/betalen', [
+                    'uses' => 'PaymentController@pay',
+                    'as' => 'pay',
+                ]);
+            });
+
             // User management routes
             Route::patch('gebruikers/{user}/activeren', [
                 'uses' => 'UserController@activate',
