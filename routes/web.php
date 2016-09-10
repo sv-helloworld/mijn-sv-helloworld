@@ -104,9 +104,9 @@ Route::group(['middleware' => ['auth']], function () {
             'as' => 'pay',
         ]);
 
-        Route::get('{payment}/betaald', [
-            'uses' => 'PaymentController@paid',
-            'as' => 'paid',
+        Route::get('webhook/{payment}', [
+            'uses' => 'PaymentController@webhook',
+            'as' => 'webhook',
         ]);
     });
 

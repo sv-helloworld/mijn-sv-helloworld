@@ -88,7 +88,7 @@ class PaymentController extends Controller
         $mollie_payment = Mollie::api()->payments()->create([
             'amount'      => $payment->amount,
             'description' => $payment->description,
-            'redirectUrl' => route('payment.paid', $payment->id),
+            'redirectUrl' => route('payment.webhook', $payment->id),
             'metadata' => $metadata,
         ]);
 
@@ -98,18 +98,23 @@ class PaymentController extends Controller
     }
 
     /**
-     * Payment callback.
+     * Payment webhook.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function paid($id)
+    public function webhook($id)
     {
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
         if (! Gate::forUser($user)->allows('pay', $payment)) {
             return abort(403);
+        }
+
+        if ($payment->paid()) {
+            flash('Deze betaling is al afgerond.', 'info');
+            return redirect(route('payment.show', $payment->id));
         }
 
         $mollie_payment = Mollie::api()->payments()->get($payment->payment_id);
@@ -123,12 +128,12 @@ class PaymentController extends Controller
             event(new PaymentCompleted($payment));
             flash('Betaling succesvol!', 'success');
 
-            return view('payment.show', compact('payment'));
+            return redirect(route('payment.show', $payment->id));
         }
 
         flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoud.', 'danger');
 
-        return view('payment.show', compact('payment'));
+        return redirect(route('payment.show', $payment->id));
     }
 
     /**
