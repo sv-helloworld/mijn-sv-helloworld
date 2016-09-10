@@ -78,4 +78,12 @@ class Subscription extends Model
     {
         return ! is_null($this->declined_at);
     }
+
+    /**
+     * Get all of the subscriptions payments.
+     */
+    public function payments()
+    {
+        return $this->morphMany('App\Payment', 'payable');
+    }
 }

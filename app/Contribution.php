@@ -62,12 +62,4 @@ class Contribution extends Model
     {
         return $this->belongsTo('App\Period');
     }
-
-    /**
-     * Get all of the contributions payments.
-     */
-    public function payments()
-    {
-        return $this->morphMany('App\Payment', 'payable');
-    }
 }
