@@ -103,6 +103,11 @@ Route::group(['middleware' => ['auth']], function () {
             'uses' => 'PaymentController@pay',
             'as' => 'pay',
         ]);
+
+        Route::get('{payment}/betaald', [
+            'uses' => 'PaymentController@paid',
+            'as' => 'paid',
+        ]);
     });
 
     Route::group(['as' => 'account.'], function () {

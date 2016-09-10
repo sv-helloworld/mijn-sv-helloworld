@@ -32,16 +32,8 @@ class UpdateSubscriptionStatus
             return;
         }
 
-        $total = 0;
-
-        $payments = $subscription->payments->each(function ($payment) {
-            if ($payment->paid()) {
-                $total = +$payment->amount;
-            }
-        });
-
         // The total paid amount isn't equal to the contribution amount
-        if ($subscription->contribution->amount > $total) {
+        if ($subscription->contribution->amount != $event->payment->amount) {
             return;
         }
 
