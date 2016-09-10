@@ -206,6 +206,9 @@ class SubscriptionController extends Controller
             return redirect(route('subscription.manage'));
         }
 
+        // Fire 'SubscriptionApproved' event
+        event(new SubscriptionApproved($subscription));
+
         flash('De inschrijving kon niet worden goedgekeurd.', 'danger');
 
         return redirect(route('subscription.manage'));
