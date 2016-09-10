@@ -17,8 +17,6 @@ class Subscription extends Model
     protected $fillable = [
         'user_id',
         'contribution_id',
-        'canceled',
-        'canceled_at',
     ];
 
     /**
@@ -31,6 +29,7 @@ class Subscription extends Model
         'canceled_at',
         'approved_at',
         'declined_at',
+        'confirmed_at',
     ];
 
     /**
