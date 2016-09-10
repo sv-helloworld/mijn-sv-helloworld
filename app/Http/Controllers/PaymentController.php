@@ -132,7 +132,7 @@ class PaymentController extends Controller
             return redirect(route('payment.show', $payment->id));
         }
 
-        flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoud.', 'danger');
+        flash('De betaling is mislukt, probeer het opnieuw of neem contact met ons op als het probleem aanhoudt.', 'danger');
 
         return redirect(route('payment.show', $payment->id));
     }
