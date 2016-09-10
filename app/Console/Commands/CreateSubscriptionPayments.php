@@ -44,7 +44,7 @@ class CreateSubscriptionPayments extends Command
 
         if (count($subscriptions) < 1) {
             $this->info('No subscriptions found that don\'t have any payments yet.');
-            
+
             return 0;
         }
 
