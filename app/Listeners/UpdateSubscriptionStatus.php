@@ -33,7 +33,7 @@ class UpdateSubscriptionStatus
         }
 
         // The total paid amount isn't equal to the contribution amount
-        if ($subscription->contribution->amount != $event->payment->amount) {
+        if ($subscription->contribution->amount > $event->payment->amount) {
             return;
         }
 
