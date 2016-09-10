@@ -12,14 +12,14 @@ abstract class PaymentEvent
     public $user;
 
     /**
-     * The amount of the payment
+     * The amount of the payment.
      *
      * @var float
      */
     public $amount;
 
     /**
-     * The description of the payment
+     * The description of the payment.
      *
      * @var string
      */
