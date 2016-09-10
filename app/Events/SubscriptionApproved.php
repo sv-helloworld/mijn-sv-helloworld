@@ -30,7 +30,7 @@ class SubscriptionApproved extends PaymentEvent
         $this->subscription = $subscription;
         $this->user = $subscription->user;
         $this->amount = $subscription->contribution->amount;
-        $this->description = sprintf('Betaling contributie voor periode %s.', $subscription->contribution->period->name);
+        $this->description = sprintf('Contributie voor periode %s.', $subscription->contribution->period->name);
     }
 
     /**
