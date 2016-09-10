@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('back', url('payment'))
-@section('title', 'Details Betaling')
+@section('title', 'Details betaling')
 
 @section('content')
     <div class="row">
