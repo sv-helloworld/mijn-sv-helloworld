@@ -17,7 +17,7 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
         'uses' => 'IndexController@index',
         'as' => 'index',
     ]);
-    
+
     // Subscriptions
     Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
         Route::get('/', [
