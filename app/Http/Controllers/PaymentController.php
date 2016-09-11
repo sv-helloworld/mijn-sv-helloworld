@@ -140,7 +140,7 @@ class PaymentController extends Controller
         $mollie_payment = Mollie::api()->payments()->get($payment->payment_id);
 
         if ($mollie_payment->isPaid()) {
-            flash('Betaling succesvol!', 'success');
+            flash('Bedankt! Je betaling wordt zo snel mogelijk verwerkt.', 'success');
 
             return redirect(route('payment.show', $id));
         }
