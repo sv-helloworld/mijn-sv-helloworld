@@ -35,30 +35,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapWebRoutes();
-
         $this->mapAdminRoutes();
+
+        $this->mapWebRoutes();
 
         $this->mapApiRoutes();
 
         //
-    }
-
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
-    {
-        Route::group([
-            'middleware' => 'web',
-            'namespace' => $this->namespace,
-        ], function ($router) {
-            require base_path('routes/web.php');
-        });
     }
 
     /**
@@ -75,6 +58,23 @@ class RouteServiceProvider extends ServiceProvider
             'namespace' => $this->namespace,
         ], function ($router) {
             require base_path('routes/admin.php');
+        });
+    }
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
+    {
+        Route::group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/web.php');
         });
     }
 
