@@ -58,7 +58,7 @@ class AccountController extends Controller
 
         flash('Je gegevens zijn bijgewerkt!', 'success');
 
-        return redirect('account');
+        return redirect(route('account.index'));
     }
 
     /**

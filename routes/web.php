@@ -63,8 +63,10 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
             'as' => 'callback',
         ]);
     });
+});
 
-    // Account
+// Account routes
+Route::group(['middleware' => ['auth', 'account.profile.complete']], function () {
     Route::group(['as' => 'account.'], function () {
         // Account settings routes
         Route::get('account', [
