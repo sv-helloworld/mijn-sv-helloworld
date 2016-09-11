@@ -146,6 +146,8 @@ class PaymentController extends Controller
                 'paid_at' => strtotime($mollie_payment->paidDatetime),
             ]);
 
+            event(new PaymentCompleted($payment));
+
             flash('Bedankt! Je betaling is succesvol verwerkt.', 'success');
 
             return redirect(route('payment.show', $id));
