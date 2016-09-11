@@ -40,26 +40,16 @@ class SubscriptionController extends Controller
             return redirect(route('subscription.index'));
         }
 
-        // Retrieve the contribution
-        $contributions = $this->availableContributionsForUser($user, true);
+        // Check if there is already an subscription in the same period
+        $contributions = $this->availableContributionsForUser($user);
         $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
 
         if (! $contribution) {
-            return abort(404);
-        }
+            flash('Je kunt je niet inschrijven voor deze periode, mogelijk omdat je je al hebt ingeschreven.', 'info');
 
-        // Check if there is already an subscription
-        $subscription = Subscription::where([
-            'user_id' => $user->id,
-            'contribution_id' => $contribution->id,
-        ])->get();
-
-        if (! $subscription->isEmpty()) {
-            flash(sprintf('Je bent al ingeschreven!', $contribution->period->name), 'info');
-
-            return redirect(route('subscription.show', $subscription->first()->id));
+            return redirect(route('subscription.index'));
         }
 
         return view('subscription.create', compact('user', 'contribution'));
@@ -84,26 +74,16 @@ class SubscriptionController extends Controller
 
         $user = Auth::user();
 
-        // Retrieve the contribution
+        // Check if there is already an subscription in the same period
         $contributions = $this->availableContributionsForUser($user);
         $contribution = $contributions->whereHas('period', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })->first();
 
         if (! $contribution) {
-            return abort(404);
-        }
+            flash(sprintf('Je kunt je niet inschrijven voor deze periode, mogelijk omdat je je al hebt ingeschreven.', $contribution->period->name), 'info');
 
-        // Check if there is already an subscription
-        $subscription = Subscription::where([
-            'user_id' => $user->id,
-            'contribution_id' => $contribution->id,
-        ])->get();
-
-        if (! $subscription->isEmpty()) {
-            flash(sprintf('Inschrijving voor periode %s is niet gelukt omdat je al bent ingeschreven.', $contribution->period->name), 'danger');
-
-            return redirect(route('subscription.show', $subscription->first()->id));
+            return redirect(route('subscription.index'));
         }
 
         // Check succesful, add new subscription
