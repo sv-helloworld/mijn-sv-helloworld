@@ -86,8 +86,8 @@ class PaymentController extends Controller
         ];
 
         $mollie_payment = Mollie::api()->payments()->create([
-            'amount'      => $payment->amount,
-            'description' => $payment->description,
+            'amount' => $payment->amount,
+            'description' => sprintf('%s | Volgnummer: %d.', $payment->description, $payment->id),
             'redirectUrl' => route('payment.callback', $payment->id),
             'metadata' => $metadata,
         ]);
@@ -140,7 +140,15 @@ class PaymentController extends Controller
         $mollie_payment = Mollie::api()->payments()->get($payment->payment_id);
 
         if ($mollie_payment->isPaid()) {
-            flash('Betaling succesvol!', 'success');
+            $payment = Payment::findOrFail($mollie_payment->metadata->payment_id);
+            $payment->update([
+                'status' => $mollie_payment->status,
+                'paid_at' => strtotime($mollie_payment->paidDatetime),
+            ]);
+
+            event(new PaymentCompleted($payment));
+
+            flash('Bedankt! Je betaling is succesvol verwerkt.', 'success');
 
             return redirect(route('payment.show', $id));
         }

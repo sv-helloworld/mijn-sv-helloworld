@@ -20,7 +20,7 @@
                         </tr>
                         <tr>
                             <td>Bedrag</td>
-                            <td>{{ $payment->amount }}</td>
+                            <td>&euro; {{ $payment->amount }}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
