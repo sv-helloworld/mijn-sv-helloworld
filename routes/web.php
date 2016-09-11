@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', [
-    'uses' => 'IndexController@index',
-    'as' => 'index',
-]);
-
 // Protected group
 Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']], function () {
+    Route::get('/', [
+        'uses' => 'IndexController@index',
+        'as' => 'index',
+    ]);
+    
     // Subscriptions
     Route::group(['prefix' => 'inschrijving', 'as' => 'subscription.'], function () {
         Route::get('/', [
