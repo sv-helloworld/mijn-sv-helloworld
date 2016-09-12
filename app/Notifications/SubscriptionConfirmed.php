@@ -50,7 +50,7 @@ class SubscriptionConfirmed extends Notification
             ->subject('Bedankt voor je inschrijving!')
             ->line([
                 'Bedankt voor je inschrijving, je bent nu succesvol ingeschreven als lid van Studievereniging "Hello World".',
-                'Als lid van de studievereniging zul je, gedurende de gehele periode waarin de contributie geldig, is ',
+                'Als lid van de studievereniging zul je, gedurende de gehele periode waarin de contributie geldig is, ',
                 'korting krijgen op activiteiten die we gaan organiseren!',
             ])
             ->line('Klik op de knop hieronder om naar de details van je inschrijving te gaan:')
