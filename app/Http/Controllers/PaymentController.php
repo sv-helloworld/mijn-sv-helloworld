@@ -87,7 +87,7 @@ class PaymentController extends Controller
 
         $mollie_payment = Mollie::api()->payments()->create([
             'amount' => $payment->amount,
-            'description' => sprintf('%s | Volgnummer: %d.', $payment->description, $payment->id),
+            'description' => sprintf('Nr: %d - %s', $payment->id, $payment->description),
             'redirectUrl' => route('payment.callback', $payment->id),
             'metadata' => $metadata,
         ]);
