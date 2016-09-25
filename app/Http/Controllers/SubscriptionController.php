@@ -237,7 +237,7 @@ class SubscriptionController extends Controller
             })->all();
         }
 
-        $contributions = Contribution::where('user_category_alias', $user->user_category_alias)
+        $contributions = Contribution::where('contribution_category_alias', $user->user_category_alias)
             ->where([
                 ['available_from', '<=', date('Y-m-d H:i:s')],
                 ['available_to', '>', date('Y-m-d H:i:s')],
