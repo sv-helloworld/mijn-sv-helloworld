@@ -12,7 +12,7 @@ class UserCategoriesSeeder extends Seeder
     public function run()
     {
         DB::table('user_categories')->insert([
-            'title' => 'Normaal lid',
+            'title' => 'Lid',
             'alias' => 'lid',
             'mailchimp_interest_id' => '8f570f4705',
         ]);
