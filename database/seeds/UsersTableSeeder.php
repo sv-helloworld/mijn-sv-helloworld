@@ -44,6 +44,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('Lid123'),
             'account_type' => 'user',
             'user_category_alias' => 'lid',
+            'contribution_category_alias' => 'lid',
             'activated' => true,
             'verified' => true,
             'address' => 'Voorbeeldstraat 123',
