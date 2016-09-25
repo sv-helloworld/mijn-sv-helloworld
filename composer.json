@@ -9,7 +9,7 @@
         "laravel/framework": "5.3.*",
         "lavary/laravel-menu": "dev-master",
         "laracasts/flash": "^2.0",
-        "jrean/laravel-user-verification": "~3.0.5",
+        "jrean/laravel-user-verification": "^3.0",
         "laravelcollective/html": "^5.3-dev",
         "thomaswelton/laravel-gravatar": "~1.0",
         "caouecs/laravel-lang": "~3.0",

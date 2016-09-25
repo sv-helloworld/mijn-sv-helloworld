@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "22762d47382b4afc22c299ce5e55c766",
-    "content-hash": "418ba423b167f5e7b0ef0cb5a2f5ccd5",
+    "hash": "38a1d0a3e38e62cf65681ed5b2f54748",
+    "content-hash": "1073bf3ffc23091f1980ca5837c67547",
     "packages": [
         {
             "name": "caouecs/laravel-lang",
