@@ -38,6 +38,7 @@ $factory->defineAs(App\User::class, 'member', function (Faker\Generator $faker) 
 
     return array_merge($user, [
         'user_category_alias' => 'lid',
+        'contribution_category_alias' => 'lid',
     ]);
 });
 
@@ -55,8 +56,8 @@ $factory->define(App\Contribution::class, function (Faker\Generator $faker) {
         'amount' => $faker->randomFloat(2, 18, 20),
         'available_from' => $faker->dateTimeBetween('-1 week', 'now'),
         'available_to' => $faker->dateTimeBetween('now', '+1 year'),
-        'user_category_alias' => function () {
-            return factory(App\User::class, 'member')->create()->user_category_alias;
+        'contribution_category_alias' => function () {
+            return factory(App\User::class, 'member')->create()->contribution_category_alias;
         },
         'period_id' => function () {
             return factory(App\Period::class)->create()->id;

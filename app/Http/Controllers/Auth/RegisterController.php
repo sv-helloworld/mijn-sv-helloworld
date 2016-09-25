@@ -105,6 +105,7 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'password' => bcrypt($data['password']),
             'user_category_alias' => 'lid',
+            'contribution_category_alias' => 'lid',
         ]);
 
         // Fire 'UserCreatedOrChanged' event

@@ -18,7 +18,7 @@ class Contribution extends Model
         'amount',
         'available_from',
         'available_to',
-        'user_category_alias',
+        'contribution_category_alias',
         'period_id',
         'is_early_bird',
     ];
@@ -44,13 +44,13 @@ class Contribution extends Model
     ];
 
     /**
-     * Returns the user category associated with the contribution.
+     * Returns the contribution category associated with the contribution.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function user_category()
+    public function contribution_category()
     {
-        return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
+        return $this->hasOne('App\ContributionCategory', 'alias', 'contribution_category_alias');
     }
 
     /**

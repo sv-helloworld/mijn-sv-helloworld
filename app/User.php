@@ -21,6 +21,7 @@ class User extends Authenticatable
         'password',
         'account_type',
         'user_category_alias',
+        'contribution_category_alias' => 'lid',
         'activated',
         'verified',
         'first_name',
@@ -97,6 +98,16 @@ class User extends Authenticatable
     public function user_category()
     {
         return $this->hasOne('App\UserCategory', 'alias', 'user_category_alias');
+    }
+
+    /**
+     * Returns the contribution category associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function contribution_category()
+    {
+        return $this->hasOne('App\ContributionCategory', 'alias', 'contribution_category_alias');
     }
 
     /**
