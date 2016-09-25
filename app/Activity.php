@@ -36,7 +36,7 @@ class Activity extends Model
     ];
 
     /**
-     * Gets the prices that belong to the activity
+     * Gets the prices that belong to the activity.
      */
     public function prices()
     {
