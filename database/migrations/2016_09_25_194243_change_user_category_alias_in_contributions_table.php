@@ -17,7 +17,7 @@ class ChangeUserCategoryAliasInContributionsTable extends Migration
             $table->renameColumn('user_category_alias', 'contribution_category_alias');
         });
 
-        Artisan::call('db:seed', array('--class' => 'ContributionCategoriesSeeder'));
+        Artisan::call('db:seed', ['--class' => 'ContributionCategoriesSeeder']);
     }
 
     /**
