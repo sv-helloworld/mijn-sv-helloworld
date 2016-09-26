@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeUserCategoryAliasInContributionsTable extends Migration
+class AddUserCategoryAliasToContributionCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class ChangeUserCategoryAliasInContributionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('contributions', function (Blueprint $table) {
-            $table->renameColumn('user_category_alias', 'contribution_category_alias');
+        Schema::table('contribution_categories', function (Blueprint $table) {
+            $table->string('user_category_alias')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class ChangeUserCategoryAliasInContributionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('contributions', function (Blueprint $table) {
-            $table->renameColumn('contribution_category_alias', 'user_category_alias');
+        Schema::table('contribution_categories', function (Blueprint $table) {
+            $table->dropColumn('user_category_alias');
         });
     }
 }
