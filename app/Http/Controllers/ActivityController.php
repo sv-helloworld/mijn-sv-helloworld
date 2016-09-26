@@ -106,7 +106,7 @@ class ActivityController extends Controller
             return back()->withInput();
         }
 
-        if($activity_entry->amount > 0) {
+        if ($activity_entry->amount > 0) {
             flash(sprintf('Je hebt je succesvol aangemeld voor de activiteit \'%s\', je ontvangt binnenkort een mail met betalingsinstructies.', $activity->title), 'success');
 
             // Fire 'UserAppliedForActivity' event
