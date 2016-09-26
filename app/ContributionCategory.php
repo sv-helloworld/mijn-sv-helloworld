@@ -16,7 +16,7 @@ class ContributionCategory extends Model
     /**
      * Set whether the primary key is incrementing.
      *
-     * @var boolean
+     * @var bool
      */
     public $incrementing = false;
 
