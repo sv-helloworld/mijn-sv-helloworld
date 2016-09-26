@@ -10,10 +10,10 @@ class ActivityEntry extends Model
     use SoftDeletes;
 
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
       'user_id',
       'activity_id',
@@ -39,10 +39,10 @@ class ActivityEntry extends Model
     }
 
     /**
-    * Returns the activity the entry belongs to.
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\HasOne
-    */
+     * Returns the activity the entry belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function activity()
     {
         return $this->belongsTo('App\Activity');
