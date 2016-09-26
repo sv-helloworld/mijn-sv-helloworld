@@ -1,5 +1,6 @@
 <?php
 
+use App\UserCategory;
 use Illuminate\Database\Seeder;
 
 class UserCategoriesSeeder extends Seeder
@@ -11,13 +12,18 @@ class UserCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_categories')->insert([
+        UserCategory::firstOrCreate([
             'title' => 'Lid',
             'alias' => 'lid',
             'mailchimp_interest_id' => '8f570f4705',
         ]);
 
-        DB::table('user_categories')->insert([
+        UserCategory::firstOrCreate([
+            'title' => 'Geen lid',
+            'alias' => 'geen-lid',
+        ]);
+
+        UserCategory::firstOrCreate([
             'title' => 'Donateur',
             'alias' => 'donateur',
             'mailchimp_interest_id' => 'f4125631e0',
