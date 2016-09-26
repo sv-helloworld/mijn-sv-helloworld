@@ -41,6 +41,29 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
         ]);
     });
 
+    // Activities
+    Route::group(['prefix' => 'activiteit', 'as' => 'activity.'], function () {
+        Route::get('/', [
+            'uses' => 'ActivityController@index',
+            'as' => 'index',
+        ]);
+
+        Route::get('aanmelden/{slug}', [
+            'uses' => 'ActivityController@create',
+            'as' => 'create',
+        ]);
+
+        Route::post('aanmelden/{slug}', [
+            'uses' => 'ActivityController@store',
+            'as' => 'store',
+        ]);
+
+        Route::get('{id}', [
+            'uses' => 'ActivityController@show',
+            'as' => 'show',
+        ]);
+    });
+
     // Payments
     Route::group(['prefix' => 'betaling', 'as' => 'payment.'], function () {
         Route::get('/', [

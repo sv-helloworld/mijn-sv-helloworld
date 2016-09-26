@@ -26,7 +26,12 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\CreateSubscriptionPayment',
         ],
 
+        'App\Events\UserAppliedForActivity' => [
+            'App\Listeners\CreateActivityEntryPayment',
+        ],
+
         'App\Events\PaymentCompleted' => [
+            'App\Listeners\UpdateActivityEntryStatus',
             'App\Listeners\UpdateSubscriptionStatus',
         ],
     ];

@@ -1,0 +1,48 @@
+@extends('layouts.master')
+@section('title', 'Details activiteit')
+
+@section('content')
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{ $activity->title }}</h2>
+        <p>
+            {{ $activity->description }}
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th colspan="2">Details over de activiteit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Datum en tijd</td>
+                        <td>
+                            @datetime($activity->starts_at) t/m @datetime($activity->ends_at)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aanmeldperiode</td>
+                        <td>
+                            @date($activity->apply_after) t/m @date($activity->apply_before)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prijs</td>
+                        @if($activity_price->amount > 0)
+                            <td>&euro;{{ $activity_price->amount }}</td>
+                        @else
+                            <td>Gratis</td>
+                        @endif
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="{{ route('activity.index') }}" class="btn btn-primary">Terug naar overzicht</a>
+        @unless($activity_entry)
+            <a href="{{ route('activity.create', $activity->id) }}" class="btn btn-success">Aanmelden</a>
+        @endunless
+    </div>
+</div>
+@endsection

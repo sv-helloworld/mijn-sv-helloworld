@@ -24,6 +24,9 @@ class MainMenu
             $menu->add('Lidmaatschap', ['route' => 'subscription.index']);
             $menu->lidmaatschap->prepend('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ');
 
+            $menu->add('Activiteiten', ['route' => 'activity.index']);
+            $menu->activiteiten->prepend('<i class="fa fa-bus" aria-hidden="true"></i> ');
+
             $menu->add('Betalingen', ['route' => 'payment.index']);
             $menu->betalingen->prepend('<i class="fa fa-money" aria-hidden="true"></i> ');
 

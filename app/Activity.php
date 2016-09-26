@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Activity extends Model
 {
@@ -40,6 +41,6 @@ class Activity extends Model
      */
     public function prices()
     {
-        $this->hasMany('App\ActivityPrice');
+        return $this->hasMany('App\ActivityPrice');
     }
 }
