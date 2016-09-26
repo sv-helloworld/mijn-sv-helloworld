@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::firstOrCreate([
             'first_name' => 'Voorbeeld',
             'last_name' => 'Admin',
             'email' => 'admin@hz.nl',
@@ -24,7 +25,7 @@ class UsersTableSeeder extends Seeder
             'city' => 'Voorbeeldstad',
         ]);
 
-        DB::table('users')->insert([
+        User::firstOrCreate([
             'first_name' => 'Voorbeeld',
             'last_name' => 'Gebruiker',
             'email' => 'gebruiker@hz.nl',
@@ -37,7 +38,7 @@ class UsersTableSeeder extends Seeder
             'city' => 'Voorbeeldstad',
         ]);
 
-        DB::table('users')->insert([
+        User::firstOrCreate([
             'first_name' => 'Voorbeeld',
             'last_name' => 'Lid',
             'email' => 'lid@hz.nl',

@@ -89,6 +89,20 @@ class Subscription extends Model
     }
 
     /**
+     * Returns true if the subscription is valid.
+     *
+     * @return bool True if the subscription is valid.
+     */
+    public function valid()
+    {
+        $now = new \DateTime();
+        $start_date = $this->contribution->period->start_date;
+        $end_date = $this->contribution->period->end_date;
+
+        return $now >= $start_date && $now < $end_date;
+    }
+
+    /**
      * Get all of the subscriptions payments.
      */
     public function payments()

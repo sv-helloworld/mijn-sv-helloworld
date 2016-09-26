@@ -1,5 +1,6 @@
 <?php
 
+use App\ContributionCategory;
 use Illuminate\Database\Seeder;
 
 class ContributionCategoriesSeeder extends Seeder
@@ -11,14 +12,16 @@ class ContributionCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('contribution_categories')->insert([
+        ContributionCategory::firstOrCreate([
             'title' => 'Lid',
             'alias' => 'lid',
+            'user_category_alias' => 'lid',
         ]);
 
-        DB::table('contribution_categories')->insert([
+        ContributionCategory::firstOrCreate([
             'title' => 'Donateur',
             'alias' => 'donateur',
+            'user_category_alias' => 'lid',
         ]);
     }
 }
