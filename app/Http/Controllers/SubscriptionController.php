@@ -107,7 +107,8 @@ class SubscriptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
