@@ -61,11 +61,7 @@ class User extends Authenticatable
      */
     public function full_name()
     {
-        return implode(' ', [
-            $this->first_name,
-            $this->name_prefix,
-            $this->last_name,
-        ]);
+        return $this->first_name.($this->name_prefix ? ' '.$this->name_prefix : '').' '.$this->last_name;
     }
 
     /**

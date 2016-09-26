@@ -6,8 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContributionCategory extends Model
 {
+    /**
+     * The primary key to use for this model.
+     *
+     * @var string
+     */
+    public $primaryKey = 'alias';
+
+    /**
+     * Set whether the primary key is incrementing.
+     *
+     * @var bool
+     */
     public $incrementing = false;
-    protected $primaryKey = 'alias';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 
     /**
      * The database table used by the model.
@@ -24,5 +42,6 @@ class ContributionCategory extends Model
     protected $fillable = [
         'title',
         'alias',
+        'user_category_alias',
     ];
 }
