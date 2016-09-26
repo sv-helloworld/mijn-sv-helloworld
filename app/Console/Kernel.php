@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\CreateSubscriptionPayments::class,
         Commands\ResetAllPasswords::class,
+        Commands\UpdateUserSubscriptions::class,
     ];
 
     /**
