@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\ActivityEntry;
 use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
+use App\Notifications\ActivityEntryConfirmed;
 
 class ActivityController extends Controller
 {
@@ -113,7 +114,6 @@ class ActivityController extends Controller
             'activity_id' => $activity->id,
             'amount' => $activity_price->amount,
             'notes' => $request->notes,
-            'confirmed_at' => time(),
         ]);
 
         // Check if the subscription is created
@@ -131,6 +131,12 @@ class ActivityController extends Controller
 
             return redirect(route('activity.show', $activity->id));
         }
+
+        $activity_entry->confirmed_at = time();
+        $activity_entry->save();
+
+        // Send notification to user
+        $event->payment->user->notify(new ActivityEntryConfirmed($activity_entry->id, $activity_entry->activity->title));
 
         flash(sprintf('Je hebt je succesvol aangemeld voor de activiteit \'%s\'.', $activity->title), 'success');
 
