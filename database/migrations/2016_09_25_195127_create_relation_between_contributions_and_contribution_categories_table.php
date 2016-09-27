@@ -13,6 +13,8 @@ class CreateRelationBetweenContributionsAndContributionCategoriesTable extends M
      */
     public function up()
     {
+        Artisan::call('db:seed', ['--class' => 'ContributionCategoriesSeeder']);
+
         Schema::table('contributions', function (Blueprint $table) {
             $table->foreign('contribution_category_alias')->references('alias')->on('contribution_categories');
         });
