@@ -79,6 +79,13 @@
 
             <hr>
 
+            <div class="form-group">
+                {!! Form::label('notes', 'Opmerkingen', ['class' => 'col-sm-4 control-label']) !!}
+                <div class="col-sm-8">
+                    {!! Form::textarea('notes', null, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+
             <div class="form-group {{ $errors->has('accept') ? 'has-error' : ''}}">
                 <div class="col-sm-offset-4 col-sm-8">
                     <div class="checkbox">

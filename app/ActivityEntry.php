@@ -18,6 +18,7 @@ class ActivityEntry extends Model
       'user_id',
       'activity_id',
       'amount',
+      'notes',
     ];
 
     /**

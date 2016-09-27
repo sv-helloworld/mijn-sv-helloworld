@@ -20,8 +20,9 @@ class CreateActivityEntriesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('activity_id')->unsigned();
             $table->decimal('amount', 6, 2);
+            $table->text('notes')->nullable();
 
-            // Foreign keys
+            // Foreign keys 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('activity_id')->references('id')->on('activities');
 

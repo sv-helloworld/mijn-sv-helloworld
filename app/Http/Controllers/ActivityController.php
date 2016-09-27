@@ -70,10 +70,12 @@ class ActivityController extends Controller
     {
         $messages = [
             'accept.required' => 'Je dient akkoord te gaan met de voorwaarden.',
+            'notes.string' => 'Vul een geldige opmerking in.'
         ];
 
         $this->validate($request, [
             'accept' => 'required|boolean',
+            'notes' => 'string|nullable',
         ], $messages);
 
         $user = Auth::user();
@@ -97,6 +99,7 @@ class ActivityController extends Controller
             'user_id' => $user->id,
             'activity_id' => $activity->id,
             'amount' => $activity_price->amount,
+            'notes' => $request->notes,
         ]);
 
         // Check if the subscription is created
