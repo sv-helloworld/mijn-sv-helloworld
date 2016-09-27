@@ -51,10 +51,16 @@ class ActivityController extends Controller
         if ($activity_entry) {
             flash('Je kunt je niet aanmelden voor deze activiteit, mogelijk omdat je je al hebt aangemeld.', 'info');
 
-            return redirect(route('activity.index'));
+            return redirect(route('activity.show', $activity->id));
         }
 
         $activity_price = $activity->prices()->where('user_category_alias', $user->user_category_alias)->first();
+
+        if (! $activity_price) {
+            flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
+
+            return redirect(route('activity.show', $activity->id));
+        }
 
         return view('activity.create', compact('user', 'activity', 'activity_price'));
     }
@@ -90,11 +96,18 @@ class ActivityController extends Controller
         if ($activity_entry) {
             flash('Je kunt je niet aanmelden voor deze activiteit, mogelijk omdat je je al hebt aangemeld.', 'info');
 
-            return redirect(route('activity.index'));
+            return redirect(route('activity.show', $activity->id));
         }
 
         // Check succesful, add new activity entry
         $activity_price = $activity->prices()->where('user_category_alias', $user->user_category_alias)->first();
+
+        if (! $activity_price) {
+            flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
+
+            return redirect(route('activity.show', $activity->id));
+        }
+
         $activity_entry = ActivityEntry::create([
             'user_id' => $user->id,
             'activity_id' => $activity->id,

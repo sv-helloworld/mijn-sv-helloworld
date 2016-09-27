@@ -30,10 +30,14 @@
                     </tr>
                     <tr>
                         <td>Prijs</td>
-                        @if($activity_price->amount > 0)
-                            <td>&euro;{{ $activity_price->amount }}</td>
+                        @if($activity_price)
+                            @if($activity_price->amount > 0)
+                                <td>&euro;{{ $activity_price->amount }}</td>
+                            @else
+                                <td>Gratis</td>
+                            @endif
                         @else
-                            <td>Gratis</td>
+                            <td>Onbekend</td>
                         @endif
                     </tr>
                 </tbody>
