@@ -99,7 +99,7 @@ class Subscription extends Model
         $start_date = $this->contribution->period->start_date;
         $end_date = $this->contribution->period->end_date;
 
-        return $now >= $start_date && $now < $end_date;
+        return $now >= $start_date && $now < $end_date && $this->confirmed();
     }
 
     /**
