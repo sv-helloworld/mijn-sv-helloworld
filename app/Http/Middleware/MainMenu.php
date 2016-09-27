@@ -19,7 +19,7 @@ class MainMenu
     public function handle($request, Closure $next, $guard = null)
     {
         Menu::make('menu', function ($menu) {
-            $menu->add('Home', ['route' => 'index']);
+            //$menu->add('Home', ['route' => 'index']);
 
             $menu->add('Lidmaatschap', ['route' => 'subscription.index']);
             $menu->lidmaatschap->prepend('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ');
