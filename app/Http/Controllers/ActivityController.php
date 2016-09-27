@@ -110,6 +110,7 @@ class ActivityController extends Controller
             'user_id' => $user->id,
             'activity_id' => $activity->id,
             'amount' => $activity_price->amount,
+            'confirmed_at' => time(),
         ]);
 
         // Check if the subscription is created

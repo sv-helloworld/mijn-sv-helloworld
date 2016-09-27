@@ -40,6 +40,22 @@
                             <td>Onbekend</td>
                         @endif
                     </tr>
+                    @if($activity_entry)
+                        <tr>
+                            <td>Status aanmelding</td>
+                            <td>
+                                @if ($activity_entry->confirmed())
+                                    <span class="label label-success">Ingeschreven</span>
+                                @else
+                                    <span class="label label-info">Aanmelding nog niet bevestigd</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ingeschreven op</td>
+                            <td>@datetime($activity_entry->created_at)</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

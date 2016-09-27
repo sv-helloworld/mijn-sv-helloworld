@@ -18,6 +18,7 @@ class ActivityEntry extends Model
       'user_id',
       'activity_id',
       'amount',
+      'confirmed_at',
     ];
 
     /**
@@ -36,6 +37,16 @@ class ActivityEntry extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Returns true if the subscription is confirmed.
+     *
+     * @return bool True if the subscription is confirmed.
+     */
+    public function confirmed()
+    {
+        return ! is_null($this->confirmed_at);
     }
 
     /**

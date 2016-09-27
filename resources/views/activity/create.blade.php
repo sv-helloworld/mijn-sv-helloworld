@@ -83,7 +83,12 @@
                 <div class="col-sm-offset-4 col-sm-8">
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('accept', '1', false) !!} Ik bevestig hiermee mijn aanmelding en ga akkoord met de betaling van de kosten voor bovenstaande activiteit.
+                            {!! Form::checkbox('accept', '1', false) !!}
+                            @if($activity_price->amount > 0)
+                                Ik bevestig hiermee mijn aanmelding en ga akkoord met de betaling van de kosten voor de bovenstaande activiteit.
+                            @else
+                                Ik bevestig hiermee mijn aanmelding voor de bovenstaande activiteit.
+                            @endif
                         </label>
                     </div>
 
