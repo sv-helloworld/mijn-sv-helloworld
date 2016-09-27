@@ -22,7 +22,7 @@ class CreateActivityEntriesTable extends Migration
             $table->decimal('amount', 6, 2);
             $table->text('notes')->nullable();
 
-            // Foreign keys 
+            // Foreign keys
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('activity_id')->references('id')->on('activities');
 

@@ -76,7 +76,7 @@ class ActivityController extends Controller
     {
         $messages = [
             'accept.required' => 'Je dient akkoord te gaan met de voorwaarden.',
-            'notes.string' => 'Vul een geldige opmerking in.'
+            'notes.string' => 'Vul een geldige opmerking in.',
         ];
 
         $this->validate($request, [
