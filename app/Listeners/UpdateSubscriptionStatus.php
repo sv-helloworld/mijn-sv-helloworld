@@ -39,6 +39,10 @@ class UpdateSubscriptionStatus
 
         $subscription->confirmed_at = time();
 
+        // Set user category
+        $event->payment->user->user_category_alias = $subscription->contribution->contribution_category->user_category_alias;
+        $event->payment->user->save();
+
         if ($subscription->touch()) {
             // Send notification to user
             $event->payment->user->notify(new SubscriptionConfirmed($subscription->id));
