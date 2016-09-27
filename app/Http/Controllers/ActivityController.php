@@ -136,7 +136,7 @@ class ActivityController extends Controller
         $activity_entry->save();
 
         // Send notification to user
-        $event->payment->user->notify(new ActivityEntryConfirmed($activity_entry->id, $activity_entry->activity->title));
+        $user->notify(new ActivityEntryConfirmed($activity_entry->id, $activity_entry->activity->title));
 
         flash(sprintf('Je hebt je succesvol aangemeld voor de activiteit \'%s\'.', $activity->title), 'success');
 
