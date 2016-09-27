@@ -16,9 +16,6 @@ class CreateRelationBetweenContributionCategoriesAndUserCategoriesTable extends 
         Schema::table('contribution_categories', function (Blueprint $table) {
             $table->foreign('user_category_alias')->references('alias')->on('user_categories');
         });
-
-        Artisan::call('db:seed', ['--class' => 'UserCategoriesSeeder']);
-        Artisan::call('db:seed', ['--class' => 'ContributionCategoriesSeeder']);
     }
 
     /**

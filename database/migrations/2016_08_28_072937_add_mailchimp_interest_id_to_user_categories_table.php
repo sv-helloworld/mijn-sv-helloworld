@@ -16,6 +16,8 @@ class AddMailchimpInterestIdToUserCategoriesTable extends Migration
         Schema::table('user_categories', function (Blueprint $table) {
             $table->string('mailchimp_interest_id', 10)->nullable();
         });
+
+        Artisan::call('db:seed', ['--class' => 'UserCategoriesSeeder']);
     }
 
     /**
