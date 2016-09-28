@@ -21,7 +21,7 @@ class User extends Authenticatable
         'password',
         'account_type',
         'user_category_alias',
-        'contribution_category_alias' => 'lid',
+        'contribution_category_alias',
         'activated',
         'verified',
         'first_name',
