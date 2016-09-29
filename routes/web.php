@@ -44,22 +44,22 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
     // Activities
     Route::group(['prefix' => 'activiteit', 'as' => 'activity.'], function () {
         Route::get('/', [
-            'uses' => 'ActivityController@index',
+            'uses' => 'ActivityEntryController@index',
             'as' => 'index',
         ]);
 
-        Route::get('aanmelden/{slug}', [
-            'uses' => 'ActivityController@create',
+        Route::get('aanmelden/{id}', [
+            'uses' => 'ActivityEntryController@create',
             'as' => 'create',
         ]);
 
-        Route::post('aanmelden/{slug}', [
-            'uses' => 'ActivityController@store',
+        Route::post('aanmelden/{id}', [
+            'uses' => 'ActivityEntryController@store',
             'as' => 'store',
         ]);
 
         Route::get('{id}', [
-            'uses' => 'ActivityController@show',
+            'uses' => 'ActivityEntryController@show',
             'as' => 'show',
         ]);
     });

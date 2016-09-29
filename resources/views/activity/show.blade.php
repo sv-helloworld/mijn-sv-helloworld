@@ -45,9 +45,9 @@
                             <td>Status aanmelding</td>
                             <td>
                                 @if ($activity_entry->confirmed())
-                                    <span class="label label-success">Ingeschreven</span>
+                                    <span class="label label-success">Aangemeld</span>
                                 @else
-                                    <span class="label label-info">Aanmelding nog niet bevestigd</span>
+                                    <span class="label label-info">Nog niet bevestigd</span>
                                 @endif
                             </td>
                         </tr>
