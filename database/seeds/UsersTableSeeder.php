@@ -54,11 +54,11 @@ class UsersTableSeeder extends Seeder
         ]);
 
         factory(App\User::class, 'member', 2)->create()->each(function ($u) {
-            $u->subscriptions()->save(factory(App\Subscription::class)->make());
+            $u->subscriptions()->save(factory(App\Subscription::class)->create());
         });
 
         factory(App\User::class, 'member', 2)->create()->each(function ($u) {
-            $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
+            $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->create());
         });
     }
 }
