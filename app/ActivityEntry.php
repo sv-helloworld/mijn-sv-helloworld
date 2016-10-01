@@ -17,7 +17,7 @@ class ActivityEntry extends Model
     protected $fillable = [
       'user_id',
       'activity_id',
-      'amount',
+      'activity_price_id',
       'notes',
     ];
 
@@ -40,6 +40,14 @@ class ActivityEntry extends Model
     }
 
     /**
+     * Get the activity price that belongs to the entry.
+     */
+    public function activity_price()
+    {
+        return $this->belongsTo('App\ActivityPrice');
+    }
+
+    /**
      * Returns true if the subscription is confirmed.
      *
      * @return bool True if the subscription is confirmed.
@@ -51,8 +59,6 @@ class ActivityEntry extends Model
 
     /**
      * Returns the activity the entry belongs to.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function activity()
     {

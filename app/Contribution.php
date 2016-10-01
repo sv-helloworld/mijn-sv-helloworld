@@ -45,8 +45,6 @@ class Contribution extends Model
 
     /**
      * Returns the contribution category associated with the contribution.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function contribution_category()
     {
@@ -55,8 +53,6 @@ class Contribution extends Model
 
     /**
      * Returns the period of the contribution.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function period()
     {

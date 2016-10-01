@@ -94,3 +94,36 @@ $factory->defineAs(App\Subscription::class, 'early_bird', function (Faker\Genera
         },
     ]);
 });
+
+$factory->define(App\Activity::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->word,
+        'description' => $faker->sentence(10),
+        'apply_from' => $faker->dateTimeBetween('-1 week', 'now'),
+        'apply_before' => $faker->dateTimeBetween('+1 weeks', '+2 weeks'),
+        'starts_at' => $faker->dateTimeBetween('+3 weeks', '+4 weeks'),
+        'ends_at' => $faker->dateTimeBetween('+5 weeks', '+6 weeks'),
+    ];
+});
+
+$factory->define(App\ActivityPrice::class, function (Faker\Generator $faker) {
+    return [
+        'activity_id' => function () {
+            return factory(App\Activity::class)->create()->id;
+        },
+        'user_category_alias' => 'lid',
+        'amount' => $faker->randomFloat(2, 1, 5),
+    ];
+});
+
+$factory->define(App\ActivityEntry::class, function (Faker\Generator $faker) {
+    $activity_price = factory(App\ActivityPrice::class)->create();
+
+    return [
+        'user_id' => function () {
+            return factory(App\User::class, 'member')->create()->id;
+        },
+        'activity_id' => $activity_price->activity->id,
+        'activity_price_id' => $activity_price->id,
+    ];
+});

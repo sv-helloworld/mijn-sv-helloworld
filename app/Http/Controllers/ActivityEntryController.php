@@ -21,8 +21,8 @@ class ActivityEntryController extends Controller
     public function index()
     {
         $activities = Activity::where([
+            ['apply_from', '<=', Carbon::today()],
             ['apply_before', '>=', Carbon::today()],
-            ['apply_after', '<=', Carbon::today()],
         ])->get();
 
         return view('activity.index', compact('activities'));
@@ -55,7 +55,9 @@ class ActivityEntryController extends Controller
             return redirect(route('activity.show', $activity->id));
         }
 
-        $activity_price = $activity->prices()->where('user_category_alias', $user->user_category_alias)->first();
+        $activity_price = $activity->prices()
+            ->where('user_category_alias', $user->user_category_alias)
+            ->first();
 
         if (! $activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
@@ -89,19 +91,23 @@ class ActivityEntryController extends Controller
 
         // Get the activity information
         $activity = Activity::findOrFail($id);
+
+        // Check if the user already has
         $activity_entry = ActivityEntry::where([
             ['user_id', $user->id],
             ['activity_id', $activity->id],
         ])->first();
 
         if ($activity_entry) {
-            flash('Je kunt je niet aanmelden voor deze activiteit, mogelijk omdat je je al hebt aangemeld.', 'info');
+            flash('Je kunt je niet aanmelden voor deze activiteit, omdat je je al hebt aangemeld.', 'info');
 
             return redirect(route('activity.show', $activity->id));
         }
 
         // Check succesful, add new activity entry
-        $activity_price = $activity->prices()->where('user_category_alias', $user->user_category_alias)->first();
+        $activity_price = $activity->prices()
+            ->where('user_category_alias', $user->user_category_alias)
+            ->first();
 
         if (! $activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
@@ -112,18 +118,18 @@ class ActivityEntryController extends Controller
         $activity_entry = ActivityEntry::create([
             'user_id' => $user->id,
             'activity_id' => $activity->id,
-            'amount' => $activity_price->amount,
+            'activity_price_id' => $activity_price->id,
             'notes' => $request->notes,
         ]);
 
-        // Check if the subscription is created
+        // Check if the activity entry is created
         if (! $activity_entry) {
             flash(sprintf('Aanmelden voor de activiteit \'%s\' is niet gelukt. Probeer het alstublieft opnieuw.', $activity->title), 'danger');
 
             return back()->withInput();
         }
 
-        if ($activity_entry->amount > 0) {
+        if ($activity_price->amount > 0) {
             flash(sprintf('Je hebt je succesvol aangemeld voor de activiteit \'%s\', je ontvangt binnenkort een mail met betalingsinstructies.', $activity->title), 'success');
 
             // Fire 'UserAppliedForActivity' event
@@ -157,7 +163,10 @@ class ActivityEntryController extends Controller
             ['user_id', $user->id],
             ['activity_id', $activity->id],
         ])->first();
-        $activity_price = $activity->prices()->where('user_category_alias', $user->user_category_alias)->first();
+
+        $activity_price = $activity->prices()
+            ->where('user_category_alias', $user->user_category_alias)
+            ->first();
 
         return view('activity.show', compact('activity', 'activity_entry', 'activity_price'));
     }

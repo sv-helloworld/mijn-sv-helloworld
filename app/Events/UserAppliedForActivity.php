@@ -50,7 +50,7 @@ class UserAppliedForActivity
     {
         $this->activity_entry = $activity_entry;
         $this->user = $activity_entry->user;
-        $this->amount = $activity_entry->amount;
+        $this->amount = $activity_entry->activity_price->amount;
         $this->description = sprintf('Kosten activiteit: %s.', $activity_entry->activity->title);
     }
 

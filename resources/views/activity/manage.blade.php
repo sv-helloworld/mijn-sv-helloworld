@@ -25,7 +25,7 @@
                                 @datetime($activity->starts_at) t/m @datetime($activity->ends_at)
                             </td>
                             <td>
-                                @date($activity->apply_after) t/m @date($activity->apply_before)
+                                @date($activity->apply_from) t/m @date($activity->apply_before)
                             </td>
                             <td>
                                 <a href="{{ route('activity.entries', $activity->id) }}" class="btn btn-primary btn-xs">Bekijken</a>

@@ -16,6 +16,7 @@ class TestingDatabaseSeeder extends Seeder
 
         $this->call(UserCategoriesSeeder::class);
         $this->call(SubscriptionsTableSeeder::class);
+        $this->call(ActivityEntriesTableSeeder::class);
 
         Model::reguard();
     }
