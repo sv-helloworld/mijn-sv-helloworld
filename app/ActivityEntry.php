@@ -17,7 +17,7 @@ class ActivityEntry extends Model
     protected $fillable = [
       'user_id',
       'activity_id',
-      'amount',
+      'activity_price_id',
       'notes',
     ];
 
