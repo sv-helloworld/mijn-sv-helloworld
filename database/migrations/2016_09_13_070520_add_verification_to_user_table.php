@@ -4,7 +4,6 @@
  *
  * (c) Jean Ragouin <go@askjong.com> <www.askjong.com>
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
