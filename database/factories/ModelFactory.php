@@ -99,7 +99,7 @@ $factory->define(App\Activity::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->word,
         'description' => $faker->sentence(10),
-        'apply_after' => $faker->dateTimeBetween('now', '+1 week'),
+        'apply_after' => $faker->dateTimeBetween('-1 week', 'now'),
         'apply_before' => $faker->dateTimeBetween('+1 weeks', '+2 weeks'),
         'starts_at' => $faker->dateTimeBetween('+3 weeks', '+4 weeks'),
         'ends_at' => $faker->dateTimeBetween('+5 weeks', '+6 weeks'),
