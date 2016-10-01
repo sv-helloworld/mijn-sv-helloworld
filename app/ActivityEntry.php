@@ -40,6 +40,14 @@ class ActivityEntry extends Model
     }
 
     /**
+     * Get the activity price that belongs to the entry.
+     */
+    public function activity_price()
+    {
+        return $this->belongsTo('App\ActivityPrice');
+    }
+
+    /**
      * Returns true if the subscription is confirmed.
      *
      * @return bool True if the subscription is confirmed.
