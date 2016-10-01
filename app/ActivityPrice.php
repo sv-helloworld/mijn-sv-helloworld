@@ -39,4 +39,12 @@ class ActivityPrice extends Model
     {
         return $this->belongsTo('App\Activity');
     }
+
+    /**
+     * Returns the activity entries the price belongs to.
+     */
+    public function activity_entries()
+    {
+        return $this->belongsToMany('App\ActivityEntry');
+    }
 }
