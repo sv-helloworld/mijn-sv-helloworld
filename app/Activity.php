@@ -17,7 +17,7 @@ class Activity extends Model
     protected $fillable = [
         'title',
         'description',
-        'apply_from',
+        'apply_after',
         'apply_before',
         'starts_at',
         'ends_at',
@@ -30,7 +30,7 @@ class Activity extends Model
      */
     protected $dates = [
         'deleted_at',
-        'apply_from',
+        'apply_after',
         'apply_before',
         'starts_at',
         'ends_at',
