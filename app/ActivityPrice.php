@@ -22,8 +22,6 @@ class ActivityPrice extends Model
 
     /**
      * Returns the user category associated with the price for the activity.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user_category()
     {
@@ -32,8 +30,6 @@ class ActivityPrice extends Model
 
     /**
      * Returns the activity the price belongs to.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function activity()
     {

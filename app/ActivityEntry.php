@@ -59,8 +59,6 @@ class ActivityEntry extends Model
 
     /**
      * Returns the activity the entry belongs to.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function activity()
     {

@@ -88,8 +88,6 @@ class User extends Authenticatable
 
     /**
      * Returns the user category associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user_category()
     {
@@ -98,8 +96,6 @@ class User extends Authenticatable
 
     /**
      * Returns the contribution category associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function contribution_category()
     {

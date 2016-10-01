@@ -34,8 +34,6 @@ class Refund extends Model
 
     /**
      * Returns the user associated with the refund.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
@@ -44,8 +42,6 @@ class Refund extends Model
 
     /**
      * Returns the payment associated with the refund.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function payment()
     {
