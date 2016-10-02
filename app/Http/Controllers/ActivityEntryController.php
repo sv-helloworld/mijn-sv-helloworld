@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Activity;
-use Carbon\Carbon;
 use App\ActivityEntry;
 use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
