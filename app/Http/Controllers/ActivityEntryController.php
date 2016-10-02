@@ -21,8 +21,8 @@ class ActivityEntryController extends Controller
     public function index()
     {
         $activities = Activity::where([
-            ['apply_before', '>=', Carbon::today()],
-            ['apply_after', '<=', Carbon::today()],
+            ['available_from', '<=', Carbon::today()],
+            ['available_to', '>=', Carbon::today()],
         ])->get();
 
         return view('activity.index', compact('activities'));
