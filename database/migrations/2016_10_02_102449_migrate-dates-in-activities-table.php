@@ -32,8 +32,8 @@ class MigrateDatesInActivitiesTable extends Migration
     {
         Schema::table('activities', function (Blueprint $table) {
             Activity::all()->each(function ($activity) {
-                $activity->available_from = $activity->apply_after;
-                $activity->available_to = $activity->apply_before;
+                $activity->apply_after = $activity->available_from;
+                $activity->apply_before = $activity->available_to;
                 $activity->save();
             });
         });
