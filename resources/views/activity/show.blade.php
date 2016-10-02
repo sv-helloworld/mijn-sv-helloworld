@@ -25,7 +25,7 @@
                     <tr>
                         <td>Aanmeldperiode</td>
                         <td>
-                            @date($activity->apply_after) t/m @date($activity->apply_before)
+                            @date($activity->available_from) t/m @date($activity->available_to)
                         </td>
                     </tr>
                     <tr>
