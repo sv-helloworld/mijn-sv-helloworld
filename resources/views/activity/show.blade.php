@@ -32,7 +32,7 @@
                         <td>Prijs</td>
                         @if($activity_price)
                             @if($activity_price->amount > 0)
-                                <td>&euro;{{ $activity_price->amount }}</td>
+                                <td>&euro; {{ $activity_price->amount }}</td>
                             @else
                                 <td>Gratis</td>
                             @endif
@@ -59,10 +59,13 @@
                 </tbody>
             </table>
         </div>
-        <a href="{{ route('activity.index') }}" class="btn btn-primary">Terug naar overzicht</a>
-        @unless($activity_entry)
-            <a href="{{ route('activity.create', $activity->id) }}" class="btn btn-success">Aanmelden</a>
-        @endunless
+
+        <a href="{{ route('activity.index') }}" class="btn btn-default">Terug naar overzicht</a>
+        @if($activity_entry)
+            <a href="{{ route('activity_entry.show', $activity_entry->id) }}" class="btn btn-primary">Bekijk aanmelding</a>
+        @else
+            <a href="{{ route('activity_entry.create', $activity->id) }}" class="btn btn-primary">Aanmelden</a>
+        @endif
     </div>
 </div>
 @endsection

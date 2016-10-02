@@ -127,6 +127,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the activity entries of the user.
+     */
+    public function activity_entries()
+    {
+        return $this->hasMany('App\ActivityEntry');
+    }
+
+    /**
      * Send the password reset notification.
      *
      * @param  string  $token

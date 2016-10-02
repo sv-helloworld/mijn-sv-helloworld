@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            {!! Form::open(['url' => route('activity.store', $activity->id), 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['url' => route('activity_entry.store', $activity->id), 'class' => 'form-horizontal']) !!}
 
             <div class="form-group">
                     {!! Form::label('first_name', 'Voornaam *', ['class' => 'col-sm-4 control-label']) !!}
@@ -106,7 +106,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     {!! Form::button('Aanmelden voor activiteit', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-                    <a href="{{ route('activity.index') }}" class="btn btn-danger">Annuleren</a>
+                    <a href="{{ route('activity.show', $activity->id) }}" class="btn btn-danger">Annuleren</a>
                 </div>
             </div>
 
