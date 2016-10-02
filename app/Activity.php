@@ -43,4 +43,12 @@ class Activity extends Model
     {
         return $this->hasMany('App\ActivityPrice');
     }
+
+    /**
+     * Gets the entries that belong to the activity.
+     */
+    public function entries()
+    {
+        return $this->hasMany('App\ActivityEntry');
+    }
 }
