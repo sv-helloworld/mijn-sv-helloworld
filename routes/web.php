@@ -42,7 +42,7 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
     });
 
     // Activities
-    Route::group(['prefix' => 'activiteit/aanmeldingen', 'as' => 'activity_entry.'], function () {
+    Route::group(['prefix' => 'activiteit/aanmelding', 'as' => 'activity_entry.'], function () {
         Route::get('/', [
             'uses' => 'ActivityEntryController@index',
             'as' => 'index',

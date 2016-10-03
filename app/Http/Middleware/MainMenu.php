@@ -38,6 +38,7 @@ class MainMenu
                     $menu->beheren->prepend('<i class="fa fa-cog" aria-hidden="true"></i> ');
                     $menu->beheren->add('Gebruikers beheren', ['route' => 'user.index']);
                     $menu->beheren->add('Inschrijvingen beheren', ['route' => 'subscription.manage']);
+                    $menu->beheren->add('Aanmeldingen beheren', ['route' => 'activity.manage']);
                 }
             }
         });
