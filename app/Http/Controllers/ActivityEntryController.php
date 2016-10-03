@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 use App\User;
 use App\Activity;
-use Carbon\Carbon;
 use App\ActivityEntry;
 use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
@@ -20,12 +19,9 @@ class ActivityEntryController extends Controller
      */
     public function index()
     {
-        $activities = Activity::where([
-            ['available_from', '<=', Carbon::today()],
-            ['available_to', '>=', Carbon::today()],
-        ])->get();
+        $activity_entries = Auth::user()->activity_entries;
 
-        return view('activity.index', compact('activities'));
+        return view('activity_entry.index', compact('activity_entries'));
     }
 
     /**
@@ -65,7 +61,7 @@ class ActivityEntryController extends Controller
             return redirect(route('activity.show', $activity->id));
         }
 
-        return view('activity.create', compact('user', 'activity', 'activity_price'));
+        return view('activity_entry.create', compact('user', 'activity', 'activity_price'));
     }
 
     /**
@@ -157,17 +153,8 @@ class ActivityEntryController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
-        $activity = Activity::findOrFail($id);
-        $activity_entry = ActivityEntry::where([
-            ['user_id', $user->id],
-            ['activity_id', $activity->id],
-        ])->first();
+        $activity_entry = ActivityEntry::findOrFail($id);
 
-        $activity_price = $activity->prices()
-            ->where('user_category_alias', $user->user_category_alias)
-            ->first();
-
-        return view('activity.show', compact('activity', 'activity_entry', 'activity_price'));
+        return view('activity_entry.show', compact('activity_entry'));
     }
 }

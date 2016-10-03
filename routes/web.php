@@ -42,10 +42,15 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
     });
 
     // Activities
-    Route::group(['prefix' => 'activiteit', 'as' => 'activity.'], function () {
+    Route::group(['prefix' => 'activiteit/aanmeldingen', 'as' => 'activity_entry.'], function () {
         Route::get('/', [
             'uses' => 'ActivityEntryController@index',
             'as' => 'index',
+        ]);
+
+        Route::get('{id}', [
+            'uses' => 'ActivityEntryController@show',
+            'as' => 'show',
         ]);
 
         Route::get('aanmelden/{id}', [
@@ -57,9 +62,16 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
             'uses' => 'ActivityEntryController@store',
             'as' => 'store',
         ]);
+    });
+
+    Route::group(['prefix' => 'activiteit', 'as' => 'activity.'], function () {
+        Route::get('/', [
+            'uses' => 'ActivityController@index',
+            'as' => 'index',
+        ]);
 
         Route::get('{id}', [
-            'uses' => 'ActivityEntryController@show',
+            'uses' => 'ActivityController@show',
             'as' => 'show',
         ]);
     });

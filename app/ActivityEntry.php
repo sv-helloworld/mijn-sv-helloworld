@@ -40,6 +40,14 @@ class ActivityEntry extends Model
     }
 
     /**
+     * Get the activity that belongs to the entry.
+     */
+    public function activity()
+    {
+        return $this->belongsTo('App\Activity');
+    }
+
+    /**
      * Get the activity price that belongs to the entry.
      */
     public function activity_price()
@@ -55,14 +63,6 @@ class ActivityEntry extends Model
     public function confirmed()
     {
         return ! is_null($this->confirmed_at);
-    }
-
-    /**
-     * Returns the activity the entry belongs to.
-     */
-    public function activity()
-    {
-        return $this->belongsTo('App\Activity');
     }
 
     /**

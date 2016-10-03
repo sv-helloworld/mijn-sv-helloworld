@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
         ]);
     });
 
-    // Subscriptions
+    // Activites
     Route::group(['prefix' => 'activiteit', 'as' => 'activity.'], function () {
         Route::get('overzicht', [
             'uses' => 'ActivityController@manage',
@@ -43,8 +43,6 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
             'as' => 'entries',
         ]);
     });
-
-
 
     // User management routes
     Route::patch('gebruikers/{user}/activeren', [
