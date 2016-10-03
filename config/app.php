@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\DomPDF\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
         Lavary\Menu\ServiceProvider::class,
@@ -223,7 +224,7 @@ return [
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
         'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
         'Password' => Illuminate\Support\Facades\Password::class,
-        'Pdf' => mikehaertl\wkhtmlto\Pdf::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,

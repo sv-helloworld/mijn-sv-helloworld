@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Pdf;
+use PDF;
 use Auth;
 use Mollie;
 use Gate;
@@ -84,15 +84,9 @@ class PaymentController extends Controller
             return abort(403);
         }
 
-        $view = view('payment.invoice', compact('payment'));
+        $pdf = PDF::loadView('payment.invoice', compact('payment'));
 
-        $pdf = new Pdf([
-            'disable-smart-shrinking',
-        ]);
-
-        $pdf->addPage($view->render());
-
-        return $pdf->send(sprintf('factuur_%s.pdf', $payment->id));
+        return $pdf->download(sprintf('factuur_%s.pdf', $payment->id));
     }
 
     /**
