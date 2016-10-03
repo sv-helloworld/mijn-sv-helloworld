@@ -31,12 +31,15 @@
                     </td>
                     <td width="40%">
                         <div class="margin">
-                            <img src="{{ asset('/images/logo@2x.png') }}" width="100%" />
+                            <img src="{{ asset('/images/logo@2x.png') }}" width="auto" height="40px" />
                         </div>
 
                         <div class="margin">
                             <strong>Studievereniging "Hello World"</strong><br>
-                            Edisonweg 4, Vlissingen (Nederland)<br>
+                            Edisonweg 4, Vlissingen (Nederland)
+                        </div>
+
+                        <div class="margin">
                             E-mail: info@svhelloworld.nl
                         </div>
 
