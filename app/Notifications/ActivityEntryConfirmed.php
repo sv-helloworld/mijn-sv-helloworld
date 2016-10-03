@@ -60,7 +60,7 @@ class ActivityEntryConfirmed extends Notification
                 sprintf('Bedankt voor je aanmelding, je hebt je succesvol aangemeld voor \'%s\'.', $this->activity_title),
                 'Veel plezier bij deze activiteit!',
             ])
-            ->line('Klik op de knop hieronder om naar een overzicht van de activiteiten te gaan:')
-            ->action('Bekijk activiteiten', route('activity.index'));
+            ->line('Klik op de knop hieronder om naar de details van je aanmelding te gaan:')
+            ->action('Bekijk aanmelding', route('activity_entry.show', $this->activity_entry_id));
     }
 }
