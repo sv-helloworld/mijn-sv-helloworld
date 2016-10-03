@@ -26,21 +26,18 @@
                         <div class="margin">
                             {{ $payment->user->full_name() }}<br>
                             {{ $payment->user->address }}<br>
-                            {{ $payment->user->zip_code }} {{ $payment->user->city }}<br>
+                            {{ $payment->user->zip_code }} {{ $payment->user->city }}
                         </div>
                     </td>
                     <td width="40%">
-                        <div class="margin" style="width: 324px; height: 50px;">
-                            <img src="{{ asset('/images/logo@2x.png') }}" width="100%" height="100%" />
+                        <div class="margin">
+                            <img src="{{ asset('/images/logo@2x.png') }}" width="100%" />
                         </div>
 
                         <div class="margin">
                             <strong>Studievereniging "Hello World"</strong><br>
-                            Edisonweg 4, Vlissingen (Nederland)
-                        </div>
-
-                        <div class="margin">
-                            E-mail: info@svhelloworld.nl<br>
+                            Edisonweg 4, Vlissingen (Nederland)<br>
+                            E-mail: info@svhelloworld.nl
                         </div>
 
                         <div class="margin">
@@ -60,7 +57,6 @@
                         <th>Omschrijving</th>
                         <th width="60" class="text-right">Tarief</th>
                         <th width="60" class="text-right">Totaal</th>
-                        <th width="20" class="text-right">Btw</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,7 +65,6 @@
                         <td>{{ $payment->description }}</td>
                         <td class="text-right">&euro; {{ $payment->amount }}</td>
                         <td class="text-right">&euro; {{ $payment->amount }}</td>
-                        <td class="text-right">0%</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -77,13 +72,6 @@
                         <td colspan="2">&nbsp;</td>
                         <td class="text-right"><strong>Totaalbedrag:</strong></td>
                         <td class="text-right">&euro; {{ $payment->amount }}</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">&nbsp;</td>
-                        <td class="text-right">Waarvan btw:</td>
-                        <td class="text-right">&euro; 0,00</td>
-                        <td>&nbsp;</td>
                     </tr>
                 </tfoot>
             </table>

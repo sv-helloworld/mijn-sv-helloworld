@@ -85,9 +85,14 @@ class PaymentController extends Controller
         }
 
         $view = view('payment.invoice', compact('payment'));
-        $pdf = new Pdf($view->render());
 
-        return response($pdf->send(sprintf('factuur_%s.pdf', $payment->id)))->header('Content-Type', 'application/pdf');
+        $pdf = new Pdf([
+            'disable-smart-shrinking',
+        ]);
+
+        $pdf->addPage($view->render());
+
+        return $pdf->send(sprintf('factuur_%s.pdf', $payment->id));
     }
 
     /**
