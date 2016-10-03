@@ -208,14 +208,23 @@ Route::group(['prefix' => 'account/email/verifieren', 'as' => 'account.email.ver
         'as' => 'index',
     ]);
 
-    Route::get('{token}', [
-        'uses' => 'Account\EmailController@getVerification',
-        'as' => 'token',
+    Route::get('opnieuw-versturen', [
+        'uses' => 'Account\EmailController@resend',
+        'as' => 'resend',
+    ]);
+
+    Route::post('opnieuw-versturen', [
+        'uses' => 'Account\EmailController@resendVerification',
     ]);
 
     Route::get('error', [
         'uses' => 'Account\EmailController@getVerificationError',
         'as' => 'error',
+    ]);
+
+    Route::get('{token}', [
+        'uses' => 'Account\EmailController@getVerification',
+        'as' => 'token',
     ]);
 });
 

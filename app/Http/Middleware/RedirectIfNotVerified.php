@@ -31,7 +31,10 @@ class RedirectIfNotVerified
         }
 
         if (! Auth::user()->verified) {
-            flash('Je moet je e-mailadres verifieren voor je deze pagina kunt bezoeken.', 'warning');
+            flash(
+                sprintf('Je moet je e-mailadres verifieren voor je deze pagina kunt bezoeken. E-mail niet ontvangen?'.
+                ' <a href="%s">Stuur opnieuw een verificatie e-mail.</a>', route('account.email.verificate.resend')
+            ), 'warning');
 
             return redirect('/');
         }
