@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Pdf;
 use Auth;
 use Mollie;
 use Gate;
@@ -62,6 +63,36 @@ class PaymentController extends Controller
         }
 
         return view('payment.show', compact('payment'));
+    }
+
+    /**
+     * Get an invoice of the payment.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function invoice($id)
+    {
+        $user = Auth::user();
+        $payment = Payment::findOrFail($id);
+
+        if (! Gate::forUser($user)->allows('pay', $payment)) {
+            return abort(403);
+        }
+
+        if (! $payment->paid()) {
+            return abort(403);
+        }
+
+        $view = view('payment.invoice', compact('payment'));
+
+        $pdf = new Pdf([
+            'disable-smart-shrinking',
+        ]);
+
+        $pdf->addPage($view->render());
+
+        return $pdf->send(sprintf('factuur_%s.pdf', $payment->id));
     }
 
     /**

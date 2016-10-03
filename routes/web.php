@@ -88,6 +88,11 @@ Route::group(['middleware' => ['auth', 'verified', 'account.profile.complete']],
             'as' => 'show',
         ]);
 
+        Route::get('{payment}/factuur', [
+            'uses' => 'PaymentController@invoice',
+            'as' => 'invoice',
+        ]);
+
         Route::get('{payment}/betalen', [
             'uses' => 'PaymentController@pay',
             'as' => 'pay',

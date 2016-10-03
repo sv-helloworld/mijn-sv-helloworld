@@ -1,0 +1,151 @@
+/* General */
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    line-height: 1.2;
+    background: #fff;
+    color: #000;
+}
+
+.page-break {
+    page-break-after: always;
+}
+
+.pagenum:before {
+    content: counter(page);
+}
+
+.margin {
+    margin-bottom: 16px;
+}
+
+.margin-top {
+    margin-top: 16px;
+}
+
+.margin-small {
+    margin-bottom: 8px;
+}
+
+.margin-remove-top {
+    margin-top: 0 !important;
+}
+
+.margin-remove-bottom {
+    margin-bottom: 0 !important;
+}
+
+.padding {
+    padding: 8px;
+}
+
+.padding-right {
+    padding-right: 8px;
+}
+
+.padding-left {
+    padding-left: 8px;
+}
+
+.hr {
+    border-top: 1px solid #ddd;
+}
+
+img {
+    margin: 0 !important;
+}
+
+/* Type */
+.title {
+    font-size: 20px;
+}
+
+.hw-h1,
+.hw-h2,
+.hw-h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 24px 0 8px 0;
+}
+
+.hw-h4 {
+    font-size: 14px;
+    margin: 24px 0 8px 0;
+}
+
+.hw-h5 {
+    font-size: 12px;
+    margin: 24px 0 8px 0;
+}
+
+/* Table */
+table {
+    margin: 0;
+    border-collapse: collapse;
+    background-color: #fff;
+    width: 100%;
+    max-width: 100%;
+}
+
+td, th {
+    padding: 0;
+    vertical-align: top;
+}
+
+th {
+    text-align: left;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 12px;
+    vertical-align: top;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>thead>tr>td, .table>tbody>tr>td {
+    border-top: 1px solid #bbb;
+}
+
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #bbb;
+}
+
+.table>thead:first-child>tr:first-child>th, .table>thead:first-child>tr:first-child>td {
+    border-top: 0;
+}
+
+.table>tbody>tr:last-child>td,
+.table>tbody>tr:last-child>th {
+    border-bottom: 1px solid #bbb;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #ddd;
+}
+
+.table-footer-italic>tfoot>tr>td {
+    font-style: italic;
+    color: #777;
+}
+
+/* Utilities */
+.text-muted {
+    color: #555;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    float: left !important;
+}
