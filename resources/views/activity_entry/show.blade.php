@@ -39,7 +39,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Ingeschreven op</td>
+                                <td>Aangemeld op</td>
                                 <td>@datetime($activity_entry->created_at)</td>
                             </tr>
                         @endif
