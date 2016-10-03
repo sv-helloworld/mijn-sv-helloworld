@@ -19,7 +19,7 @@
                     @foreach($activity_entries as $activity_entry)
                         <tr>
                             <td>
-                                <a href="{{ route('activity.show', $activity_entry->activity->id) }}">{{ $activity_entry->activity->title }}</a>
+                                <a href="{{ route('activity_entry.show', $activity_entry->id) }}">{{ $activity_entry->activity->title }}</a>
                             </td>
                             <td>
                                 @datetime($activity_entry->created_at)
