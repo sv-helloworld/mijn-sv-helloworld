@@ -153,7 +153,12 @@ class ActivityEntryController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $activity_entry = ActivityEntry::findOrFail($id);
+
+        if (! $user->can('view', $activity_entry)) {
+            return abort(403);
+        }
 
         return view('activity_entry.show', compact('activity_entry'));
     }
