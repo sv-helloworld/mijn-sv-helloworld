@@ -106,6 +106,47 @@ class EmailController extends Controller
     }
 
     /**
+     * Resend the e-mail verification again.
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function resend(Request $request)
+    {
+        return view('account.email.verificate.resend');
+    }
+
+    /**
+     * Resend the e-mail verification again.
+     *
+     * @param  Request $request
+     * @return Response
+     */
+    public function resendVerification(Request $request)
+    {
+        $user = Auth::user();
+
+        // Check if the e-mail is already verified
+        if ($user->verified) {
+            flash('Je e-mail is al geverifieerd.', 'info');
+
+            return redirect(route('account.email.verificate.resend'));
+        }
+
+        // Check if there's a verification token set
+        if (! $user->verification_token) {
+            UserVerification::generate($user);
+        }
+
+        // Send email verification link
+        UserVerification::send($user, 'Verifieer je e-mailadres');
+
+        flash('Er is opnieuw een e-mail gestuurd met een link om je e-mailadres te valideren.', 'success');
+
+        return redirect(route('account.email.verificate.resend'));
+    }
+
+    /**
      * Handle the user verification.
      *
      * @param Request $request
