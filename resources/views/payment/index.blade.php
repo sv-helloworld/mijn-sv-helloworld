@@ -58,6 +58,7 @@
                             <td>@datetime($payment->paid_at)</td>
                             <td>
                                 <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
+                                <a href="{{ route('payment.invoice', $payment->id) }}" class="btn btn-primary btn-xs">Factuur</a>
                             </td>
                         </tr>
                     @endforeach

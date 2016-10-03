@@ -41,6 +41,7 @@
                 <a href="{{ route('payment.index') }}" class="btn btn-danger">Annuleren</a>
             @else
                 <a href="{{ route('payment.index') }}" class="btn btn-primary">Terug naar het overzicht</a>
+                <a href="{{ route('payment.invoice', $payment->id) }}" class="btn btn-primary">Factuur downloaden</a>
             @endif
         </div>
     </div>
