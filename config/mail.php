@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'no-reply@svhelloworld.nl', 'name' => 'Studievereniging "Hello World"'],
+    'from' => ['address' => 'info@svhelloworld.nl', 'name' => 'Studievereniging "Hello World"'],
 
     /*
     |--------------------------------------------------------------------------
