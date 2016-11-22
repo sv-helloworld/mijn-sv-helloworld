@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'info@svhelloworld.nl', 'name' => 'Studievereniging "Hello World"'],
+    'from' => ['address' => 'info@svhelloworld.nl', 'name' => 'Studievereniging Hello World'],
 
     /*
     |--------------------------------------------------------------------------
