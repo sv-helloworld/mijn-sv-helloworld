@@ -23,6 +23,7 @@
                     <td>{!! $user->verified ? '<span class="label label-success">Geverifieerd</a>' : '<span class="label label-warning">Niet geverifieerd</span>' !!}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Bewerk</a>
+                        <a href="{{ url('betalingen', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
                     </td>
                 </tr>
             @endforeach
