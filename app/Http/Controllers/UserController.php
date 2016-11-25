@@ -51,8 +51,16 @@ class UserController extends Controller
         // Add sidebar menu items
         $menu = Menu::get('sidebar');
         $menu->add('Maak nieuwe gebruiker', ['route' => 'user.create']);
+        $menu->add('Leden', ['url' => 'gebruikers/leden']);
 
         return view('user.index', compact('users'));
+    }
+
+    public function members()
+    {
+        $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
+        $countMembers = count(User::all());
+        return view('user.members', ['members' => $members, 'countMembers' => $countMembers]);
     }
 
     /**
@@ -112,7 +120,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -126,7 +134,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -146,7 +154,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -175,7 +183,7 @@ class UserController extends Controller
         if ($id == $user->id) {
             $validator->after(function ($validator) use ($request, $user) {
                 // Check if the user wants to deactivate his own account
-                if (! $request->get('activated')) {
+                if (!$request->get('activated')) {
                     $validator->errors()->add('activated', 'het is niet toegestaan jezelf te deactiveren.');
                     $request->merge(['activated' => $user->activated]);
                 }
@@ -246,7 +254,7 @@ class UserController extends Controller
     /**
      * Activate or deactivate the given user.
      *
-     * @param  int  $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -283,5 +291,11 @@ class UserController extends Controller
         }
 
         return redirect(route('user.index'));
+    }
+
+    public function payments($userId)
+    {
+        $user = User::find($userId);
+        return view('user.payments', ['user' => $user]);
     }
 }
