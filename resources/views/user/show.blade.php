@@ -1,11 +1,11 @@
 @extends('layouts.master')
-@section('back', url('user'))
+@section('back', route('user.index'))
 @section('title', 'Details gebruiker')
 
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <h2>{{ $user->first_name }} {{ $user->name_prefix }} {{ $user->last_name }}</h2>
+            <h2>{{ $user->full_name() }}</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -16,7 +16,7 @@
                     <tbody>
                         <tr>
                             <td>Naam</td>
-                            <td>{{ $user->first_name }} {{ $user->name_prefix }} {{ $user->last_name }}</td>
+                            <td>{{ $user->full_name() }}</td>
                         </tr>
                         <tr>
                             <td>E-mailadres</td>

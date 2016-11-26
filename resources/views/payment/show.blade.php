@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('back', url('payment'))
+@section('back', route('payment.index'))
 @section('title', 'Details betaling')
 
 @section('content')
