@@ -6,15 +6,6 @@
         Mijn SV "Hello World" is het portaal voor alle leden van Studievereniging "Hello World",
         maar ook niet-leden zich aanmelden voor activiteiten via dit portaal!
         Je moet hiervoor wel student zijn aan de opleiding HBO-ICT van de HZ University of Applied Sciences.
-        Op dit moment is het portaal nog enigszins beperkt qua functionaliteit.
-        Je kunt je op dit moment in ieder geval al inschrijven als lid! De mogelijkheid om je contributie te betalen komt later.
-    </p>
-
-    <p>
-        Gaandeweg zal er steeds meer functionaliteit aan dit portaal toegevoegd worden.
-        In de toekomst willen we het ook mogelijk maken om je aan te melden voor de activiteiten die we zullen organiseren.
-        Hierbij is het ook de bedoeling dat iedereen, zowel leden als niet-leden,
-        zich kunnen aanmelden en direct kunnen betalen voor de deelname aan het activiteit indien het activiteit niet vrij toegankelijk is.
     </p>
 
     <p>
