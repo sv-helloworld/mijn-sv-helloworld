@@ -17,7 +17,7 @@
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td><img src="{{ Gravatar::src($user->email, 40) }}" alt="{{ $user->first_name }}" class="avatar"></td>
+                    <td><img src="{{ Gravatar::src($user->email, 40) }}" alt="{{ $user->full_name() }}" class="avatar"></td>
                     <td><a href="{{ route('user.show', $user->id) }}">{{ $user->full_name() }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>{!! $user->verified ? '<span class="label label-success">Geverifieerd</a>' : '<span class="label label-warning">Niet geverifieerd</span>' !!}</td>
