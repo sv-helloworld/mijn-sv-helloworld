@@ -5,7 +5,8 @@ php:
   - 7.0
 
 before_script:
-  - gem install mailcatcher
+  - gem install mime-types --version "< 3"
+  - gem install --conservative mailcatcher
   - mailcatcher
   - cp .env.travis .env
   - mysql -e 'create database mijn_sv_helloworld_test;'
