@@ -3,7 +3,7 @@
 
 @section('content')
     <h3>Openstaande betalingen</h3>
-    @if (count($open_payments))
+    @if ($open_payments->count())
         <p>Dit is een overzicht van openstaande betalingen.</p>
 
         <div class="table-responsive">
@@ -35,7 +35,7 @@
     @endif
 
     <h3>Betalingsgeschiedenis</h3>
-    @if (count($finalized_payments) > 0)
+    @if ($finalized_payments->count())
         <p>Dit is een overzicht van afgeronde betalingen.</p>
 
         <div class="table-responsive">

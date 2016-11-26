@@ -2,7 +2,7 @@
 @section('title', sprintf('Aanmeldingen \'%s\'', $activity->title))
 
 @section('content')
-    @if (count($activity_entries))
+    @if ($activity_entries->count())
         <p>Dit is een overzicht van aanmeldingen voor '{{ $activity->title }}'.</p>
 
         <div class="table-responsive">

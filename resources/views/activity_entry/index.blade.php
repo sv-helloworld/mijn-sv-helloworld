@@ -2,7 +2,7 @@
 @section('title', 'Aanmeldingen activiteiten')
 
 @section('content')
-    @if (count($activity_entries))
+    @if ($activity_entries->count())
         <p>Dit is een overzicht van jouw aanmeldingen voor activiteiten.</p>
 
         <div class="table-responsive">
