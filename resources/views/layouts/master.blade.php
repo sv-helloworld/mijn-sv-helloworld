@@ -178,6 +178,7 @@
         <!-- Scripts -->
         <script src="{{ asset('/js/vendor.min.js') }}"></script>
         <script src="{{ asset('/js/app.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/vendor.min.css') }}">
         @yield('scripts')
 
     </body>
