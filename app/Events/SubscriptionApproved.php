@@ -2,11 +2,11 @@
 
 namespace App\Events;
 
+use App\Subscription;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use App\Subscription;
 
 class SubscriptionApproved
 {

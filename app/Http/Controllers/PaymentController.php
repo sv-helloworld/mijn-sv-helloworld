@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Auth;
-use Mollie;
 use Gate;
+use Mollie;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Events\PaymentCompleted;
