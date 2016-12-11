@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Auth;
 
 class RedirectIfNotVerified
 {
