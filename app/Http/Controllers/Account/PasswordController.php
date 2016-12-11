@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Http\Controllers\Controller;
+use Validator;
+use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laracasts\Flash\Flash;
-use Validator;
 
 class PasswordController extends Controller
 {
