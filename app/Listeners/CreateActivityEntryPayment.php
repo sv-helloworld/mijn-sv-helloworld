@@ -3,8 +3,8 @@
 namespace App\Listeners;
 
 use App\Payment;
-use App\Events\UserAppliedForActivity;
 use App\Notifications\PaymentCreated;
+use App\Events\UserAppliedForActivity;
 
 class CreateActivityEntryPayment
 {
