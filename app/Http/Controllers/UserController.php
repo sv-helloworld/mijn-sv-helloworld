@@ -51,15 +51,20 @@ class UserController extends Controller
         // Add sidebar menu items
         $menu = Menu::get('sidebar');
         $menu->add('Maak nieuwe gebruiker', ['route' => 'user.create']);
-        $menu->add('Leden', ['url' => 'gebruikers/leden']);
+        $menu->add('Leden', ['route' => 'user.members']);
 
         return view('user.index', compact('users'));
     }
 
+    /**
+     * Display a list of members only
+     *
+     * @return Response
+     */
     public function members()
     {
         $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
-        $countMembers = count(User::all());
+        $countMembers = User::where('user_category_alias', '=', 'lid')->count();
         return view('user.members', ['members' => $members, 'countMembers' => $countMembers]);
     }
 
@@ -291,11 +296,5 @@ class UserController extends Controller
         }
 
         return redirect(route('user.index'));
-    }
-
-    public function payments($userId)
-    {
-        $user = User::find($userId);
-        return view('user.payments', ['user' => $user]);
     }
 }

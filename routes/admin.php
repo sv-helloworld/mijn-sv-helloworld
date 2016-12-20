@@ -51,10 +51,10 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
     ]);
 
 
-    Route::get('betalingen/{userId}', 'UserController@payments');
+    Route::get('betalingen/{userId}', 'PaymentController@payments')->name('user.payments');
 
 
-    Route::get('gebruikers/leden', 'UserController@members');
+    Route::get('gebruikers/leden', 'UserController@members')->name('user.members');
 
     Route::resource('gebruikers', 'UserController', [
         'names' => [

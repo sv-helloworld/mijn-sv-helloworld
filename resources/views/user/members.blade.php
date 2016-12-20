@@ -17,11 +17,11 @@
             @foreach($members as $member)
                 <tr>
                     <td><img src="{{ Gravatar::src($member->email, 40) }}" alt="{{ $member->first_name }}" class="avatar"></td>
-                    <td><a href="{{ url('gebruikers', $member->id) }}">{{ $member->first_name }} {{ $member->name_prefix }} {{ $member->last_name }}</a></td>
+                    <td><a href="{{ url('gebruikers', $member->id) }}">{{ $member->full_name() }}</a></td>
                     <td>{{ $member->email }}</td>
                     <td>
                         <a href="{{ route('user.edit', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Bewerk</a>
-                        <a href="{{ url('betalingen', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
+                        <a href="{{ route('user.payments', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
                     </td>
                 </tr>
             @endforeach

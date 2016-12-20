@@ -18,12 +18,12 @@
             @foreach($users as $user)
                 <tr>
                     <td><img src="{{ Gravatar::src($user->email, 40) }}" alt="{{ $user->first_name }}" class="avatar"></td>
-                    <td><a href="{{ url('gebruikers', $user->id) }}">{{ $user->first_name }} {{ $user->name_prefix }} {{ $user->last_name }}</a></td>
+                    <td><a href="{{ route('user.show', $user->id) }}">{{ $user->full_name() }} </a></td>
                     <td>{{ $user->email }}</td>
                     <td>{!! $user->verified ? '<span class="label label-success">Geverifieerd</a>' : '<span class="label label-warning">Niet geverifieerd</span>' !!}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Bewerk</a>
-                        <a href="{{ url('betalingen', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
+                        <a href="{{ route('user.payments', $user->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
                     </td>
                 </tr>
             @endforeach
