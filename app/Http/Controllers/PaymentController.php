@@ -216,6 +216,10 @@ class PaymentController extends Controller
         //
     }
 
+    /**
+     * @param $userId
+     * @return Response
+     */
     public function payments($userId)
     {
         $user = User::find($userId);
