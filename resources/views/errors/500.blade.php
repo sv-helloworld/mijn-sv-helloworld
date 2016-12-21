@@ -43,7 +43,7 @@
                 <div class="title">Oeps, er is iets misgegaan.</div>
                 @unless(empty($sentryID))
                     <!-- Sentry JS SDK 2.1.+ required -->
-                    <script src="https://cdn.ravenjs.com/3.7.0/raven.min.js"></script>
+                    <script src="https://cdn.ravenjs.com/3.9.1/raven.min.js"></script>
 
                     <script>
                     Raven.showReportDialog({
