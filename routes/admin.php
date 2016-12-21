@@ -50,6 +50,12 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
         'as' => 'user.activate',
     ]);
 
+
+    Route::get('betalingen/{userId}', 'PaymentController@payments')->name('user.payments');
+
+
+    Route::get('gebruikers/leden', 'UserController@members')->name('user.members');
+
     Route::resource('gebruikers', 'UserController', [
         'names' => [
             'index' => 'user.index',
@@ -61,4 +67,5 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
             'destroy' => 'user.destroy',
         ],
     ]);
+
 });
