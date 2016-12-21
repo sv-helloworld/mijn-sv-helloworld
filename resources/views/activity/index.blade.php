@@ -3,7 +3,7 @@
 
 @section('content')
     <h3>Activiteiten</h3>
-    @if (count($activities))
+    @if ($activities->count())
         <p>Dit is een overzicht van de activiteiten die georganiseerd worden door Studievereniging "Hello World".</p>
 
         <div class="table-responsive">

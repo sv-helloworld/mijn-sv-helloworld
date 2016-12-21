@@ -56,7 +56,7 @@
         </div>
 
         <h3>Betalingen</h3>
-        @if (count($subscription->payments) > 0)
+        @if ($subscription->payments->count())
             <p>Dit is een overzicht van de betalingen behorende bij deze inschrijving.</p>
 
             <div class="table-responsive">

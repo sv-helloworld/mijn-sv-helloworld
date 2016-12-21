@@ -2,7 +2,7 @@
 @section('title', 'Inschrijvingen beheren')
 
 @section('content')
-    @if (count($subscriptions))
+    @if ($subscriptions->count())
         <p>Dit is een overzicht van openstaande inschrijvingen.</p>
 
         <div class="table-responsive">

@@ -70,7 +70,7 @@
             </div>
 
             <h3>Betalingen</h3>
-            @if (count($activity_entry->payments) > 0)
+            @if ($activity_entry->payments->count())
                 <p>Dit is een overzicht van de betalingen behorende bij deze aanmelding.</p>
 
                 <div class="table-responsive">

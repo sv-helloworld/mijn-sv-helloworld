@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Auth;
-use Mollie;
 use Gate;
+use Mollie;
 use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
@@ -87,7 +87,7 @@ class PaymentController extends Controller
 
         $pdf = PDF::loadView('payment.invoice', compact('payment'));
 
-        return $pdf->download(sprintf('factuur_%s.pdf', $payment->id));
+        return @$pdf->download(sprintf('factuur_%s.pdf', $payment->id));
     }
 
     /**

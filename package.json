@@ -1,12 +1,26 @@
 {
-  "private": true,
+  "name": "mijn-sv-helloworld",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:sv-helloworld/mijn-sv-helloworld.git",
+  "author": "Studievereniging Hello World <info@svhelloworld.nl>",
+  "contributors": [
+    "Raymon de Looff <raydelooff@gmail.com>",
+    "Thijs Clowting <thijs@clowting.me>"
+  ],
+  "license": "MIT",
   "scripts": {
     "prod": "gulp --production",
     "dev": "gulp watch"
   },
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0"
+  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.3.1",

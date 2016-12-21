@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
-use Menu;
 use Auth;
+use Menu;
+use Closure;
 
 class MainMenu
 {

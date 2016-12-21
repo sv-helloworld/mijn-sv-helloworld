@@ -14,7 +14,7 @@
                     <tbody>
                         <tr>
                             <td>Naam</td>
-                            <td>{{ $user->first_name }} {{ $user->name_prefix }} {{ $user->last_name }}</td>
+                            <td>{{ $user->full_name() }}</td>
                             <td><a href="{{ route('account.edit') }}"><i class="fa fa-pencil"></i></a></td>
                         </tr>
                         <tr>

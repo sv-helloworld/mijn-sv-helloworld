@@ -2,7 +2,7 @@
 @section('title', 'Acitiviteiten weergeven')
 
 @section('content')
-    @if (count($activities))
+    @if ($activities->count())
         <p>Dit is een overzicht van alle activieiten.</p>
 
         <div class="table-responsive">

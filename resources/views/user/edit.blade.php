@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('back', url('user', $user->id))
+@section('back', route('user.show', $user->id))
 @section('title', 'Wijzig gebruiker')
 
 @section('content')
@@ -110,7 +110,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     {!! Form::button('Gebruiker wijzigen', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
-                    <a href="{{ url('gebruikers/' . $user->id) }}" class="btn btn-danger">Annuleren</a>
+                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-danger">Annuleren</a>
                 </div>
             </div>
 

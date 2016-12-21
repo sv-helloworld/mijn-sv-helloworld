@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('back', url('user'))
+@section('back', route('user.index'))
 @section('title', 'Gebruiker toevoegen')
 
 @section('content')

@@ -3,7 +3,7 @@
 
 @section('content')
     <h3>Bestaande inschrijvingen</h3>
-    @if (count($subscriptions))
+    @if ($subscriptions->count())
         <p>Dit is een overzicht van je inschrijvingen voor lidmaatschap bij Studievereniging "Hello World".</p>
 
         <div class="table-responsive">
@@ -45,7 +45,7 @@
     @endif
 
     <h3>Inschrijven</h3>
-    @if (count($contributions) > 0)
+    @if ($contributions->count())
         <p>Dit is een overzicht van de nieuwe periode's waarvoor je je kunt inschrijven als lid.</p>
 
         <div class="table-responsive">
