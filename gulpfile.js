@@ -25,11 +25,9 @@ var scripts = {
     ],
 };
 
-
 var fonts = [
     'node_modules/font-awesome/fonts/*',
 ];
-
 
 gulp.task('blade', function() {
     return gulp.src('resources/views/**/*.blade.php')
@@ -40,7 +38,7 @@ gulp.task('blade', function() {
 gulp.task('stylesheets_vendor', function() {
     return gulp.src(stylesheets.vendor)
         .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
-            gutil.log(error);
+            gutil.log(gutil.colors.red(error.formatted));
             this.emit('end');
         }))
         .pipe(autoprefixer())
@@ -52,7 +50,7 @@ gulp.task('stylesheets_vendor', function() {
 gulp.task('stylesheets_app', function() {
     return gulp.src(stylesheets.app)
         .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
-            gutil.log(error);
+            gutil.log(gutil.colors.red(error.formatted));
             this.emit('end');
         }))
         .pipe(autoprefixer())
