@@ -44,8 +44,6 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
         ]);
     });
 
-
-
     // Payments
     Route::group(['prefix' => 'betaling', 'as' => 'payment.'], function () {
         Route::get('user/{id}', [
