@@ -6,8 +6,8 @@ use PDF;
 use Auth;
 use Gate;
 use Mollie;
-use App\Payment;
 use App\User;
+use App\Payment;
 use Illuminate\Http\Request;
 use App\Events\PaymentCompleted;
 
@@ -223,6 +223,7 @@ class PaymentController extends Controller
     public function payments($userId)
     {
         $user = User::find($userId);
+
         return view('user.payments', ['user' => $user]);
     }
 }

@@ -57,7 +57,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display a list of members only
+     * Display a list of members only.
      *
      * @return Response
      */
@@ -65,6 +65,7 @@ class UserController extends Controller
     {
         $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
         $countMembers = User::where('user_category_alias', '=', 'lid')->count();
+
         return view('user.members', ['members' => $members, 'countMembers' => $countMembers]);
     }
 
@@ -188,7 +189,7 @@ class UserController extends Controller
         if ($id == $user->id) {
             $validator->after(function ($validator) use ($request, $user) {
                 // Check if the user wants to deactivate his own account
-                if (!$request->get('activated')) {
+                if (! $request->get('activated')) {
                     $validator->errors()->add('activated', 'het is niet toegestaan jezelf te deactiveren.');
                     $request->merge(['activated' => $user->activated]);
                 }
