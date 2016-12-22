@@ -57,19 +57,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display a list of members only.
-     *
-     * @return Response
-     */
-    public function members()
-    {
-        $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
-        $countMembers = User::where('user_category_alias', '=', 'lid')->count();
-
-        return view('user.members', ['members' => $members, 'countMembers' => $countMembers]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return Response
@@ -297,5 +284,18 @@ class UserController extends Controller
         }
 
         return redirect(route('user.index'));
+    }
+
+    /**
+     * Display a list of members only.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Response
+     */
+    public function members(Request $request)
+    {
+        $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
+
+        return view('user.members', compact('members'));
     }
 }

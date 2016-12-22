@@ -44,15 +44,28 @@ Route::group(['middleware' => ['auth', 'verified', 'account.type:admin', 'accoun
         ]);
     });
 
+
+
+    // Payments
+    Route::group(['prefix' => 'betaling', 'as' => 'payment.'], function () {
+        Route::get('user/{id}', [
+            'uses' => 'PaymentController@user',
+            'as' => 'user',
+        ]);
+    });
+
     // User management routes
-    Route::patch('gebruikers/{user}/activeren', [
-        'uses' => 'UserController@activate',
-        'as' => 'user.activate',
-    ]);
+    Route::group(['prefix' => 'gebruikers', 'as' => 'user.'], function () {
+        Route::get('leden', [
+            'uses' => 'UserController@members',
+            'as' => 'members',
+        ]);
 
-    Route::get('betalingen/{userId}', 'PaymentController@payments')->name('user.payments');
-
-    Route::get('gebruikers/leden', 'UserController@members')->name('user.members');
+        Route::patch('{id}/activeren', [
+            'uses' => 'UserController@activate',
+            'as' => 'activate',
+        ]);
+    });
 
     Route::resource('gebruikers', 'UserController', [
         'names' => [

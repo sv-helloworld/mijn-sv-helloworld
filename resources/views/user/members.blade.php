@@ -2,7 +2,8 @@
 @section('title', 'Leden')
 
 @section('content')
-    <h4>Er zijn momenteel {{ $countMembers }} leden.</h4>
+    <p>Er zijn momenteel {{ count($members) }} leden.</p>
+
     <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead>
@@ -21,7 +22,7 @@
                     <td>{{ $member->email }}</td>
                     <td>
                         <a href="{{ route('user.edit', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Bewerk</a>
-                        <a href="{{ route('user.payments', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
+                        <a href="{{ route('payment.user', $member->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-money"></i> Betalingen</a>
                     </td>
                 </tr>
             @endforeach
@@ -30,5 +31,4 @@
     </div>
 
     <div class="pagination-wrapper">{!! $members->render() !!}</div>
-
 @endsection

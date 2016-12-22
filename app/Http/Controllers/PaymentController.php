@@ -217,13 +217,14 @@ class PaymentController extends Controller
     }
 
     /**
-     * @param $userId
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return Response
      */
-    public function payments($userId)
+    public function user(Request $request, $id)
     {
-        $user = User::find($userId);
+        $user = User::findOrFail($id);
 
-        return view('user.payments', ['user' => $user]);
+        return view('payment.user', compact('user'));
     }
 }
