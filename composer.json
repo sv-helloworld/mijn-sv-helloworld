@@ -15,7 +15,7 @@
         "laravelcollective/html": "^5.3",
         "lavary/laravel-menu": "dev-master",
         "mollie/laravel-mollie": "^1.3",
-        "sentry/sentry-laravel": "^0.3.0",
+        "sentry/sentry-laravel": "^0.5",
         "spatie/laravel-newsletter": "^3.0",
         "thomaswelton/laravel-gravatar": "^1.0"
     },
