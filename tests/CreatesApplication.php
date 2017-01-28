@@ -17,7 +17,7 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        $this->afterApplicationCreated(function() {
+        $this->afterApplicationCreated(function () {
             $this->seed('TestingDatabaseSeeder');
         });
 
