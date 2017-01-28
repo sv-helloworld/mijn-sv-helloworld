@@ -1,5 +1,8 @@
 <?php
 
+namespace Tests\Feature;
+
+use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
@@ -26,7 +29,6 @@ class UserControllerTest extends TestCase
      */
     public function testUserIndexAsAdmin()
     {
-        $this->seed('TestingDatabaseSeeder');
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
@@ -41,7 +43,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCantDeactivateHisOwnAccount()
     {
-        $this->seed('TestingDatabaseSeeder');
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
@@ -62,7 +63,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCantChangeRoleOfHisOwnAccount()
     {
-        $this->seed('TestingDatabaseSeeder');
         $admin = factory(App\User::class, 'admin')->create();
 
         $this->actingAs($admin)
@@ -83,7 +83,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserName()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
             'first_name' => 'Oude Naam',
         ]);
@@ -107,7 +106,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserEmail()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
             'email' => 'oud123@hz.nl',
         ]);
@@ -131,7 +129,6 @@ class UserControllerTest extends TestCase
      */
     public function testUserMustVerifyEmailAfterEmailEdit()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create();
         $admin = factory(App\User::class, 'admin')->create();
 
@@ -153,7 +150,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanDeactivateUseViaEditView()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create();
         $admin = factory(App\User::class, 'admin')->create();
 
@@ -175,7 +171,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanActivateUseViaEditView()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create([
             'activated' => 0,
         ]);
@@ -199,7 +194,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserRoleToAdmin()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create();
         $admin = factory(App\User::class, 'admin')->create();
 
@@ -220,7 +214,6 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserRoleToUser()
     {
-        $this->seed('TestingDatabaseSeeder');
         $user = factory(App\User::class)->create();
         $admin = factory(App\User::class, 'admin')->create();
 

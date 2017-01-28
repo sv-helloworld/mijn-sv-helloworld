@@ -1,5 +1,8 @@
 <?php
 
+namespace Tests\Feature;
+
+use Tests\TestCase;
 
 class SubscriptionControllerTest extends TestCase
 {
@@ -10,7 +13,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndex()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class)->create();
 
         $this->actingAs($member)
@@ -26,7 +28,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndexAsMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member')->create();
 
         $this->actingAs($member)
@@ -42,7 +43,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndexAsSubscribedMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member', 2)->create()->each(function ($u) {
             $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
         })->first();
@@ -61,7 +61,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionDetailAsSubscribedMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member', 2)->create()->each(function ($u) {
             $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
         })->first();
@@ -79,7 +78,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testCreateSubscriptionAsMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member')->create();
 
         $this->actingAs($member)
@@ -97,7 +95,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscribeMustAcceptTermsAsMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member')->create();
 
         $this->actingAs($member)
@@ -114,7 +111,6 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscribeAsMember()
     {
-        $this->seed('TestingDatabaseSeeder');
         $member = factory(App\User::class, 'member')->create();
 
         $this->actingAs($member)
