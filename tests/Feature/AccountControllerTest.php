@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Feature;
+
+use Tests\TestCase;
+
 class AccountControllerTest extends TestCase
 {
     /**
