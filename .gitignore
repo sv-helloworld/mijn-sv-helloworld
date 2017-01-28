@@ -1,12 +1,11 @@
 /node_modules
 /public/storage
+/public/hot
+/storage/*.key
 /vendor
 /.idea
-/public/pma
 Homestead.json
 Homestead.yaml
 .env
-.idea/
-bower_components/
 .sass-cache/
 npm-debug.log
