@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
@@ -13,7 +14,7 @@ class UserControllerTest extends TestCase
      */
     public function testUserIndexAsNormalUser()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
              ->visit('/')
@@ -29,7 +30,7 @@ class UserControllerTest extends TestCase
      */
     public function testUserIndexAsAdmin()
     {
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers')
@@ -43,7 +44,7 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCantDeactivateHisOwnAccount()
     {
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$admin->id.'/edit')
@@ -63,7 +64,7 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCantChangeRoleOfHisOwnAccount()
     {
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$admin->id.'/edit')
@@ -83,10 +84,10 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserName()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'first_name' => 'Oude Naam',
         ]);
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')
@@ -106,10 +107,10 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserEmail()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'oud123@hz.nl',
         ]);
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')
@@ -129,8 +130,8 @@ class UserControllerTest extends TestCase
      */
     public function testUserMustVerifyEmailAfterEmailEdit()
     {
-        $user = factory(App\User::class)->create();
-        $admin = factory(App\User::class, 'admin')->create();
+        $user = factory(User::class)->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
             ->visit('/gebruikers/'.$user->id.'/edit')
@@ -150,8 +151,8 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanDeactivateUseViaEditView()
     {
-        $user = factory(App\User::class)->create();
-        $admin = factory(App\User::class, 'admin')->create();
+        $user = factory(User::class)->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')
@@ -171,10 +172,10 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanActivateUseViaEditView()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'activated' => 0,
         ]);
-        $admin = factory(App\User::class, 'admin')->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')
@@ -194,8 +195,8 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserRoleToAdmin()
     {
-        $user = factory(App\User::class)->create();
-        $admin = factory(App\User::class, 'admin')->create();
+        $user = factory(User::class)->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')
@@ -214,8 +215,8 @@ class UserControllerTest extends TestCase
      */
     public function testAdminCanChangeUserRoleToUser()
     {
-        $user = factory(App\User::class)->create();
-        $admin = factory(App\User::class, 'admin')->create();
+        $user = factory(User::class)->create();
+        $admin = factory(User::class, 'admin')->create();
 
         $this->actingAs($admin)
              ->visit('/gebruikers/'.$user->id.'/edit')

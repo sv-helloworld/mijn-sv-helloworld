@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
@@ -13,7 +14,7 @@ class AccountControllerTest extends TestCase
      */
     public function testAccountIndex()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
              ->visit('/account')
@@ -27,7 +28,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCanEditAccount()
     {
-        $user = factory(App\User::class)->create();
+        $user = factory(User::class)->create();
 
         $this->actingAs($user)
              ->visit('/account/bewerken')
@@ -46,7 +47,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCanEditEmail()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'abc@hz.nl',
         ]);
 
@@ -71,7 +72,7 @@ class AccountControllerTest extends TestCase
      */
     public function testMustVerifyEmailAfterEditEmail()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'abc@hz.nl',
         ]);
 
@@ -97,7 +98,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCantEditWithWrongEmail()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'email' => 'abc@hz.nl',
         ]);
 
@@ -119,7 +120,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCanChangePassword()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'password' => bcrypt('CurrentPassword123'),
         ]);
 
@@ -141,7 +142,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCantChangePasswordWithWrongCurrentPassword()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'password' => 'CurrentPassword123',
         ]);
 
@@ -163,7 +164,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCantChangePasswordWithDifferentPasswords()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'password' => 'CurrentPassword123',
         ]);
 
@@ -221,7 +222,7 @@ class AccountControllerTest extends TestCase
      */
     public function testCantReachIndexPageWhenNotActivated()
     {
-        $user = factory(App\User::class)->create([
+        $user = factory(User::class)->create([
             'activated' => false,
         ]);
 

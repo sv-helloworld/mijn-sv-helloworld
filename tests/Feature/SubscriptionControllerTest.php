@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
+use App\Subscription;
 
 class SubscriptionControllerTest extends TestCase
 {
@@ -13,7 +15,7 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndex()
     {
-        $member = factory(App\User::class)->create();
+        $member = factory(User::class)->create();
 
         $this->actingAs($member)
              ->visit('/inschrijving')
@@ -28,7 +30,7 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndexAsMember()
     {
-        $member = factory(App\User::class, 'member')->create();
+        $member = factory(User::class, 'member')->create();
 
         $this->actingAs($member)
              ->visit('/inschrijving')
@@ -43,8 +45,8 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionIndexAsSubscribedMember()
     {
-        $member = factory(App\User::class, 'member', 2)->create()->each(function ($u) {
-            $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
+        $member = factory(User::class, 'member', 2)->create()->each(function ($u) {
+            $u->subscriptions()->save(factory(Subscription::class, 'early_bird')->make());
         })->first();
 
         $this->actingAs($member)
@@ -61,8 +63,8 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscriptionDetailAsSubscribedMember()
     {
-        $member = factory(App\User::class, 'member', 2)->create()->each(function ($u) {
-            $u->subscriptions()->save(factory(App\Subscription::class, 'early_bird')->make());
+        $member = factory(User::class, 'member', 2)->create()->each(function ($u) {
+            $u->subscriptions()->save(factory(Subscription::class, 'early_bird')->make());
         })->first();
 
         $this->actingAs($member)
@@ -78,7 +80,7 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testCreateSubscriptionAsMember()
     {
-        $member = factory(App\User::class, 'member')->create();
+        $member = factory(User::class, 'member')->create();
 
         $this->actingAs($member)
              ->visit('/inschrijving')
@@ -95,7 +97,7 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscribeMustAcceptTermsAsMember()
     {
-        $member = factory(App\User::class, 'member')->create();
+        $member = factory(User::class, 'member')->create();
 
         $this->actingAs($member)
              ->visit('/inschrijving')
@@ -111,7 +113,7 @@ class SubscriptionControllerTest extends TestCase
      */
     public function testSubscribeAsMember()
     {
-        $member = factory(App\User::class, 'member')->create();
+        $member = factory(User::class, 'member')->create();
 
         $this->actingAs($member)
              ->visit('/inschrijving')
