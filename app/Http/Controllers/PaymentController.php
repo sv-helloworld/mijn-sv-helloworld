@@ -82,7 +82,7 @@ class PaymentController extends Controller
         }
 
         if (! $payment->paid()) {
-            return abort(403);
+            return abort(404);
         }
 
         $pdf = PDF::loadView('payment.invoice', compact('payment'));
