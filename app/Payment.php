@@ -44,6 +44,21 @@ class Payment extends Model
     ];
 
     /**
+     * Constructor.
+     *
+     * @param  array  $attributes
+     * @return void
+     */
+    public function __construct(array $attributes = [])
+    {
+        if (! isset($attributes['status'])) {
+            $attributes['status'] = self::STATUS_OPEN;
+        }
+
+        parent::__construct($attributes);
+    }
+
+    /**
      * Returns the user associated with the payment.
      */
     public function user()
