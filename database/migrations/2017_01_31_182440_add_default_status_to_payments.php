@@ -1,9 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
 use App\Payment;
+use Illuminate\Database\Migrations\Migration;
 
 class AddDefaultStatusToPayments extends Migration
 {
