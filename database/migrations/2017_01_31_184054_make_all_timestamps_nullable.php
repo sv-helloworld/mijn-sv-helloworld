@@ -1,9 +1,9 @@
 <?php
 
+use App\Activity;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Activity;
 
 class MakeAllTimestampsNullable extends Migration
 {
