@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,9 +12,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-        'App\Subscription' => 'App\Policies\SubscriptionPolicy',
         'App\ActivityEntry' => 'App\Policies\ActivityEntryPolicy',
+        'App\Payment' => 'App\Policies\PaymentPolicy',
+        'App\Subscription' => 'App\Policies\SubscriptionPolicy',
     ];
 
     /**
@@ -27,8 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('pay', function ($user, $payment) {
-            return $user->id === $payment->user_id;
-        });
+        //
     }
 }

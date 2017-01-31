@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Auth;
-use Gate;
 use Mollie;
 use App\User;
 use App\Payment;
@@ -59,7 +58,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! Gate::forUser($user)->allows('pay', $payment)) {
+        if (! $user->can('view', $payment)) {
             return abort(403);
         }
 
@@ -77,7 +76,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! Gate::forUser($user)->allows('pay', $payment)) {
+        if (! $user->can('view', $payment)) {
             return abort(403);
         }
 
@@ -101,7 +100,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! Gate::forUser($user)->allows('pay', $payment)) {
+        if (! $user->can('pay', $payment)) {
             return abort(403);
         }
 
@@ -159,7 +158,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! Gate::forUser($user)->allows('pay', $payment)) {
+        if (! $user->can('pay', $payment)) {
             return abort(403);
         }
 
