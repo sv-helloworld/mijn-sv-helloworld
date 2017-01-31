@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Subscription;
 use App\Events\PaymentCompleted;
-use App\Notifications\SubscriptionConfirmed;
+use App\Notifications\SubscriptionConfirmed as SubscriptionConfirmedNotification;
 
 class UpdateSubscriptionStatus
 {
@@ -45,7 +45,7 @@ class UpdateSubscriptionStatus
 
         if ($subscription->touch()) {
             // Send notification to user
-            $event->payment->user->notify(new SubscriptionConfirmed($subscription->id));
+            $event->payment->user->notify(new SubscriptionConfirmedNotification($subscription->id));
         }
     }
 }

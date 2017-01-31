@@ -3,8 +3,8 @@
 namespace App\Listeners;
 
 use App\Payment;
-use App\Notifications\PaymentCreated;
 use App\Events\UserAppliedForActivity;
+use App\Notifications\PaymentCreated as PaymentCreatedNotification;
 
 class CreateActivityEntryPayment
 {
@@ -38,6 +38,6 @@ class CreateActivityEntryPayment
         $event->activity_entry->payments()->save($payment);
 
         // Send notification to user
-        $event->user->notify(new PaymentCreated($payment->id));
+        $event->user->notify(new PaymentCreatedNotification($payment->id));
     }
 }

@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\ActivityEntry;
 use App\Events\PaymentCompleted;
-use App\Notifications\ActivityEntryConfirmed;
+use App\Notifications\ActivityEntryConfirmed as ActivityEntryConfirmedNotification;
 
 class UpdateActivityEntryStatus
 {
@@ -41,7 +41,7 @@ class UpdateActivityEntryStatus
 
         if ($activity_entry->touch()) {
             // Send notification to user
-            $event->payment->user->notify(new ActivityEntryConfirmed($activity_entry->id, $activity_entry->activity->title));
+            $event->payment->user->notify(new ActivityEntryConfirmedNotification($activity_entry->id, $activity_entry->activity->title));
         }
     }
 }

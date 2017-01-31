@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Payment;
 use App\Events\SubscriptionApproved;
-use App\Notifications\PaymentCreated;
+use App\Notifications\PaymentCreated as PaymentCreatedNotification;
 
 class CreateSubscriptionPayment
 {
@@ -38,6 +38,6 @@ class CreateSubscriptionPayment
         $event->subscription->payments()->save($payment);
 
         // Send notification to user
-        $event->user->notify(new PaymentCreated($payment->id));
+        $event->user->notify(new PaymentCreatedNotification($payment->id));
     }
 }
