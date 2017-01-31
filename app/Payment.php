@@ -13,11 +13,6 @@ class Payment extends Model
     const STATUS_PAID = 'paid';
 
     /**
-     * @var string
-     */
-    protected $status = self::STATUS_OPEN;
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
