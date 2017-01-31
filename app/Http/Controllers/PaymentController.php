@@ -140,7 +140,7 @@ class PaymentController extends Controller
         if ($mollie_payment->isPaid()) {
             $payment = Payment::findOrFail($mollie_payment->metadata->payment_id);
             $payment->update([
-                'status' => $mollie_payment->status,
+                'status' => Payment::STATUS_PAID,
                 'paid_at' => strtotime($mollie_payment->paidDatetime),
             ]);
 
@@ -168,7 +168,7 @@ class PaymentController extends Controller
         if ($mollie_payment->isPaid()) {
             $payment = Payment::findOrFail($mollie_payment->metadata->payment_id);
             $payment->update([
-                'status' => $mollie_payment->status,
+                'status' => Payment::STATUS_PAID,
                 'paid_at' => strtotime($mollie_payment->paidDatetime),
             ]);
 

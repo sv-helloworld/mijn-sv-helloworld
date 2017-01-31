@@ -9,6 +9,14 @@ class Payment extends Model
 {
     use SoftDeletes;
 
+    const STATUS_OPEN = 'open';
+    const STATUS_PAID = 'paid';
+
+    /**
+     * @var string
+     */
+    protected $status = self::STATUS_OPEN;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -58,7 +66,7 @@ class Payment extends Model
      */
     public function paid()
     {
-        return ! is_null($this->paid_at);
+        return $this->status == self::STATUS_PAID;
     }
 
     /**
