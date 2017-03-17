@@ -5,10 +5,9 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "barryvdh/laravel-dompdf": "^0.7.0",
+        "barryvdh/laravel-dompdf": "^0.8.0",
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "^2.5",
-        "dompdf/dompdf": "0.7.x-dev",
         "guzzlehttp/guzzle": "^6.2",
         "jrean/laravel-user-verification": "^4.0",
         "laracasts/flash": "^2.0",
