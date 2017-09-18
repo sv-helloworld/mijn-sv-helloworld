@@ -19,16 +19,16 @@ class UserDeleted
      */
     public $user;
 
-     /**
-      * Create a new event instance.
-      *
-      * @param User $user The user that needs to be unsubscribed.
-      * @return void
-      */
-     public function __construct(User $user)
-     {
-         $this->user = $user;
-     }
+    /**
+     * Create a new event instance.
+     *
+     * @param User $user The user that needs to be unsubscribed.
+     * @return void
+     */
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * Get the channels the event should broadcast on.
