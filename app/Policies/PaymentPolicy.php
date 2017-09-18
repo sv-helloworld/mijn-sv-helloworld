@@ -46,6 +46,18 @@ class PaymentPolicy
     }
 
     /**
+     * Determine whether the user can pay the payment.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Payment  $payment
+     * @return mixed
+     */
+    public function pay(User $user, Payment $payment)
+    {
+        return $user->id === $payment->user_id;
+    }
+
+    /**
      * Determine whether the user can delete the payment.
      *
      * @param  \App\User  $user
