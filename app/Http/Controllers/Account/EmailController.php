@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Account;
 
-use Laracasts\Flash\Flash;
 use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
@@ -12,6 +11,7 @@ use Jrean\UserVerification\Facades\UserVerification;
 use Jrean\UserVerification\Exceptions\UserNotFoundException;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
+use Jrean\UserVerification\Facades\UserVerification as UserVerificationFacade;
 
 class EmailController extends Controller
 {
@@ -60,8 +60,8 @@ class EmailController extends Controller
      */
     public function index(Request $request)
     {
-        if (! $request->session()->has('flash_notification.message')) {
-            return redirect('account');
+        if (! $request->session()->has('flash_notification')) {
+            return redirect('account')->with('flash_notification');
         }
 
         return view('account.email.verificate.index');
@@ -149,17 +149,19 @@ class EmailController extends Controller
     /**
      * Handle the user verification.
      *
-     * @param Request $request
-     * @param  string $token
-     * @return Response
+     * @param  string  $token
+     * @return \Illuminate\Http\Response
      */
     public function getVerification(Request $request, $token)
     {
-        $this->validateRequest($request);
+        if (! $this->validateRequest($request)) {
+            return redirect($this->redirectIfVerificationFails());
+        }
 
         try {
-            flash('Je e-mailadres is geverifieerd.', 'success');
-            UserVerification::process($request->input('email'), $token, $this->userTable());
+            flash('Bedankt, je e-mailadres is nu geverifieerd.', 'success');
+
+            $user = UserVerificationFacade::process($request->input('email'), $token, $this->userTable());
         } catch (UserNotFoundException $e) {
             flash('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.', 'error');
 
@@ -172,6 +174,10 @@ class EmailController extends Controller
             flash('Het e-mailadres kon niet worden geverifieerd.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
+        }
+
+        if (config('user-verification.auto-login') === true) {
+            auth()->loginUsingId($user->id);
         }
 
         return redirect($this->redirectAfterVerification());

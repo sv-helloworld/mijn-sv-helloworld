@@ -7,7 +7,9 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
 
 class RegisterController extends Controller
@@ -23,7 +25,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers, VerifiesUsers;
 
     /**
      * Where to redirect users after registration.
@@ -31,6 +33,13 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
+
+    /**
+     * Name of the view returned by the getVerificationError method.
+     *
+     * @var string
+     */
+    protected $verificationEmailView = 'emails.user-activation';
 
     /**
      * Create a new controller instance.
@@ -54,15 +63,16 @@ class RegisterController extends Controller
 
         $user = $this->create($request->all());
 
+        event(new Registered($user));
+
         $this->guard()->login($user);
 
         UserVerification::generate($user);
-        UserVerification::emailView('emails.user-activation');
         UserVerification::send($user, 'Activeer je account');
 
         flash('Je account is succesvol aangemaakt! We hebben een activatielink naar je e-mailadres gestuurd. Het kan even duren voor je de activatielink ontvangt.', 'success');
 
-        return redirect($this->redirectPath());
+        return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 
     /**
