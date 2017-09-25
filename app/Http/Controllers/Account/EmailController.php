@@ -11,7 +11,6 @@ use Jrean\UserVerification\Facades\UserVerification;
 use Jrean\UserVerification\Exceptions\UserNotFoundException;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
-use Jrean\UserVerification\Facades\UserVerification as UserVerificationFacade;
 
 class EmailController extends Controller
 {
@@ -159,19 +158,19 @@ class EmailController extends Controller
         }
 
         try {
-            flash('Bedankt, je e-mailadres is nu geverifieerd.', 'success');
+            $user = UserVerification::process($request->input('email'), $token, $this->userTable());
 
-            $user = UserVerificationFacade::process($request->input('email'), $token, $this->userTable());
+            flash('Bedankt, je e-mailadres is nu geverifieerd.', 'success');
         } catch (UserNotFoundException $e) {
             flash('Het e-mailadres kon niet worden geverifieerd omdat de gebruiker niet werd gevonden.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
         } catch (UserIsVerifiedException $e) {
-            flash('Het e-mailadres is al geverifieerd.', 'error');
+            flash('Het e-mailadres is al geverifieerd.', 'info');
 
             return redirect($this->redirectIfVerified());
         } catch (TokenMismatchException $e) {
-            flash('Het e-mailadres kon niet worden geverifieerd.', 'error');
+            flash('Het e-mailadres kon niet worden geverifieerd.', 'danger');
 
             return redirect($this->redirectIfVerificationFails());
         }
